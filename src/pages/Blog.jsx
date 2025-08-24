@@ -1,10 +1,7 @@
 import React from 'react';
 import { Calendar, User, ArrowRight } from 'lucide-react';
-import { useTranslation } from '../translations';
 
 function Blog() {
-  const { t } = useTranslation();
-  
   const articles = [
     {
       title: "How to prep for Amazon FBA in France",
@@ -36,7 +33,6 @@ function Blog() {
   ];
 
   const categories = ["All", "FBA Prep", "Compliance", "Shipping", "Tips"];
-  const categoryKeys = ["allCategories", "fbaPrepCategory", "complianceCategory", "shippingCategory", "tipsCategory"];
 
   return (
     <div className="min-h-screen py-20">
@@ -44,25 +40,25 @@ function Blog() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
-            {t('blogPageTitle')}
+            Amazon FBA Prep Blog - Prep Center France
           </h1>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-            {t('blogPageSubtitle')}
+            Expert insights, tips, and guides for Amazon FBA sellers in Europe from Prep Center France. Stay updated with the latest FBA prep strategies, European regulations, and best practices for Amazon fulfillment.
           </p>
         </div>
 
         {/* Categories */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categoryKeys.map((categoryKey, index) => (
+          {categories.map((category, index) => (
             <button
-              key={categoryKey}
+              key={index}
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 index === 0
                   ? 'bg-primary text-white'
                   : 'bg-gray-100 text-text-secondary hover:bg-gray-200'
               }`}
             >
-              {t(categoryKey)}
+              {category}
             </button>
           ))}
         </div>
@@ -104,7 +100,7 @@ function Blog() {
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-text-light">{article.readTime}</span>
                   <button className="text-primary font-medium hover:text-primary-dark transition-colors inline-flex items-center">
-                    {t('readMore')}
+                    Read More
                     <ArrowRight className="w-4 h-4 ml-1" />
                   </button>
                 </div>
@@ -116,19 +112,19 @@ function Blog() {
         {/* Newsletter Signup */}
         <section className="bg-gradient-to-br from-blue-50 to-white rounded-xl p-12 text-center">
           <h2 className="text-3xl font-bold text-text-primary mb-4">
-            {t('stayUpdated')}
+            Stay Updated
           </h2>
           <p className="text-xl text-text-secondary mb-8 max-w-2xl mx-auto">
-            {t('subscribeNewsletter')}
+            Subscribe to our newsletter for the latest FBA prep tips, industry updates, and exclusive insights for European sellers.
           </p>
           <div className="max-w-md mx-auto flex gap-4">
             <input
               type="email"
-              placeholder={t('enterEmail')}
+              placeholder="Enter your email"
               className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
             />
             <button className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors">
-              {t('subscribe')}
+              Subscribe
             </button>
           </div>
         </section>
@@ -137,10 +133,15 @@ function Blog() {
         <section className="mt-20 text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold text-text-primary mb-6">
-              {t('expertGuidance')}
+              Expert Amazon FBA Prep Guidance for European Sellers - Prep Center France
             </h2>
             <p className="text-text-secondary leading-relaxed">
-              {t('expertGuidanceDesc')}
+              Prep Center France provides comprehensive guides and expert insights for Amazon FBA sellers across Europe. 
+              From understanding French Amazon FBA prep regulations to optimizing your European shipping strategy, we cover 
+              everything you need to know about successful FBA operations in France and Europe. Whether you're looking for information 
+              about Amazon FBA prep services in France, European FBA preparation, FNSKU labeling in France, or French Amazon fulfillment center shipping, 
+              our expert content helps European sellers make informed decisions for Amazon FBA business growth. Our prep center in France 
+              serves sellers across Germany, Italy, Spain, Netherlands, Belgium, Poland and all European Amazon marketplaces.
             </p>
           </div>
         </section>

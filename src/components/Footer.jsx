@@ -1,10 +1,7 @@
 import React from 'react';
 import { Package, Phone, Mail, MapPin } from 'lucide-react';
-import { useTranslation } from '../translations';
 
 function Footer() {
-  const { t } = useTranslation();
-
   return (
     <footer className="bg-gray-50 border-t">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -42,20 +39,20 @@ function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold text-text-primary mb-4">{t('contactInfo')}</h3>
+            <h3 className="text-lg font-semibold text-text-primary mb-4">Contact</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-text-secondary" />
-                <span className="text-text-secondary">{t('contactEmail')}</span>
+                <span className="text-text-secondary">contact@prep-center.eu</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-text-secondary" />
-                <span className="text-text-secondary">{t('contactPhone')}</span>
+                <span className="text-text-secondary">+33 6 75 11 62 18</span>
               </div>
               <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-text-secondary mt-1" />
                 <span className="text-text-secondary">
-                  {t('contactAddress')}
+                  35350 La Gouesnière, France
                 </span>
               </div>
             </div>
@@ -63,19 +60,19 @@ function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-text-primary mb-4">{t('quickLinks')}</h3>
+            <h3 className="text-lg font-semibold text-text-primary mb-4">Quick Links</h3>
             <div className="space-y-2">
               <a href="/services-pricing" className="block text-text-secondary hover:text-primary transition-colors">
-                {t('services')}
+                Services & Pricing
               </a>
               <a href="#" className="block text-text-secondary hover:text-primary transition-colors">
-                {t('pricingPDF')}
+                Pricing PDF
               </a>
               <a href="#" className="block text-text-secondary hover:text-primary transition-colors">
-                {t('termsOfService')}
+                Terms of Service
               </a>
               <a href="#" className="block text-text-secondary hover:text-primary transition-colors">
-                {t('privacyPolicy')}
+                Privacy Policy
               </a>
               <a href="https://linkedin.com/company/global-fulfill-hub" target="_blank" rel="noopener noreferrer" className="block text-text-secondary hover:text-primary transition-colors">
                 LinkedIn

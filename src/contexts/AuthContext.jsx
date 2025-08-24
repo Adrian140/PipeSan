@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { auth, db } from '../lib/supabase';
+import { apiClient } from '../config/api';
+
 const AuthContext = createContext();
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };
@@ -16,106 +17,99 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Check for existing session
-    const checkAuth = async () => {
-      try {
-        console.log('Checking authentication...');
-        
-        // Try to get current session from Supabase
-        const currentUser = await auth.getCurrentUser();
-        console.log('Current user result:', currentUser);
-        
-        if (currentUser) {
-          // Get user profile from database
-          const profile = await db.getUser(currentUser.id);
-          if (profile) {
-            setUser(profile);
-            console.log('User session restored:', profile.email);
-          }
-        }
-      } catch (error) {
-        console.error('Auth check error:', error);
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      // Validate token and get user data
+      validateToken(token);
+    } else {
+      setLoading(false);
+    }
+  }, []);
 
-    checkAuth();
- }, []);
+  const validateToken = async (token) => {
+   try {
+      const userData = await apiClient.auth.validate();
+      setUser(userData);
+    } catch (error) {
+      console.error('Token validation failed:', error);
+      localStorage.removeItem('authToken');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const login = async (email, password) => {
-     try {
-      console.log('Attempting login for:', email);
-      
-      // Real Supabase authentication
-      const result = await auth.signIn(email, password);
-      console.log('Login result:', result);
-      const authUser = result?.user;
-      
-      if (authUser) {
-        const profile = await db.getUser(authUser.id);
-        console.log('User profile:', profile);
-        setUser(profile);
-        return profile;
-      }
-      throw new Error('Login failed');
-    } catch (error) {
-      console.error('Login error:', error);
-      // Don't expose detailed error information
-      throw new Error('Autentificare eșuată. Verificați email-ul și parola.');
-    }
- };
+   try {
+      const { token, user } = await apiClient.auth.login(email, password);
+      localStorage.setItem('authToken', token);
+      setUser(user);
+      return { success: true, user };
+   } catch (error) {
+       return { success: false, error: error.message || 'Eroare de conectare la server' };
+  }
+  };
 
   const register = async (userData) => {
-     try {
-      console.log('Attempting registration for:', userData.email);
-      
-      // Real Supabase registration
-      const { email, password, ...profileData } = userData;
-      
-      const result = await auth.signUp(email, password, {
-        ...profileData,
-        role: 'customer',
-        country: profileData.country || 'FR'
-      });
-      
-      console.log('Registration result:', result);
-      const authUser = result?.user;
-      if (authUser) {
-        const profile = await db.getUser(authUser.id);
-        if (profile) {
-          setUser(profile);
-        }
-        return profile;
-      }
-      throw new Error('Registration failed');
-    } catch (error) {
-      console.error('Registration error:', error);
-      // Provide user-friendly error messages
-      if (error.message.includes('already registered')) {
-        throw new Error('Acest email este deja înregistrat');
-      } else if (error.message.includes('password')) {
-        throw new Error('Parola nu respectă cerințele de securitate');
-      } else {
-        throw new Error('Înregistrare eșuată. Încercați din nou.');
-      }
-    }
- };
+    try {
+       const result = await apiClient.auth.register(userData);
+      return { success: true, message: result.message || 'Account created successfully. Please check your email for verification.' };
+   } catch (error) {
+       return { success: false, error: error.message || 'Network error occurred' };
+   }
+  };
 
   const logout = () => {
-     console.log('Logging out...');
-     auth.signOut();
+    localStorage.removeItem('authToken');
     setUser(null);
- };
+  };
 
-  const value = {
+  const forgotPassword = async (email) => {
+    try {
+       const result = await apiClient.auth.forgotPassword(email);
+      return { success: true, message: result.message || 'Password reset link sent to your email' };
+   } catch (error) {
+       return { success: false, error: error.message || 'Network error occurred' };
+   }
+  };
+
+  const enable2FA = async () => {
+    try {
+       const data = await apiClient.auth.enable2FA();
+      return { success: true, qrCode: data.qrCode, secret: data.secret };
+   } catch (error) {
+       return { success: false, error: error.message || 'Network error occurred' };
+   }
+  };
+
+  const verify2FA = async (token) => {
+    try {
+       const result = await apiClient.auth.verify2FA(token);
+      return { success: true, message: result.message || '2FA enabled successfully' };
+   } catch (error) {
+       return { success: false, error: error.message || 'Network error occurred' };
+   }
+  };
+
+  const disable2FA = async (token) => {
+    try {
+       const result = await apiClient.auth.disable2FA(token);
+      return { success: true, message: result.message || '2FA disabled successfully' };
+   } catch (error) {
+       return { success: false, error: error.message || 'Network error occurred' };
+   }
+  };
+   
+ const value = {
     user,
+    loading,
     login,
     register,
     logout,
-    loading,
-     isAdmin: user?.role === 'admin'
- };
+    forgotPassword,
+    enable2FA,
+    verify2FA,
+    disable2FA
+  };
 
   return (
     <AuthContext.Provider value={value}>
@@ -123,5 +117,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export default AuthProvider;
