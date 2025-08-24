@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
+import CountrySelector from '../CountrySelector';
 import {
   AppBar,
   Toolbar,
@@ -120,6 +121,8 @@ const Header = () => {
                 <MenuItem value="mt">��🇹 MT</MenuItem>
               </Select>
             </FormControl>
+
+            <CountrySelector />
 
             <IconButton component={Link} to="/cart" color="inherit">
               <Badge badgeContent={getTotalItems()} color="secondary">

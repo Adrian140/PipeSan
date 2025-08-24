@@ -45,8 +45,10 @@ const Cart = () => {
             Nu aveți produse în coșul de cumpărături.
           </Typography>
           <Button
-            component={Link}
+              component={Link}
               to="/checkout"
+            component={Link}
+            to="/products"
             variant="contained"
             size="large"
           >
