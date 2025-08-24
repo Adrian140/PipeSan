@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
-import { CurrencyProvider } from './contexts/CurrencyContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
 import Header from './components/Header';
@@ -71,7 +70,6 @@ function App() {
   return (
     <AuthProvider>
        <LanguageProvider>
-        <CurrencyProvider>
         <CartProvider>
           <Router>
             <div className="min-h-screen bg-white">
@@ -79,7 +77,6 @@ function App() {
             </div>
           </Router>
         </CartProvider>
-        </CurrencyProvider>
       </LanguageProvider>
     </AuthProvider>
  );

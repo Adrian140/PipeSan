@@ -200,22 +200,13 @@ function Contact() {
               <h3 className="text-xl font-bold text-text-primary mb-6">Quick Actions</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <a
-                  href="https://wa.me/33675116218"
+                href="https://wa.me/40264123456"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-full bg-accent text-white py-4 px-6 rounded-lg font-semibold hover:bg-accent-dark transition-colors"
                 >
                   <MessageCircle className="w-5 h-5 mr-2" />
                   {t('chatWhatsApp')}
-                </a>
-                <a
-                   href="https://calendly.com/global-fulfill-hub"
-                 target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-full bg-primary text-white py-4 px-6 rounded-lg font-semibold hover:bg-primary-dark transition-colors"
-                >
-                  <Calendar className="w-5 h-5 mr-2" />
-                  {t('bookZoom')}
                 </a>
               </div>
             </div>
@@ -229,8 +220,8 @@ function Contact() {
                   <div>
                     <p className="font-semibold text-text-primary">PipeSan Headquarters</p>
                     <p className="text-text-secondary">
-                      Zone Industrielle Nord<br />
-                      69120 Vaulx-en-Velin, France
+                      Strada Industrială 15<br />
+                      Cluj-Napoca 400001, România
                     </p>
                   </div>
                 </div>
@@ -238,21 +229,21 @@ function Contact() {
                   <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                   <div>
                     <p className="font-medium text-text-primary">Technical Support</p>
-                    <p className="text-text-secondary">technical@pipesan.eu</p>
+                    <p className="text-text-secondary">contact@pipesan.eu</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-primary flex-shrink-0" />
                   <div>
                     <p className="font-medium text-text-primary">{t('phone')}</p>
-                    <p className="text-text-secondary">+33 6 75 11 62 18</p>
+                    <p className="text-text-secondary">+40 264 123 456</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                   <div>
                     <p className="font-medium text-text-primary">{t('email')}</p>
-                    <p className="text-text-secondary">contact@prep-center.eu</p>
+                    <p className="text-text-secondary">contact@pipesan.eu</p>
                   </div>
                 </div>
               </div>
@@ -294,23 +285,23 @@ function Contact() {
           <h2 className="text-3xl font-bold text-text-primary mb-8 text-center">Our Location</h2>
           <div className="rounded-xl overflow-hidden shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2782.123456789!2d4.9234567890123456!3d45.7612345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea1234567890%3A0x1234567890abcdef!2s69120%20Vaulx-en-Velin%2C%20France!5e0!3m2!1sen!2sus!4v1234567890123"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2750.123456789!2d23.5234567890123456!3d46.7612345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47928ea1234567890%3A0x1234567890abcdef!2sCluj-Napoca%2C%20Romania!5e0!3m2!1sen!2sus!4v1234567890123"
               width="100%"
               height="400"
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Prep Center France Location - La Gouesnière"
+              title="PipeSan Location - Cluj-Napoca"
             ></iframe>
           </div>
           <div className="mt-6 text-center">
             <div className="inline-flex items-center bg-white rounded-lg border border-gray-200 px-6 py-4 shadow-sm">
               <MapPin className="w-5 h-5 text-primary mr-3" />
               <div className="text-left">
-                <p className="font-semibold text-text-primary">Prep Center France</p>
-                <p className="text-text-secondary">35350 La Gouesnière, France</p>
-                <p className="text-sm text-text-light">Strategic location for EU-wide Amazon FBA distribution</p>
+                <p className="font-semibold text-text-primary">PipeSan</p>
+                <p className="text-text-secondary">Cluj-Napoca 400001, România</p>
+                <p className="text-sm text-text-light">Professional plumbing parts supplier for Europe</p>
               </div>
             </div>
           </div>

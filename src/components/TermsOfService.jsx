@@ -216,13 +216,13 @@ function TermsOfService() {
               </p>
               <div className="space-y-2">
                 <p className="text-text-secondary">
-                  <strong>Email:</strong> contact@prep-center.eu
+                  <strong>Email:</strong> contact@pipesan.eu
                 </p>
                 <p className="text-text-secondary">
-                  <strong>Telefon:</strong> +33 6 75 11 62 18
+                  <strong>Telefon:</strong> +40 264 123 456
                 </p>
                 <p className="text-text-secondary">
-                  <strong>Adresă:</strong> 35350 La Gouesnière, France
+                  <strong>Adresă:</strong> Strada Industrială 15, Cluj-Napoca 400001, România
                 </p>
               </div>
             </div>

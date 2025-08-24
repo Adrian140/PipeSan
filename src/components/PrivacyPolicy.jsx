@@ -215,16 +215,16 @@ function PrivacyPolicy() {
               <div className="space-y-2">
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 text-primary mr-2" />
-                  <span className="text-text-secondary">Email: contact@prep-center.eu</span>
+                  <span className="text-text-secondary">Email: contact@pipesan.eu</span>
                 </div>
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 text-primary mr-2" />
-                  <span className="text-text-secondary">Telefon: +33 6 75 11 62 18</span>
+                  <span className="text-text-secondary">Telefon: +40 264 123 456</span>
                 </div>
                 <div className="flex items-start">
                   <Mail className="w-4 h-4 text-primary mr-2 mt-1" />
                   <span className="text-text-secondary">
-                    Adresă: 35350 La Gouesnière, France
+                    Adresă: Strada Industrială 15, Cluj-Napoca 400001, România
                   </span>
                 </div>
               </div>

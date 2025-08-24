@@ -80,9 +80,9 @@ const mockPricing = [
 const mockContent = {
   heroTitle: 'PipeSan - Professional Plumbing Parts',
   heroSubtitle: 'Valves, fittings, connectors and professional installation components. Fast EU delivery with complete technical specifications.',
-  phone: '+33 1 23 45 67 89',
-  email: 'info@pipesan.eu',
-  address: 'Zone Industrielle Nord, 69120 Vaulx-en-Velin, France'
+  phone: '+40 264 123 456',
+  email: 'contact@pipesan.eu',
+  address: 'Strada Industrială 15, Cluj-Napoca 400001, România'
 };
 
 // Mock addresses

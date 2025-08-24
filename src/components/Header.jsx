@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Wrench } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import CartIcon from './layout/CartIcon';
-import CurrencySelector from './CurrencySelector';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from '../translations';
 
@@ -59,7 +58,6 @@ function Header() {
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-3">
             <LanguageSwitcher />
-            <CurrencySelector />
             <CartIcon />
             {user ? (
               <div className="flex items-center space-x-3">
@@ -103,16 +101,12 @@ function Header() {
             
             {/* Action Buttons */}
             <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
-              <button className="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-dark transition-all duration-200 shadow-sm hover:shadow-md text-sm">
-                 {t('requestCatalog')}
-             </button>
             </div>
           </div>
 
           {/* Tablet Navigation (md screens) */}
           <div className="hidden md:flex lg:hidden items-center space-x-3">
             <LanguageSwitcher />
-            <CurrencySelector />
             <CartIcon />
             {user ? (
               <>
@@ -140,8 +134,7 @@ function Header() {
              </Link>
             )}
             <button className="bg-primary text-white px-3 py-2 rounded-lg font-medium hover:bg-primary-dark transition-colors text-sm">
-               {t('requestCatalog')}
-           </button>
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -182,7 +175,6 @@ function Header() {
               <div className="pt-4 border-t border-gray-100">
                 <div className="px-4 pb-3">
                   <LanguageSwitcher />
-                  <CurrencySelector />
                 </div>
               </div>
               
@@ -245,9 +237,6 @@ function Header() {
                   >
                      {t('chatWhatsApp')}
                  </a>
-                  <button className="block w-full bg-primary text-white px-4 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors">
-                     {t('requestCatalog')}
-                 </button>
                 </div>
               </div>
             </div>

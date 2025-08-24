@@ -79,9 +79,6 @@ function Home() {
               {t('heroSubtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-dark transition-all duration-200 shadow-lg hover:shadow-xl">
-                 {t('requestCatalog')}
-             </button>
                <button className="w-full sm:w-auto bg-accent text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-accent-dark transition-all duration-200 shadow-lg hover:shadow-xl">
                 Browse Products
               </button>

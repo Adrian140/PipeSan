@@ -64,12 +64,12 @@ function OrderSuccess() {
             <div className="pt-6 border-t border-gray-200">
               <p className="text-sm text-gray-500">
                 Need help? Contact us at{' '}
-                <a href="mailto:contact@prep-center.eu" className="text-primary hover:text-primary-dark">
-                  contact@prep-center.eu
+                <a href="mailto:contact@pipesan.eu" className="text-primary hover:text-primary-dark">
+                  contact@pipesan.eu
                 </a>{' '}
                 or{' '}
-                <a href="tel:+33675116218" className="text-primary hover:text-primary-dark">
-                  +33 6 75 11 62 18
+                <a href="tel:+40264123456" className="text-primary hover:text-primary-dark">
+                  +40 264 123 456
                 </a>
               </p>
             </div>

@@ -40,17 +40,17 @@ function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-text-secondary" />
-                 <span className="text-text-secondary">info@pipesan.eu</span>
+                 <span className="text-text-secondary">contact@pipesan.eu</span>
              </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-text-secondary" />
-                 <span className="text-text-secondary">+33 1 23 45 67 89</span>
+                 <span className="text-text-secondary">+40 264 123 456</span>
              </div>
               <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-text-secondary mt-1" />
                 <span className="text-text-secondary">
-                   Zone Industrielle Nord<br />
-                  69120 Vaulx-en-Velin, France
+                   Strada Industrială 15<br />
+                  Cluj-Napoca 400001, România
                </span>
               </div>
             </div>

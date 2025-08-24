@@ -17,7 +17,6 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    requestCatalog: 'Demander Catalogue',
     addToCart: 'Ajouter au Panier',
     viewCart: 'Voir Panier',
     checkout: 'Commander',
@@ -149,7 +148,6 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    requestCatalog: 'Request Catalog',
     addToCart: 'Add to Cart',
     viewCart: 'View Cart',
     checkout: 'Checkout',
@@ -281,7 +279,6 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    requestCatalog: 'Katalog Anfordern',
     addToCart: 'In den Warenkorb',
     viewCart: 'Warenkorb Anzeigen',
     checkout: 'Zur Kasse',
@@ -413,7 +410,6 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    requestCatalog: 'Catalogus Aanvragen',
     addToCart: 'Toevoegen aan Winkelwagen',
     viewCart: 'Winkelwagen Bekijken',
     checkout: 'Afrekenen',
@@ -546,7 +542,6 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    requestCatalog: 'Solicitar Catálogo',
     addToCart: 'Añadir al Carrito',
     viewCart: 'Ver Carrito',
     checkout: 'Finalizar Compra',
@@ -678,7 +673,6 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    requestCatalog: 'Richiedi Catalogo',
     addToCart: 'Aggiungi al Carrello',
     viewCart: 'Visualizza Carrello',
     checkout: 'Procedi all\'Ordine',
@@ -810,7 +804,6 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    requestCatalog: 'Zamów Katalog',
     addToCart: 'Dodaj do Koszyka',
     viewCart: 'Zobacz Koszyk',
     checkout: 'Złóż Zamówienie',
@@ -942,7 +935,6 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    requestCatalog: 'Solicită Catalog',
     addToCart: 'Adaugă în Coș',
     viewCart: 'Vezi Coșul',
     checkout: 'Finalizează Comanda',
