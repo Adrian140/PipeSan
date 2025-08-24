@@ -66,16 +66,22 @@ const ProductManagement = () => {
   const loadData = async () => {
     try {
       setLoading(true);
+      console.log('🔄 Loading products and categories...');
       const [productsData, categoriesData] = await Promise.all([
         db.getProducts(),
         db.getCategories()
       ]);
       
+      console.log('📊 Data loaded:', { 
+        products: productsData?.length || 0, 
+        categories: categoriesData?.length || 0 
+      });
+      
       setProducts(productsData);
       setCategories(categoriesData);
     } catch (error) {
-      console.error('Error loading data:', error);
-      setAlert({ type: 'error', message: 'Eroare la încărcarea datelor' });
+      console.error('❌ Error loading data:', error);
+      setAlert({ type: 'error', message: `Eroare la încărcarea datelor: ${error.message}` });
     } finally {
       setLoading(false);
     }
@@ -117,6 +123,8 @@ const ProductManagement = () => {
       setLoading(true);
       setAlert(null);
       
+      console.log('🚀 Form submission started:', { editingProduct: !!editingProduct, data });
+      
       const productData = {
         ...data,
         bullet_points: data.bullet_points ? data.bullet_points.split('\n').filter(point => point.trim()) : [],
@@ -128,22 +136,37 @@ const ProductManagement = () => {
         stock: parseInt(data.stock)
       };
 
+      console.log('�� Processed product data:', productData);
+
       let result;
       if (editingProduct) {
+        console.log('✏️ Updating existing product:', editingProduct.id);
         result = await db.updateProduct(editingProduct.id, productData);
         setAlert({ type: 'success', message: 'Produsul a fost actualizat cu succes!' });
       } else {
+        console.log('➕ Creating new product');
         result = await db.createProduct(productData);
         setAlert({ type: 'success', message: 'Produsul a fost adăugat cu succes!' });
       }
+
+      console.log('✅ Operation completed successfully:', result?.id);
 
       // Reload data to reflect changes
       await loadData();
       handleCloseDialog();
       setTimeout(() => setAlert(null), 3000);
     } catch (error) {
-      console.error('Error saving product:', error);
-      setAlert({ type: 'error', message: 'Eroare la salvarea produsului. Încercați din nou.' });
+      console.error('❌ Error saving product:', error);
+      console.error('❌ Error details:', {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint
+      });
+      setAlert({ 
+        type: 'error', 
+        message: `Eroare la salvarea produsului: ${error.message || 'Încercați din nou.'}` 
+      });
       setTimeout(() => setAlert(null), 3000);
     } finally {
       setLoading(false);

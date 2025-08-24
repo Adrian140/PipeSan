@@ -1,479 +1,683 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Get environment variables - support both naming conventions
+// Environment variables with fallbacks
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Create Supabase client only if valid credentials are provided
-export const supabase = (supabaseUrl && supabaseAnonKey && 
-  supabaseUrl !== 'your_supabase_url_here' && 
-  supabaseAnonKey !== 'your_supabase_anon_key_here' &&
-  supabaseUrl.startsWith('https://') && 
-  supabaseUrl.includes('.supabase.co'))
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : null;
-// Auth functions
-export const auth = {
-  async signUp(email, password, userData) {
-    if (!supabase) throw new Error('Supabase not configured');
-    
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: userData
-      }
-    });
-    
-    if (error) throw error;
-    
-    // Create user profile
-    if (data.user) {
-      const { error: profileError } = await supabase
-        .from('users')
-        .insert([{
-          id: data.user.id,
-          email: data.user.email,
-          ...userData
-        }]);
-      
-      if (profileError) console.error('Profile creation error:', profileError);
-    }
-    
-    return data;
-  },
-
-  async signIn(email, password) {
-    if (!supabase) {
-      // Demo mode fallback
-      console.log('Demo mode: Mock authentication');
-      return {
-        user: {
-          id: 'demo-user',
-          email: email,
-          user_metadata: {
-            name: email === 'contact@pipesan.eu' ? 'Administrator PipeSan' : 'Demo User'
-          }
-        }
-      };
-    }
-    
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    });
-    
-    if (error) throw error;
-    return data;
-  },
-
-  async signOut() {
-    if (!supabase) return;
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
-  },
-
-  async getCurrentUser() {
-    if (!supabase) return null;
-    
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return null;
-    
-    // Get user profile
-    const { data: profile } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', user.id)
-      .single();
-    
-    return { user, profile };
+// Initialize Supabase client only if credentials are available
+let supabase = null;
+if (supabaseUrl && supabaseAnonKey && supabaseUrl.startsWith('https://') && supabaseUrl.includes('supabase')) {
+  try {
+    supabase = createClient(supabaseUrl, supabaseAnonKey);
+    console.log('✅ Supabase client initialized successfully');
+  } catch (error) {
+    console.error('❌ Failed to initialize Supabase client:', error);
+    supabase = null;
   }
-};
+} else {
+  console.log('🔧 Demo mode: Supabase credentials not configured');
+}
 
-// Database functions
+// Mock data for demo mode
+const mockCategories = [
+  { id: 'racorduri', name: 'Racorduri', description: 'Racorduri și fitinguri pentru instalații sanitare', slug: 'racorduri' },
+  { id: 'robinete', name: 'Robinete', description: 'Robinete și baterii pentru bucătărie și baie', slug: 'robinete' },
+  { id: 'accesorii', name: 'Accesorii', description: 'Accesorii diverse pentru instalații sanitare', slug: 'accesorii' },
+  { id: 'teflon', name: 'Teflon & Etanșare', description: 'Materiale pentru etanșări și izolații', slug: 'teflon-etansare' },
+  { id: 'tevi', name: 'Țevi', description: 'Țevi din diverse materiale pentru instalații', slug: 'tevi' },
+  { id: 'sifoane', name: 'Sifoane', description: 'Sifoane pentru chiuvete și lavoare', slug: 'sifoane' }
+];
+
+let mockProducts = [
+  {
+    id: '1',
+    name: 'Racord Flexibil Premium 1/2"',
+    description: 'Racord flexibil de înaltă calitate pentru instalații sanitare, rezistent la presiune și temperaturi ridicate.',
+    bullet_points: ['Rezistent la presiune înaltă', 'Material inoxidabil', 'Instalare ușoară', 'Garanție 5 ani'],
+    price: 45.99,
+    estimated_shipping_price: 8.50,
+    category_id: 'racorduri',
+    image_url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
+    specifications: 'Dimensiune: 1/2", Material: Inox 316L, Presiune max: 16 bar',
+    stock: 25,
+    sku: 'RAC-FLEX-001',
+    active: true,
+    amazon_links: {
+      FR: 'https://amazon.fr/dp/B08XYZ123',
+      DE: 'https://amazon.de/dp/B08XYZ123',
+      ES: 'https://amazon.es/dp/B08XYZ123',
+      IT: 'https://amazon.it/dp/B08XYZ123'
+    },
+    categories: { name: 'Racorduri' },
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '2',
+    name: 'Robinet Monocomandă Bucătărie',
+    description: 'Robinet modern cu design elegant, perfect pentru bucătării contemporane. Cartușul ceramic asigură durabilitatea.',
+    bullet_points: ['Design modern', 'Cartușul ceramic', 'Economie de apă', 'Instalare simplă'],
+    price: 189.99,
+    estimated_shipping_price: 12.00,
+    category_id: 'robinete',
+    image_url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=300&fit=crop',
+    specifications: 'Înălțime: 35cm, Material: Alamă cromată, Debit: 8L/min',
+    stock: 15,
+    sku: 'ROB-MONO-001',
+    active: true,
+    amazon_links: {
+      FR: 'https://amazon.fr/dp/B08ABC456',
+      DE: 'https://amazon.de/dp/B08ABC456',
+      ES: 'https://amazon.es/dp/B08ABC456',
+      IT: 'https://amazon.it/dp/B08ABC456'
+    },
+    categories: { name: 'Robinete' },
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  },
+  {
+    id: '3',
+    name: 'Set Teflon Professional',
+    description: 'Set complet de bandă teflonată pentru etanșarea filetelor. Calitate profesională pentru instalatori.',
+    bullet_points: ['Calitate profesională', 'Rezistent la temperaturi', 'Aderență excelentă', 'Set complet'],
+    price: 12.99,
+    estimated_shipping_price: 4.50,
+    category_id: 'teflon',
+    image_url: 'https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?w=400&h=300&fit=crop',
+    specifications: 'Lățime: 12mm, Lungime: 10m, Temperatură max: 200°C',
+    stock: 50,
+    sku: 'TEF-SET-001',
+    active: true,
+    amazon_links: {
+      FR: 'https://amazon.fr/dp/B08DEF789',
+      DE: 'https://amazon.de/dp/B08DEF789',
+      ES: 'https://amazon.es/dp/B08DEF789',
+      IT: 'https://amazon.it/dp/B08DEF789'
+    },
+    categories: { name: 'Teflon & Etanșare' },
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2024-01-01T00:00:00Z'
+  }
+];
+
+// Database operations
 export const db = {
-  // Products
-  async getProducts(filters = {}) {
-    if (!supabase) {
-      // Return mock data for demo
-      return [
-        {
-          id: '1',
-          name: 'Racord Flexibil Premium 1/2"',
-          description: 'Racord flexibil de înaltă calitate pentru instalații sanitare',
-          bullet_points: ['Material: Inox', 'Lungime: 30cm', 'Diametru: 1/2"'],
-          price: 45.99,
-          estimated_shipping_price: 5.99,
-          category_id: 'racorduri',
-          image_url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop',
-          images: [
-            'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop',
-            'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300&h=200&fit=crop'
-          ],
-          amazon_links: {
-            FR: 'https://amazon.fr/dp/B08XYZ123',
-            DE: 'https://amazon.de/dp/B08XYZ123'
-          },
-          specifications: 'Material: Inox, Lungime: 30cm',
-          stock: 25,
-          active: true,
-          sku: 'RF-001'
-        }
-      ];
-    }
-    
-    let query = supabase
-      .from('products')
-      .select(`
-        *,
-        categories (
-          id,
-          name
-        )
-      `);
-    
-    if (filters.active !== undefined) {
-      query = query.eq('active', filters.active);
-    }
-    
-    if (filters.category_id) {
-      query = query.eq('category_id', filters.category_id);
-    }
-    
-    const { data, error } = await query.order('created_at', { ascending: false });
-    
-    if (error) throw error;
-    return data || [];
-  },
-
-  async createProduct(productData) {
-    if (!supabase) {
-      console.log('Demo mode: Product would be created:', productData);
-      return { id: Date.now().toString(), ...productData };
-    }
-    
-    const { data, error } = await supabase
-      .from('products')
-      .insert([productData])
-      .select()
-      .single();
-    
-    if (error) throw error;
-    return data;
-  },
-
-  async updateProduct(id, productData) {
-    if (!supabase) {
-      console.log('Demo mode: Product would be updated:', id, productData);
-      return { id, ...productData };
-    }
-    
-    const { data, error } = await supabase
-      .from('products')
-      .update(productData)
-      .eq('id', id)
-      .select()
-      .single();
-    
-    if (error) throw error;
-    return data;
-  },
-
-  async deleteProduct(id) {
-    if (!supabase) {
-      console.log('Demo mode: Product would be deleted:', id);
-      return;
-    }
-    
-    const { error } = await supabase
-      .from('products')
-      .delete()
-      .eq('id', id);
-    
-    if (error) throw error;
-  },
+  supabase,
 
   // Categories
   async getCategories() {
     if (!supabase) {
-      return [
-        { id: 'racorduri', name: 'Racorduri', description: 'Racorduri și fitinguri', slug: 'racorduri' },
-        { id: 'robinete', name: 'Robinete', description: 'Robinete și baterii', slug: 'robinete' },
-        { id: 'accesorii', name: 'Accesorii', description: 'Accesorii diverse', slug: 'accesorii' }
-      ];
+      console.log('📦 Demo mode: returning mock categories');
+      return mockCategories;
     }
-    
-    const { data, error } = await supabase
-      .from('categories')
-      .select('*')
-      .order('name');
-    
-    if (error) throw error;
-    return data || [];
+
+    try {
+      const { data, error } = await supabase
+        .from('categories')
+        .select('*')
+        .order('name');
+
+      if (error) throw error;
+      return data || [];
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      return mockCategories;
+    }
   },
 
   async createCategory(categoryData) {
     if (!supabase) {
-      console.log('Demo mode: Category would be created:', categoryData);
-      return { id: Date.now().toString(), ...categoryData };
+      console.log('📦 Demo mode: simulating category creation');
+      const newCategory = {
+        ...categoryData,
+        id: categoryData.slug || categoryData.name.toLowerCase().replace(/\s+/g, '-'),
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+      mockCategories.push(newCategory);
+      return newCategory;
     }
-    
-    const { data, error } = await supabase
-      .from('categories')
-      .insert([categoryData])
-      .select()
-      .single();
-    
-    if (error) throw error;
-    return data;
+
+    try {
+      const { data, error } = await supabase
+        .from('categories')
+        .insert([categoryData])
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error creating category:', error);
+      throw error;
+    }
   },
 
-  // Users
-  async getUser(id) {
-    if (!supabase) return null;
-    
-    const { data, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', id)
-      .single();
-    
-    if (error) throw error;
-    return data;
-  },
-
-  async updateUser(id, userData) {
+  // Products
+  async getProducts(filters = {}) {
     if (!supabase) {
-      console.log('Demo mode: User would be updated:', id, userData);
-      return userData;
+      console.log('📦 Demo mode: returning mock products');
+      let filteredProducts = [...mockProducts];
+      
+      if (filters.active !== undefined) {
+        filteredProducts = filteredProducts.filter(p => p.active === filters.active);
+      }
+      
+      if (filters.category_id) {
+        filteredProducts = filteredProducts.filter(p => p.category_id === filters.category_id);
+      }
+      
+      return filteredProducts;
     }
-    
-    const { data, error } = await supabase
-      .from('users')
-      .update(userData)
-      .eq('id', id)
-      .select()
-      .single();
-    
-    if (error) throw error;
-    return data;
+
+    try {
+      let query = supabase
+        .from('products')
+        .select(`
+          *,
+          categories (
+            id,
+            name,
+            slug
+          )
+        `)
+        .order('created_at', { ascending: false });
+
+      if (filters.active !== undefined) {
+        query = query.eq('active', filters.active);
+      }
+
+      if (filters.category_id) {
+        query = query.eq('category_id', filters.category_id);
+      }
+
+      const { data, error } = await query;
+
+      if (error) throw error;
+      return data || [];
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      return mockProducts;
+    }
   },
 
-  // Cart
-  async getCartItems(userId) {
-    if (!supabase) return [];
-    
-    const { data, error } = await supabase
-      .from('cart_items')
-      .select(`
-        *,
-        products (*)
-      `)
-      .eq('user_id', userId);
-    
-    if (error) throw error;
-    return data || [];
-  },
-
-  async addToCart(userId, productId, quantity) {
+  async createProduct(productData) {
     if (!supabase) {
-      console.log('Demo mode: Item would be added to cart');
-      return;
+      console.log('📦 Demo mode: simulating product creation');
+      const newProduct = {
+        ...productData,
+        id: Date.now().toString(),
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        categories: mockCategories.find(c => c.id === productData.category_id)
+      };
+      mockProducts.push(newProduct);
+      console.log('✅ Demo product created:', newProduct.id);
+      return newProduct;
     }
-    
-    const { data, error } = await supabase
-      .from('cart_items')
-      .upsert([{
-        user_id: userId,
-        product_id: productId,
-        quantity: quantity
-      }], {
-        onConflict: 'user_id,product_id'
-      });
-    
-    if (error) throw error;
-    return data;
+
+    try {
+      console.log('🚀 Creating product in Supabase:', productData);
+      
+      const { data, error } = await supabase
+        .from('products')
+        .insert([productData])
+        .select(`
+          *,
+          categories (
+            id,
+            name,
+            slug
+          )
+        `)
+        .single();
+
+      if (error) {
+        console.error('❌ Supabase error:', error);
+        throw error;
+      }
+
+      console.log('✅ Product created successfully:', data?.id);
+      return data;
+    } catch (error) {
+      console.error('❌ Error creating product:', error);
+      throw error;
+    }
   },
 
-  async removeFromCart(userId, productId) {
-    if (!supabase) return;
-    
-    const { error } = await supabase
-      .from('cart_items')
-      .delete()
-      .eq('user_id', userId)
-      .eq('product_id', productId);
-    
-    if (error) throw error;
-  },
-
-  async updateCartItem(userId, productId, quantity) {
-    if (!supabase) return;
-    
-    const { error } = await supabase
-      .from('cart_items')
-      .update({ quantity })
-      .eq('user_id', userId)
-      .eq('product_id', productId);
-    
-    if (error) throw error;
-  },
-
-  async clearCart(userId) {
-    if (!supabase) return;
-    
-    const { error } = await supabase
-      .from('cart_items')
-      .delete()
-      .eq('user_id', userId);
-    
-    if (error) throw error;
-  },
-
-  // Orders
-  async createOrder(orderData) {
+  async updateProduct(id, updateData) {
     if (!supabase) {
-      console.log('Demo mode: Order would be created:', orderData);
-      return { id: Date.now().toString(), ...orderData };
+      console.log('📦 Demo mode: simulating product update');
+      const index = mockProducts.findIndex(p => p.id === id);
+      if (index !== -1) {
+        mockProducts[index] = { ...mockProducts[index], ...updateData, updated_at: new Date().toISOString() };
+        console.log('✅ Demo product updated:', id);
+        return mockProducts[index];
+      }
+      throw new Error('Product not found');
     }
-    
-    const { data, error } = await supabase
-      .from('orders')
-      .insert([orderData])
-      .select()
-      .single();
-    
-    if (error) throw error;
-    return data;
+
+    try {
+      console.log('🔄 Updating product in Supabase:', id, updateData);
+      
+      const { data, error } = await supabase
+        .from('products')
+        .update(updateData)
+        .eq('id', id)
+        .select(`
+          *,
+          categories (
+            id,
+            name,
+            slug
+          )
+        `)
+        .single();
+
+      if (error) {
+        console.error('❌ Supabase update error:', error);
+        throw error;
+      }
+
+      console.log('✅ Product updated successfully:', data?.id);
+      return data;
+    } catch (error) {
+      console.error('❌ Error updating product:', error);
+      throw error;
+    }
   },
 
-  async createOrderItem(orderItemData) {
-    if (!supabase) return;
-    
-    const { data, error } = await supabase
-      .from('order_items')
-      .insert([orderItemData])
-      .select()
-      .single();
-    
-    if (error) throw error;
-    return data;
+  async deleteProduct(id) {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating product deletion');
+      const index = mockProducts.findIndex(p => p.id === id);
+      if (index !== -1) {
+        mockProducts.splice(index, 1);
+        console.log('✅ Demo product deleted:', id);
+        return true;
+      }
+      throw new Error('Product not found');
+    }
+
+    try {
+      const { error } = await supabase
+        .from('products')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+      return true;
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      throw error;
+    }
   },
 
-  // File upload functions
+  // File upload operations
   async uploadFile(bucket, fileName, file) {
     if (!supabase) {
-      console.log('Demo mode: File would be uploaded:', fileName);
-      // In demo mode, we'll handle this in the component with FileReader
-      return { path: fileName };
+      console.log('📦 Demo mode: simulating file upload');
+      return { path: `demo/${fileName}` };
     }
-    
-    const { data, error } = await supabase.storage
-      .from(bucket)
-      .upload(fileName, file, {
-        cacheControl: '3600',
-        upsert: true
-      });
-    
-    if (error) throw error;
-    return data;
+
+    try {
+      const { data, error } = await supabase.storage
+        .from(bucket)
+        .upload(fileName, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      throw error;
+    }
   },
 
   getFileUrl(bucket, fileName) {
     if (!supabase) {
-      // In demo mode, return the fileName as-is (will be handled by FileReader)
-      return fileName;
+      console.log('📦 Demo mode: returning demo file URL');
+      return `https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop`;
     }
-    
-    const { data } = supabase.storage
-      .from(bucket)
-      .getPublicUrl(fileName);
-    
-    return data.publicUrl;
+
+    try {
+      const { data } = supabase.storage
+        .from(bucket)
+        .getPublicUrl(fileName);
+
+      return data.publicUrl;
+    } catch (error) {
+      console.error('Error getting file URL:', error);
+      return null;
+    }
   },
 
   async deleteFile(bucket, fileName) {
-    if (!supabase) return;
-    
-    const { error } = await supabase.storage
-      .from(bucket)
-      .remove([fileName]);
-    
-    if (error) throw error;
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating file deletion');
+      return true;
+    }
+
+    try {
+      const { error } = await supabase.storage
+        .from(bucket)
+        .remove([fileName]);
+
+      if (error) throw error;
+      return true;
+    } catch (error) {
+      console.error('Error deleting file:', error);
+      throw error;
+    }
   },
 
-  // Product images
-  async addProductImage(productId, imageUrl, altText = '', sortOrder = 0, isPrimary = false) {
+  // User operations
+  async getUser(userId) {
     if (!supabase) {
-      console.log('Demo mode: Product image would be added');
+      console.log('📦 Demo mode: returning mock user');
+      return {
+        id: userId,
+        email: 'demo@example.com',
+        name: 'Demo User',
+        role: 'customer'
+      };
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', userId)
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      throw error;
+    }
+  },
+
+  async updateUser(userId, userData) {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating user update');
+      return { id: userId, ...userData };
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .update(userData)
+        .eq('id', userId)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error updating user:', error);
+      throw error;
+    }
+  },
+
+  // Cart operations
+  async getCartItems(userId) {
+    if (!supabase) {
+      console.log('📦 Demo mode: returning empty cart');
+      return [];
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('cart_items')
+        .select(`
+          *,
+          products (*)
+        `)
+        .eq('user_id', userId);
+
+      if (error) throw error;
+      return data || [];
+    } catch (error) {
+      console.error('Error fetching cart items:', error);
+      return [];
+    }
+  },
+
+  async addToCart(userId, productId, quantity) {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating add to cart');
+      return true;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('cart_items')
+        .upsert({
+          user_id: userId,
+          product_id: productId,
+          quantity: quantity
+        });
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      throw error;
+    }
+  },
+
+  async removeFromCart(userId, productId) {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating remove from cart');
+      return true;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('cart_items')
+        .delete()
+        .eq('user_id', userId)
+        .eq('product_id', productId);
+
+      if (error) throw error;
+      return true;
+    } catch (error) {
+      console.error('Error removing from cart:', error);
+      throw error;
+    }
+  },
+
+  async updateCartItem(userId, productId, quantity) {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating cart update');
+      return true;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('cart_items')
+        .update({ quantity })
+        .eq('user_id', userId)
+        .eq('product_id', productId);
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error updating cart item:', error);
+      throw error;
+    }
+  },
+
+  async clearCart(userId) {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating cart clear');
+      return true;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('cart_items')
+        .delete()
+        .eq('user_id', userId);
+
+      if (error) throw error;
+      return true;
+    } catch (error) {
+      console.error('Error clearing cart:', error);
+      throw error;
+    }
+  },
+
+  // Order operations
+  async createOrder(orderData) {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating order creation');
+      return {
+        id: Date.now().toString(),
+        order_number: orderData.order_number,
+        ...orderData,
+        created_at: new Date().toISOString()
+      };
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('orders')
+        .insert([orderData])
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error creating order:', error);
+      throw error;
+    }
+  },
+
+  async createOrderItem(orderItemData) {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating order item creation');
+      return {
+        id: Date.now().toString(),
+        ...orderItemData,
+        created_at: new Date().toISOString()
+      };
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('order_items')
+        .insert([orderItemData])
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error creating order item:', error);
+      throw error;
+    }
+  }
+};
+
+// Authentication operations
+export const auth = {
+  async getCurrentUser() {
+    if (!supabase) {
+      console.log('📦 Demo mode: returning null user');
+      return null;
+    }
+
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const profile = await db.getUser(user.id);
+        return { user, profile };
+      }
+      return null;
+    } catch (error) {
+      console.error('Error getting current user:', error);
+      return null;
+    }
+  },
+
+  async signIn(email, password) {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating sign in');
+      return {
+        user: { id: 'demo-user', email },
+        error: null
+      };
+    }
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error signing in:', error);
+      throw error;
+    }
+  },
+
+  async signUp(email, password, userData) {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating sign up');
+      return {
+        user: { id: 'demo-user', email },
+        error: null
+      };
+    }
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: userData
+        }
+      });
+
+      if (error) throw error;
+
+      // Create user profile
+      if (data.user) {
+        await db.createUser({
+          id: data.user.id,
+          email,
+          ...userData
+        });
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Error signing up:', error);
+      throw error;
+    }
+  },
+
+  async signOut() {
+    if (!supabase) {
+      console.log('📦 Demo mode: simulating sign out');
       return;
     }
-    
-    const { data, error } = await supabase
-      .from('product_images')
-      .insert([{
-        product_id: productId,
-        image_url: imageUrl,
-        alt_text: altText,
-        sort_order: sortOrder,
-        is_primary: isPrimary
-      }])
-      .select()
-      .single();
-    
-    if (error) throw error;
-    return data;
-  },
 
-  async getProductImages(productId) {
-    if (!supabase) return [];
-    
-    const { data, error } = await supabase
-      .from('product_images')
-      .select('*')
-      .eq('product_id', productId)
-      .order('sort_order');
-    
-    if (error) throw error;
-    return data || [];
-  },
-
-  async deleteProductImage(imageId) {
-    if (!supabase) return;
-    
-    const { error } = await supabase
-      .from('product_images')
-      .delete()
-      .eq('id', imageId);
-    
-    if (error) throw error;
-  }
-};
-
-// Connection test
-export const testConnection = async () => {
-  if (!supabase) {
-    console.log('Supabase not configured - running in demo mode');
-    return false;
-  }
-  
-  try {
-    const { data, error } = await supabase
-      .from('categories')
-      .select('count(*)')
-      .limit(1);
-    
-    if (error) {
-      console.error('Supabase connection error:', error);
-      return false;
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+    } catch (error) {
+      console.error('Error signing out:', error);
+      throw error;
     }
-    
-    console.log('Supabase connection successful');
-    return true;
-  } catch (error) {
-    console.error('Supabase connection test failed:', error);
-    return false;
   }
 };
 
-export default { supabase, auth, db, testConnection };
+export default db;
