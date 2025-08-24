@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Domov",
+    "products": "Izdelki",
+    "about": "O nas",
+    "contact": "Kontakt",
+    "login": "Prijava",
+    "register": "Registracija",
+    "admin": "Admin",
+    "cart": "Košarica"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitarne Rešitve",
+    "subtitle": "Visokokakovostni priključki, pipe in sanitarna oprema za strokovnjake in zasebne osebe",
+    "cta": "Raziščite Izdelke",
+    "cta_secondary": "Kontaktirajte nas"
+  },
+  "products": {
+    "title": "Naš Katalog",
+    "subtitle": "Odkrijte celotno paleto sanitarnih izdelkov PipeSan",
+    "view_details": "Prikaži Podrobnosti",
+    "add_to_cart": "Dodaj v Košarico",
+    "buy_amazon": "Kupi na Amazonu",
+    "price": "Cena",
+    "specifications": "Specifikacije",
+    "description": "Opis"
+  },
+  "about": {
+    "title": "O PipeSan",
+    "content": "PipeSan je premium blagovna znamka na področju sanitarnih izdelkov, ki ponuja celovite rešitve za sanitarne inštalacije po vsej Evropi. Ustanovljena leta 2022 s strani predane ekipe, se specializiramo za izdelke najvišje kakovosti, dostopne prek Amazona v 9 evropskih državah."
+  },
+  "contact": {
+    "title": "Kontaktirajte nas",
+    "name": "Ime",
+    "email": "E-pošta",
+    "message": "Sporočilo",
+    "send": "Pošlji",
+    "phone": "Telefon",
+    "address": "Naslov"
+  },
+  "auth": {
+    "login": "Prijava",
+    "register": "Registracija",
+    "email": "E-pošta",
+    "password": "Geslo",
+    "confirm_password": "Potrdite Geslo",
+    "full_name": "Polno Ime",
+    "phone": "Telefon",
+    "company": "Podjetje",
+    "company_name": "Ime Podjetja",
+    "contact_person": "Kontaktna Oseba",
+    "company_address": "Naslov Podjetja",
+    "fiscal_code": "Davčna Številka",
+    "vat_number": "DDV Številka",
+    "account_type": "Tip Računa",
+    "individual": "Posameznik",
+    "company_account": "Podjetje",
+    "forgot_password": "Pozabljeno geslo?",
+    "no_account": "Nimate računa?",
+    "have_account": "Že imate račun?"
+  },
+  "cart": {
+    "title": "Nakupovalna Košarica",
+    "empty": "Košarica je prazna",
+    "quantity": "Količina",
+    "total": "Skupaj",
+    "checkout": "Blagajna",
+    "remove": "Odstrani"
+  },
+  "admin": {
+    "dashboard": "Nadzorna Plošča",
+    "products": "Izdelki",
+    "categories": "Kategorije",
+    "orders": "Naročila",
+    "users": "Uporabniki",
+    "add_product": "Dodaj Izdelek",
+    "edit_product": "Uredi Izdelek",
+    "add_category": "Dodaj Kategorijo"
+  }
+}

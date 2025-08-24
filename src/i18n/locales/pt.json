@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Início",
+    "products": "Produtos",
+    "about": "Sobre Nós",
+    "contact": "Contacto",
+    "login": "Entrar",
+    "register": "Registar",
+    "admin": "Admin",
+    "cart": "Carrinho"
+  },
+  "hero": {
+    "title": "PipeSan - Soluções Sanitárias Premium",
+    "subtitle": "Conexões, torneiras e acessórios sanitários de alta qualidade para profissionais e particulares",
+    "cta": "Explorar Produtos",
+    "cta_secondary": "Contacte-nos"
+  },
+  "products": {
+    "title": "O Nosso Catálogo",
+    "subtitle": "Descubra a gama completa de produtos sanitários PipeSan",
+    "view_details": "Ver Detalhes",
+    "add_to_cart": "Adicionar ao Carrinho",
+    "buy_amazon": "Comprar na Amazon",
+    "price": "Preço",
+    "specifications": "Especificações",
+    "description": "Descrição"
+  },
+  "about": {
+    "title": "Sobre a PipeSan",
+    "content": "A PipeSan é uma marca premium em produtos sanitários, oferecendo soluções completas para instalações sanitárias em toda a Europa. Fundada em 2022 por uma equipa dedicada, especializamo-nos em produtos da mais alta qualidade disponíveis através da Amazon em 9 países europeus."
+  },
+  "contact": {
+    "title": "Contacte-nos",
+    "name": "Nome",
+    "email": "Email",
+    "message": "Mensagem",
+    "send": "Enviar",
+    "phone": "Telefone",
+    "address": "Morada"
+  },
+  "auth": {
+    "login": "Entrar",
+    "register": "Registar",
+    "email": "Email",
+    "password": "Palavra-passe",
+    "confirm_password": "Confirmar Palavra-passe",
+    "full_name": "Nome Completo",
+    "phone": "Telefone",
+    "company": "Empresa",
+    "company_name": "Nome da Empresa",
+    "contact_person": "Pessoa de Contacto",
+    "company_address": "Morada da Empresa",
+    "fiscal_code": "Número Fiscal",
+    "vat_number": "Número de IVA",
+    "account_type": "Tipo de Conta",
+    "individual": "Individual",
+    "company_account": "Empresa",
+    "forgot_password": "Esqueceu a palavra-passe?",
+    "no_account": "Não tem conta?",
+    "have_account": "Já tem uma conta?"
+  },
+  "cart": {
+    "title": "Carrinho de Compras",
+    "empty": "O carrinho está vazio",
+    "quantity": "Quantidade",
+    "total": "Total",
+    "checkout": "Finalizar Compra",
+    "remove": "Remover"
+  },
+  "admin": {
+    "dashboard": "Painel de Controlo",
+    "products": "Produtos",
+    "categories": "Categorias",
+    "orders": "Encomendas",
+    "users": "Utilizadores",
+    "add_product": "Adicionar Produto",
+    "edit_product": "Editar Produto",
+    "add_category": "Adicionar Categoria"
+  }
+}

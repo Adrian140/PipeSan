@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Dar",
+    "products": "Prodotti",
+    "about": "Dwarna",
+    "contact": "Kuntatt",
+    "login": "Idħol",
+    "register": "Irreġistra",
+    "admin": "Admin",
+    "cart": "Basket"
+  },
+  "hero": {
+    "title": "PipeSan - Soluzzjonijiet Sanitarji Premium",
+    "subtitle": "Fittings ta' kwalità għolja, viti u aċċessorji sanitarji għal professjonisti u individwi",
+    "cta": "Esplora l-Prodotti",
+    "cta_secondary": "Ikkuntattjana"
+  },
+  "products": {
+    "title": "Il-Katalogu Tagħna",
+    "subtitle": "Skopri l-firxa sħiħa ta' prodotti sanitarji PipeSan",
+    "view_details": "Ara d-Dettalji",
+    "add_to_cart": "Żid fil-Basket",
+    "buy_amazon": "Ixtri fuq Amazon",
+    "price": "Prezz",
+    "specifications": "Speċifikazzjonijiet",
+    "description": "Deskrizzjoni"
+  },
+  "about": {
+    "title": "Dwar PipeSan",
+    "content": "PipeSan hija marka premium fil-prodotti sanitarji, li toffri soluzzjonijiet kompluti għal installazzjonijiet sanitarji madwar l-Ewropa. Imwaqqfa fl-2022 minn tim dedikat, aħna nispećjalizzaw fi prodotti tal-ogħla kwalità disponibbli permezz ta' Amazon fi 9 pajjiżi Ewropej."
+  },
+  "contact": {
+    "title": "Ikkuntattjana",
+    "name": "Isem",
+    "email": "Email",
+    "message": "Messaġġ",
+    "send": "Ibgħat",
+    "phone": "Telefon",
+    "address": "Indirizz"
+  },
+  "auth": {
+    "login": "Idħol",
+    "register": "Irreġistra",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Ikkonferma l-Password",
+    "full_name": "Isem Sħiħ",
+    "phone": "Telefon",
+    "company": "Kumpanija",
+    "company_name": "Isem tal-Kumpanija",
+    "contact_person": "Persuna ta' Kuntatt",
+    "company_address": "Indirizz tal-Kumpanija",
+    "fiscal_code": "Kodiċi Fiskali",
+    "vat_number": "Numru tal-VAT",
+    "account_type": "Tip ta' Kont",
+    "individual": "Individwu",
+    "company_account": "Kumpanija",
+    "forgot_password": "Nsijtx il-password?",
+    "no_account": "M'għandekx kont?",
+    "have_account": "Għandek kont diġà?"
+  },
+  "cart": {
+    "title": "Basket tax-Xiri",
+    "empty": "Il-basket vojt",
+    "quantity": "Kwantità",
+    "total": "Total",
+    "checkout": "Checkout",
+    "remove": "Neħħi"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Prodotti",
+    "categories": "Kategoriji",
+    "orders": "Ordnijiet",
+    "users": "Utenti",
+    "add_product": "Żid Prodott",
+    "edit_product": "Editja Prodott",
+    "add_category": "Żid Kategorija"
+  }
+}

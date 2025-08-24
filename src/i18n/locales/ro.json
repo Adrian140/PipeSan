@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Acasă",
+    "products": "Produse",
+    "about": "Despre noi",
+    "contact": "Contact",
+    "login": "Conectare",
+    "register": "Înregistrare",
+    "admin": "Admin",
+    "cart": "Coș"
+  },
+  "hero": {
+    "title": "PipeSan - Soluții Sanitare Premium",
+    "subtitle": "Racorduri, robinete și accesorii sanitare de înaltă calitate pentru profesioniști și particulari",
+    "cta": "Explorează Produsele",
+    "cta_secondary": "Contactează-ne"
+  },
+  "products": {
+    "title": "Catalogul Nostru",
+    "subtitle": "Descoperă gama completă de produse sanitare PipeSan",
+    "view_details": "Vezi Detalii",
+    "add_to_cart": "Adaugă în Coș",
+    "buy_amazon": "Cumpără pe Amazon",
+    "price": "Preț",
+    "specifications": "Specificații",
+    "description": "Descriere"
+  },
+  "about": {
+    "title": "Despre PipeSan",
+    "content": "PipeSan este un brand premium în domeniul produselor sanitare, oferind soluții complete pentru instalații sanitare în toată Europa. Fondată în 2022 de o echipă dedicată, ne specializăm în produse de cea mai înaltă calitate disponibile prin Amazon în 9 țări europene."
+  },
+  "contact": {
+    "title": "Contactează-ne",
+    "name": "Nume",
+    "email": "Email",
+    "message": "Mesaj",
+    "send": "Trimite",
+    "phone": "Telefon",
+    "address": "Adresă"
+  },
+  "auth": {
+    "login": "Conectare",
+    "register": "Înregistrare",
+    "email": "Email",
+    "password": "Parolă",
+    "confirm_password": "Confirmă Parola",
+    "full_name": "Nume Complet",
+    "phone": "Telefon",
+    "company": "Companie",
+    "company_name": "Denumire Companie",
+    "contact_person": "Persoană de Contact",
+    "company_address": "Adresa Companiei",
+    "fiscal_code": "Cod Fiscal/CUI",
+    "vat_number": "Cod TVA",
+    "account_type": "Tip de Cont",
+    "individual": "Persoană Fizică",
+    "company_account": "Companie",
+    "forgot_password": "Ai uitat parola?",
+    "no_account": "Nu ai cont?",
+    "have_account": "Ai deja cont?"
+  },
+  "cart": {
+    "title": "Coșul de Cumpărături",
+    "empty": "Coșul este gol",
+    "quantity": "Cantitate",
+    "total": "Total",
+    "checkout": "Finalizează Comanda",
+    "remove": "Elimină"
+  },
+  "admin": {
+    "dashboard": "Panou de Control",
+    "products": "Produse",
+    "categories": "Categorii",
+    "orders": "Comenzi",
+    "users": "Utilizatori",
+    "add_product": "Adaugă Produs",
+    "edit_product": "Editează Produs",
+    "add_category": "Adaugă Categorie"
+  }
+}

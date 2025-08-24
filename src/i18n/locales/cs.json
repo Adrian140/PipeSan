@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Domů",
+    "products": "Produkty",
+    "about": "O nás",
+    "contact": "Kontakt",
+    "login": "Přihlášení",
+    "register": "Registrace",
+    "admin": "Admin",
+    "cart": "Košík"
+  },
+  "hero": {
+    "title": "PipeSan - Prémiová Sanitární Řešení",
+    "subtitle": "Vysoce kvalitní spojky, baterie a sanitární příslušenství pro profesionály i soukromé osoby",
+    "cta": "Prozkoumat Produkty",
+    "cta_secondary": "Kontaktujte nás"
+  },
+  "products": {
+    "title": "Náš Katalog",
+    "subtitle": "Objevte kompletní řadu sanitárních produktů PipeSan",
+    "view_details": "Zobrazit Detaily",
+    "add_to_cart": "Přidat do Košíku",
+    "buy_amazon": "Koupit na Amazonu",
+    "price": "Cena",
+    "specifications": "Specifikace",
+    "description": "Popis"
+  },
+  "about": {
+    "title": "O PipeSan",
+    "content": "PipeSan je prémiová značka v oblasti sanitárních produktů, nabízející kompletní řešení pro sanitární instalace po celé Evropě. Založena v roce 2022 oddaným týmem, specializujeme se na produkty nejvyšší kvality dostupné prostřednictvím Amazonu v 9 evropských zemích."
+  },
+  "contact": {
+    "title": "Kontaktujte nás",
+    "name": "Jméno",
+    "email": "Email",
+    "message": "Zpráva",
+    "send": "Odeslat",
+    "phone": "Telefon",
+    "address": "Adresa"
+  },
+  "auth": {
+    "login": "Přihlášení",
+    "register": "Registrace",
+    "email": "Email",
+    "password": "Heslo",
+    "confirm_password": "Potvrdit Heslo",
+    "full_name": "Celé Jméno",
+    "phone": "Telefon",
+    "company": "Společnost",
+    "company_name": "Název Společnosti",
+    "contact_person": "Kontaktní Osoba",
+    "company_address": "Adresa Společnosti",
+    "fiscal_code": "DIČ",
+    "vat_number": "IČ DPH",
+    "account_type": "Typ Účtu",
+    "individual": "Fyzická Osoba",
+    "company_account": "Společnost",
+    "forgot_password": "Zapomenuté heslo?",
+    "no_account": "Nemáte účet?",
+    "have_account": "Už máte účet?"
+  },
+  "cart": {
+    "title": "Nákupní Košík",
+    "empty": "Košík je prázdný",
+    "quantity": "Množství",
+    "total": "Celkem",
+    "checkout": "Pokladna",
+    "remove": "Odstranit"
+  },
+  "admin": {
+    "dashboard": "Řídicí Panel",
+    "products": "Produkty",
+    "categories": "Kategorie",
+    "orders": "Objednávky",
+    "users": "Uživatelé",
+    "add_product": "Přidat Produkt",
+    "edit_product": "Upravit Produkt",
+    "add_category": "Přidat Kategorii"
+  }
+}

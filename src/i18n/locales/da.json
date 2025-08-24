@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Hjem",
+    "products": "Produkter",
+    "about": "Om Os",
+    "contact": "Kontakt",
+    "login": "Log Ind",
+    "register": "Tilmeld",
+    "admin": "Admin",
+    "cart": "Kurv"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitære Løsninger",
+    "subtitle": "Højkvalitets fittings, haner og sanitære tilbehør til professionelle og private",
+    "cta": "Udforsk Produkter",
+    "cta_secondary": "Kontakt Os"
+  },
+  "products": {
+    "title": "Vores Katalog",
+    "subtitle": "Opdag det komplette sortiment af PipeSan sanitære produkter",
+    "view_details": "Se Detaljer",
+    "add_to_cart": "Tilføj til Kurv",
+    "buy_amazon": "Køb på Amazon",
+    "price": "Pris",
+    "specifications": "Specifikationer",
+    "description": "Beskrivelse"
+  },
+  "about": {
+    "title": "Om PipeSan",
+    "content": "PipeSan er et premium brand inden for sanitære produkter, der tilbyder komplette løsninger til sanitære installationer i hele Europa. Grundlagt i 2022 af et dedikeret team, specialiserer vi os i produkter af højeste kvalitet tilgængelige via Amazon i 9 europæiske lande."
+  },
+  "contact": {
+    "title": "Kontakt Os",
+    "name": "Navn",
+    "email": "E-mail",
+    "message": "Besked",
+    "send": "Send",
+    "phone": "Telefon",
+    "address": "Adresse"
+  },
+  "auth": {
+    "login": "Log Ind",
+    "register": "Tilmeld",
+    "email": "E-mail",
+    "password": "Adgangskode",
+    "confirm_password": "Bekræft Adgangskode",
+    "full_name": "Fulde Navn",
+    "phone": "Telefon",
+    "company": "Virksomhed",
+    "company_name": "Virksomhedsnavn",
+    "contact_person": "Kontaktperson",
+    "company_address": "Virksomhedsadresse",
+    "fiscal_code": "Skattenummer",
+    "vat_number": "Momsnummer",
+    "account_type": "Kontotype",
+    "individual": "Privatperson",
+    "company_account": "Virksomhed",
+    "forgot_password": "Glemt adgangskode?",
+    "no_account": "Har du ikke en konto?",
+    "have_account": "Har du allerede en konto?"
+  },
+  "cart": {
+    "title": "Indkøbskurv",
+    "empty": "Kurven er tom",
+    "quantity": "Antal",
+    "total": "Total",
+    "checkout": "Gå til Kassen",
+    "remove": "Fjern"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Produkter",
+    "categories": "Kategorier",
+    "orders": "Ordrer",
+    "users": "Brugere",
+    "add_product": "Tilføj Produkt",
+    "edit_product": "Rediger Produkt",
+    "add_category": "Tilføj Kategori"
+  }
+}

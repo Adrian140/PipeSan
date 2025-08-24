@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Főoldal",
+    "products": "Termékek",
+    "about": "Rólunk",
+    "contact": "Kapcsolat",
+    "login": "Bejelentkezés",
+    "register": "Regisztráció",
+    "admin": "Admin",
+    "cart": "Kosár"
+  },
+  "hero": {
+    "title": "PipeSan - Prémium Szaniter Megoldások",
+    "subtitle": "Magas minőségű csatlakozók, csapok és szaniter kiegészítők szakemberek és magánszemélyek számára",
+    "cta": "Termékek Felfedezése",
+    "cta_secondary": "Kapcsolat"
+  },
+  "products": {
+    "title": "Katalógusunk",
+    "subtitle": "Fedezze fel a PipeSan szaniter termékek teljes kínálatát",
+    "view_details": "Részletek Megtekintése",
+    "add_to_cart": "Kosárba",
+    "buy_amazon": "Vásárlás Amazonon",
+    "price": "Ár",
+    "specifications": "Specifikációk",
+    "description": "Leírás"
+  },
+  "about": {
+    "title": "A PipeSanról",
+    "content": "A PipeSan egy prémium márka a szaniter termékek területén, teljes körű megoldásokat kínálva szaniter telepítésekhez Európa-szerte. 2022-ben alapította egy elkötelezett csapat, a legmagasabb minőségű termékekre specializálódunk, amelyek 9 európai országban elérhetők az Amazonon keresztül."
+  },
+  "contact": {
+    "title": "Kapcsolat",
+    "name": "Név",
+    "email": "Email",
+    "message": "Üzenet",
+    "send": "Küldés",
+    "phone": "Telefon",
+    "address": "Cím"
+  },
+  "auth": {
+    "login": "Bejelentkezés",
+    "register": "Regisztráció",
+    "email": "Email",
+    "password": "Jelszó",
+    "confirm_password": "Jelszó Megerősítése",
+    "full_name": "Teljes Név",
+    "phone": "Telefon",
+    "company": "Cég",
+    "company_name": "Cégnév",
+    "contact_person": "Kapcsolattartó",
+    "company_address": "Cégcím",
+    "fiscal_code": "Adószám",
+    "vat_number": "ÁFA szám",
+    "account_type": "Fiók Típusa",
+    "individual": "Magánszemély",
+    "company_account": "Cég",
+    "forgot_password": "Elfelejtett jelszó?",
+    "no_account": "Nincs fiókja?",
+    "have_account": "Van már fiókja?"
+  },
+  "cart": {
+    "title": "Bevásárlókosár",
+    "empty": "A kosár üres",
+    "quantity": "Mennyiség",
+    "total": "Összesen",
+    "checkout": "Pénztár",
+    "remove": "Eltávolítás"
+  },
+  "admin": {
+    "dashboard": "Irányítópult",
+    "products": "Termékek",
+    "categories": "Kategóriák",
+    "orders": "Rendelések",
+    "users": "Felhasználók",
+    "add_product": "Termék Hozzáadása",
+    "edit_product": "Termék Szerkesztése",
+    "add_category": "Kategória Hozzáadása"
+  }
+}

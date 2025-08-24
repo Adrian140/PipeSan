@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Producten",
+    "about": "Over Ons",
+    "contact": "Contact",
+    "login": "Inloggen",
+    "register": "Registreren",
+    "admin": "Admin",
+    "cart": "Winkelwagen"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitaire Oplossingen",
+    "subtitle": "Hoogwaardige koppelingen, kranen en sanitaire accessoires voor professionals en particulieren",
+    "cta": "Producten Verkennen",
+    "cta_secondary": "Contact Opnemen"
+  },
+  "products": {
+    "title": "Onze Catalogus",
+    "subtitle": "Ontdek het complete assortiment PipeSan sanitaire producten",
+    "view_details": "Details Bekijken",
+    "add_to_cart": "Toevoegen aan Winkelwagen",
+    "buy_amazon": "Kopen op Amazon",
+    "price": "Prijs",
+    "specifications": "Specificaties",
+    "description": "Beschrijving"
+  },
+  "about": {
+    "title": "Over PipeSan",
+    "content": "PipeSan is een premium merk in sanitaire producten, dat complete oplossingen biedt voor sanitaire installaties in heel Europa. Opgericht in 2022 door een toegewijd team, specialiseren we ons in producten van de hoogste kwaliteit die beschikbaar zijn via Amazon in 9 Europese landen."
+  },
+  "contact": {
+    "title": "Contact Opnemen",
+    "name": "Naam",
+    "email": "Email",
+    "message": "Bericht",
+    "send": "Verzenden",
+    "phone": "Telefoon",
+    "address": "Adres"
+  },
+  "auth": {
+    "login": "Inloggen",
+    "register": "Registreren",
+    "email": "Email",
+    "password": "Wachtwoord",
+    "confirm_password": "Bevestig Wachtwoord",
+    "full_name": "Volledige Naam",
+    "phone": "Telefoon",
+    "company": "Bedrijf",
+    "company_name": "Bedrijfsnaam",
+    "contact_person": "Contactpersoon",
+    "company_address": "Bedrijfsadres",
+    "fiscal_code": "Fiscaal Nummer",
+    "vat_number": "BTW-nummer",
+    "account_type": "Accounttype",
+    "individual": "Particulier",
+    "company_account": "Bedrijf",
+    "forgot_password": "Wachtwoord vergeten?",
+    "no_account": "Geen account?",
+    "have_account": "Al een account?"
+  },
+  "cart": {
+    "title": "Winkelwagen",
+    "empty": "Winkelwagen is leeg",
+    "quantity": "Aantal",
+    "total": "Totaal",
+    "checkout": "Afrekenen",
+    "remove": "Verwijderen"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Producten",
+    "categories": "Categorieën",
+    "orders": "Bestellingen",
+    "users": "Gebruikers",
+    "add_product": "Product Toevoegen",
+    "edit_product": "Product Bewerken",
+    "add_category": "Categorie Toevoegen"
+  }
+}

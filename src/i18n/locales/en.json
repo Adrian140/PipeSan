@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "admin": "Admin",
+    "cart": "Cart"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitary Solutions",
+    "subtitle": "High-quality fittings, faucets and sanitary accessories for professionals and individuals",
+    "cta": "Explore Products",
+    "cta_secondary": "Contact Us"
+  },
+  "products": {
+    "title": "Our Catalog",
+    "subtitle": "Discover the complete range of PipeSan sanitary products",
+    "view_details": "View Details",
+    "add_to_cart": "Add to Cart",
+    "buy_amazon": "Buy on Amazon",
+    "price": "Price",
+    "specifications": "Specifications",
+    "description": "Description"
+  },
+  "about": {
+    "title": "About PipeSan",
+    "content": "PipeSan is a premium brand in sanitary products, offering complete solutions for sanitary installations across Europe. Founded in 2022 by a dedicated team, we specialize in the highest quality products available through Amazon in 9 European countries."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "phone": "Phone",
+    "address": "Address"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "full_name": "Full Name",
+    "phone": "Phone",
+    "company": "Company",
+    "company_name": "Company Name",
+    "contact_person": "Contact Person",
+    "company_address": "Company Address",
+    "fiscal_code": "Fiscal Code",
+    "vat_number": "VAT Number",
+    "account_type": "Account Type",
+    "individual": "Individual",
+    "company_account": "Company",
+    "forgot_password": "Forgot password?",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Cart is empty",
+    "quantity": "Quantity",
+    "total": "Total",
+    "checkout": "Checkout",
+    "remove": "Remove"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "categories": "Categories",
+    "orders": "Orders",
+    "users": "Users",
+    "add_product": "Add Product",
+    "edit_product": "Edit Product",
+    "add_category": "Add Category"
+  }
+}

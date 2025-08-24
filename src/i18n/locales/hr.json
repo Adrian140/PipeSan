@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Početna",
+    "products": "Proizvodi",
+    "about": "O nama",
+    "contact": "Kontakt",
+    "login": "Prijava",
+    "register": "Registracija",
+    "admin": "Admin",
+    "cart": "Košarica"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitarna Rješenja",
+    "subtitle": "Visokokvalitetni spojevi, slavine i sanitarna oprema za profesionalce i privatne osobe",
+    "cta": "Istražite Proizvode",
+    "cta_secondary": "Kontaktirajte nas"
+  },
+  "products": {
+    "title": "Naš Katalog",
+    "subtitle": "Otkrijte potpunu paletu sanitarnih proizvoda PipeSan",
+    "view_details": "Prikaži Detalje",
+    "add_to_cart": "Dodaj u Košaricu",
+    "buy_amazon": "Kupi na Amazonu",
+    "price": "Cijena",
+    "specifications": "Specifikacije",
+    "description": "Opis"
+  },
+  "about": {
+    "title": "O PipeSan",
+    "content": "PipeSan je premium brend u sanitarnim proizvodima, koji nudi cjelovita rješenja za sanitarne instalacije diljem Europe. Osnovan 2022. godine od strane predanog tima, specijaliziramo se za proizvode najviše kvalitete dostupne putem Amazona u 9 europskih zemalja."
+  },
+  "contact": {
+    "title": "Kontaktirajte nas",
+    "name": "Ime",
+    "email": "Email",
+    "message": "Poruka",
+    "send": "Pošalji",
+    "phone": "Telefon",
+    "address": "Adresa"
+  },
+  "auth": {
+    "login": "Prijava",
+    "register": "Registracija",
+    "email": "Email",
+    "password": "Lozinka",
+    "confirm_password": "Potvrdi Lozinku",
+    "full_name": "Puno Ime",
+    "phone": "Telefon",
+    "company": "Tvrtka",
+    "company_name": "Naziv Tvrtke",
+    "contact_person": "Kontakt Osoba",
+    "company_address": "Adresa Tvrtke",
+    "fiscal_code": "Porezni Broj",
+    "vat_number": "PDV Broj",
+    "account_type": "Tip Računa",
+    "individual": "Privatna Osoba",
+    "company_account": "Tvrtka",
+    "forgot_password": "Zaboravljena lozinka?",
+    "no_account": "Nemate račun?",
+    "have_account": "Već imate račun?"
+  },
+  "cart": {
+    "title": "Košarica za Kupnju",
+    "empty": "Košarica je prazna",
+    "quantity": "Količina",
+    "total": "Ukupno",
+    "checkout": "Blagajna",
+    "remove": "Ukloni"
+  },
+  "admin": {
+    "dashboard": "Kontrolna Ploča",
+    "products": "Proizvodi",
+    "categories": "Kategorije",
+    "orders": "Narudžbe",
+    "users": "Korisnici",
+    "add_product": "Dodaj Proizvod",
+    "edit_product": "Uredi Proizvod",
+    "add_category": "Dodaj Kategoriju"
+  }
+}

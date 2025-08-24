@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Sākums",
+    "products": "Produkti",
+    "about": "Par mums",
+    "contact": "Kontakti",
+    "login": "Pieteikšanās",
+    "register": "Reģistrācija",
+    "admin": "Admins",
+    "cart": "Grozs"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitārie Risinājumi",
+    "subtitle": "Augstas kvalitātes savienojumi, krāni un sanitārie piederumi profesionāļiem un privātpersonām",
+    "cta": "Izpētīt Produktus",
+    "cta_secondary": "Sazināties ar mums"
+  },
+  "products": {
+    "title": "Mūsu Katalogs",
+    "subtitle": "Atklājiet pilno PipeSan sanitāro produktu klāstu",
+    "view_details": "Skatīt Detaļas",
+    "add_to_cart": "Pievienot Grozam",
+    "buy_amazon": "Pirkt Amazon",
+    "price": "Cena",
+    "specifications": "Specifikācijas",
+    "description": "Apraksts"
+  },
+  "about": {
+    "title": "Par PipeSan",
+    "content": "PipeSan ir premium zīmols sanitāro produktu jomā, piedāvājot visaptverošus risinājumus sanitārajām instalācijām visā Eiropā. Dibināts 2022. gadā ar aizrautīgas komandas palīdzību, mēs specializējamies augstākās kvalitātes produktos, kas pieejami caur Amazon 9 Eiropas valstīs."
+  },
+  "contact": {
+    "title": "Sazināties ar mums",
+    "name": "Vārds",
+    "email": "E-pasts",
+    "message": "Ziņojums",
+    "send": "Sūtīt",
+    "phone": "Tālrunis",
+    "address": "Adrese"
+  },
+  "auth": {
+    "login": "Pieteikšanās",
+    "register": "Reģistrācija",
+    "email": "E-pasts",
+    "password": "Parole",
+    "confirm_password": "Apstiprināt Paroli",
+    "full_name": "Pilns Vārds",
+    "phone": "Tālrunis",
+    "company": "Uzņēmums",
+    "company_name": "Uzņēmuma Nosaukums",
+    "contact_person": "Kontaktpersona",
+    "company_address": "Uzņēmuma Adrese",
+    "fiscal_code": "Nodokļu Maksātāja Numurs",
+    "vat_number": "PVN Numurs",
+    "account_type": "Konta Veids",
+    "individual": "Privātpersona",
+    "company_account": "Uzņēmums",
+    "forgot_password": "Aizmirsta parole?",
+    "no_account": "Nav konta?",
+    "have_account": "Jau ir konts?"
+  },
+  "cart": {
+    "title": "Iepirkumu Grozs",
+    "empty": "Grozs ir tukšs",
+    "quantity": "Daudzums",
+    "total": "Kopā",
+    "checkout": "Kase",
+    "remove": "Noņemt"
+  },
+  "admin": {
+    "dashboard": "Vadības Panelis",
+    "products": "Produkti",
+    "categories": "Kategorijas",
+    "orders": "Pasūtījumi",
+    "users": "Lietotāji",
+    "add_product": "Pievienot Produktu",
+    "edit_product": "Rediģēt Produktu",
+    "add_category": "Pievienot Kategoriju"
+  }
+}

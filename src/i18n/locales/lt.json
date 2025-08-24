@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Pradžia",
+    "products": "Produktai",
+    "about": "Apie mus",
+    "contact": "Kontaktai",
+    "login": "Prisijungimas",
+    "register": "Registracija",
+    "admin": "Adminas",
+    "cart": "Krepšelis"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitariniai Sprendimai",
+    "subtitle": "Aukštos kokybės jungtys, čiaupai ir sanitariniai priedai profesionalams ir privatūs asmenims",
+    "cta": "Tyrinėti Produktus",
+    "cta_secondary": "Susisiekite su mumis"
+  },
+  "products": {
+    "title": "Mūsų Katalogas",
+    "subtitle": "Atraskite visą PipeSan sanitarinių produktų asortimentą",
+    "view_details": "Žiūrėti Detales",
+    "add_to_cart": "Pridėti į Krepšelį",
+    "buy_amazon": "Pirkti Amazon",
+    "price": "Kaina",
+    "specifications": "Specifikacijos",
+    "description": "Aprašymas"
+  },
+  "about": {
+    "title": "Apie PipeSan",
+    "content": "PipeSan yra premium prekės ženklas sanitarinių produktų srityje, siūlantis išsamius sprendimus sanitariniams įrengimams visoje Europoje. Įkurta 2022 m. atsidavusios komandos, specializuojamės aukščiausios kokybės produktuose, prieinamuose per Amazon 9 Europos šalyse."
+  },
+  "contact": {
+    "title": "Susisiekite su mumis",
+    "name": "Vardas",
+    "email": "El. paštas",
+    "message": "Žinutė",
+    "send": "Siųsti",
+    "phone": "Telefonas",
+    "address": "Adresas"
+  },
+  "auth": {
+    "login": "Prisijungimas",
+    "register": "Registracija",
+    "email": "El. paštas",
+    "password": "Slaptažodis",
+    "confirm_password": "Patvirtinti Slaptažodį",
+    "full_name": "Pilnas Vardas",
+    "phone": "Telefonas",
+    "company": "Įmonė",
+    "company_name": "Įmonės Pavadinimas",
+    "contact_person": "Kontaktinis Asmuo",
+    "company_address": "Įmonės Adresas",
+    "fiscal_code": "Mokesčių Mokėtojo Kodas",
+    "vat_number": "PVM Numeris",
+    "account_type": "Paskyros Tipas",
+    "individual": "Fizinis Asmuo",
+    "company_account": "Įmonė",
+    "forgot_password": "Pamiršote slaptažodį?",
+    "no_account": "Neturite paskyros?",
+    "have_account": "Jau turite paskyrą?"
+  },
+  "cart": {
+    "title": "Pirkinių Krepšelis",
+    "empty": "Krepšelis tuščias",
+    "quantity": "Kiekis",
+    "total": "Iš viso",
+    "checkout": "Kasa",
+    "remove": "Pašalinti"
+  },
+  "admin": {
+    "dashboard": "Valdymo Skydas",
+    "products": "Produktai",
+    "categories": "Kategorijos",
+    "orders": "Užsakymai",
+    "users": "Vartotojai",
+    "add_product": "Pridėti Produktą",
+    "edit_product": "Redaguoti Produktą",
+    "add_category": "Pridėti Kategoriją"
+  }
+}

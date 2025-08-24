@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "products": "Produits",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "admin": "Admin",
+    "cart": "Panier"
+  },
+  "hero": {
+    "title": "PipeSan - Solutions Sanitaires Premium",
+    "subtitle": "Raccords, robinets et accessoires sanitaires de haute qualité pour professionnels et particuliers",
+    "cta": "Explorer les Produits",
+    "cta_secondary": "Nous Contacter"
+  },
+  "products": {
+    "title": "Notre Catalogue",
+    "subtitle": "Découvrez la gamme complète de produits sanitaires PipeSan",
+    "view_details": "Voir Détails",
+    "add_to_cart": "Ajouter au Panier",
+    "buy_amazon": "Acheter sur Amazon",
+    "price": "Prix",
+    "specifications": "Spécifications",
+    "description": "Description"
+  },
+  "about": {
+    "title": "À propos de PipeSan",
+    "content": "PipeSan est une marque premium dans les produits sanitaires, offrant des solutions complètes pour les installations sanitaires à travers l'Europe. Fondée en 2022 par une équipe dédiée, nous nous spécialisons dans les produits de la plus haute qualité disponibles via Amazon dans 9 pays européens."
+  },
+  "contact": {
+    "title": "Nous Contacter",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "send": "Envoyer",
+    "phone": "Téléphone",
+    "address": "Adresse"
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirm_password": "Confirmer le mot de passe",
+    "full_name": "Nom complet",
+    "phone": "Téléphone",
+    "company": "Entreprise",
+    "company_name": "Nom de l'Entreprise",
+    "contact_person": "Personne de Contact",
+    "company_address": "Adresse de l'Entreprise",
+    "fiscal_code": "Code Fiscal",
+    "vat_number": "Numéro TVA",
+    "account_type": "Type de Compte",
+    "individual": "Particulier",
+    "company_account": "Entreprise",
+    "forgot_password": "Mot de passe oublié?",
+    "no_account": "Pas de compte?",
+    "have_account": "Vous avez déjà un compte?"
+  },
+  "cart": {
+    "title": "Panier d'Achat",
+    "empty": "Le panier est vide",
+    "quantity": "Quantité",
+    "total": "Total",
+    "checkout": "Commander",
+    "remove": "Supprimer"
+  },
+  "admin": {
+    "dashboard": "Tableau de Bord",
+    "products": "Produits",
+    "categories": "Catégories",
+    "orders": "Commandes",
+    "users": "Utilisateurs",
+    "add_product": "Ajouter Produit",
+    "edit_product": "Modifier Produit",
+    "add_category": "Ajouter Catégorie"
+  }
+}

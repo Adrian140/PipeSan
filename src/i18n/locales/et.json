@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Avaleht",
+    "products": "Tooted",
+    "about": "Meist",
+    "contact": "Kontakt",
+    "login": "Sisselogimine",
+    "register": "Registreerimine",
+    "admin": "Admin",
+    "cart": "Ostukorv"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitaarlahendused",
+    "subtitle": "Kõrgekvaliteedilised ühendused, kraanid ja sanitaartarvikud professionaalidele ja eraisikutele",
+    "cta": "Tutvu Toodetega",
+    "cta_secondary": "Võta Ühendust"
+  },
+  "products": {
+    "title": "Meie Kataloog",
+    "subtitle": "Avasta PipeSani sanitaartoote täielik valik",
+    "view_details": "Vaata Üksikasju",
+    "add_to_cart": "Lisa Ostukorvi",
+    "buy_amazon": "Osta Amazonist",
+    "price": "Hind",
+    "specifications": "Spetsifikatsioonid",
+    "description": "Kirjeldus"
+  },
+  "about": {
+    "title": "PipeSanist",
+    "content": "PipeSan on premium bränd sanitaartoote valdkonnas, pakkudes terviklikke lahendusi sanitaarpaigalduste jaoks kogu Euroopas. 2022. aastal pühendunud meeskonna poolt asutatud, spetsialiseerume kõrgeima kvaliteediga toodetele, mis on saadaval Amazoni kaudu 9 Euroopa riigis."
+  },
+  "contact": {
+    "title": "Võta Ühendust",
+    "name": "Nimi",
+    "email": "E-post",
+    "message": "Sõnum",
+    "send": "Saada",
+    "phone": "Telefon",
+    "address": "Aadress"
+  },
+  "auth": {
+    "login": "Sisselogimine",
+    "register": "Registreerimine",
+    "email": "E-post",
+    "password": "Parool",
+    "confirm_password": "Kinnita Parool",
+    "full_name": "Täisnimi",
+    "phone": "Telefon",
+    "company": "Ettevõte",
+    "company_name": "Ettevõtte Nimi",
+    "contact_person": "Kontaktisik",
+    "company_address": "Ettevõtte Aadress",
+    "fiscal_code": "Maksukohuslase Number",
+    "vat_number": "Käibemaksu Number",
+    "account_type": "Konto Tüüp",
+    "individual": "Eraisik",
+    "company_account": "Ettevõte",
+    "forgot_password": "Unustasid parooli?",
+    "no_account": "Pole kontot?",
+    "have_account": "On juba konto?"
+  },
+  "cart": {
+    "title": "Ostukorv",
+    "empty": "Ostukorv on tühi",
+    "quantity": "Kogus",
+    "total": "Kokku",
+    "checkout": "Kassa",
+    "remove": "Eemalda"
+  },
+  "admin": {
+    "dashboard": "Juhtpaneel",
+    "products": "Tooted",
+    "categories": "Kategooriad",
+    "orders": "Tellimused",
+    "users": "Kasutajad",
+    "add_product": "Lisa Toode",
+    "edit_product": "Muuda Toodet",
+    "add_category": "Lisa Kategooria"
+  }
+}

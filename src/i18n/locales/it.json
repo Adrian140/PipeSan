@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Prodotti",
+    "about": "Chi Siamo",
+    "contact": "Contatti",
+    "login": "Accedi",
+    "register": "Registrati",
+    "admin": "Admin",
+    "cart": "Carrello"
+  },
+  "hero": {
+    "title": "PipeSan - Soluzioni Sanitarie Premium",
+    "subtitle": "Raccordi, rubinetti e accessori sanitari di alta qualità per professionisti e privati",
+    "cta": "Esplora Prodotti",
+    "cta_secondary": "Contattaci"
+  },
+  "products": {
+    "title": "Il Nostro Catalogo",
+    "subtitle": "Scopri la gamma completa di prodotti sanitari PipeSan",
+    "view_details": "Vedi Dettagli",
+    "add_to_cart": "Aggiungi al Carrello",
+    "buy_amazon": "Compra su Amazon",
+    "price": "Prezzo",
+    "specifications": "Specifiche",
+    "description": "Descrizione"
+  },
+  "about": {
+    "title": "Chi è PipeSan",
+    "content": "PipeSan è un marchio premium nel settore dei prodotti sanitari, che offre soluzioni complete per impianti sanitari in tutta Europa. Fondata nel 2022 da un team dedicato, ci specializziamo in prodotti della massima qualità disponibili tramite Amazon in 9 paesi europei."
+  },
+  "contact": {
+    "title": "Contattaci",
+    "name": "Nome",
+    "email": "Email",
+    "message": "Messaggio",
+    "send": "Invia",
+    "phone": "Telefono",
+    "address": "Indirizzo"
+  },
+  "auth": {
+    "login": "Accedi",
+    "register": "Registrati",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Conferma Password",
+    "full_name": "Nome Completo",
+    "phone": "Telefono",
+    "company": "Azienda",
+    "company_name": "Nome Azienda",
+    "contact_person": "Persona di Contatto",
+    "company_address": "Indirizzo Azienda",
+    "fiscal_code": "Codice Fiscale",
+    "vat_number": "Partita IVA",
+    "account_type": "Tipo di Account",
+    "individual": "Privato",
+    "company_account": "Azienda",
+    "forgot_password": "Password dimenticata?",
+    "no_account": "Non hai un account?",
+    "have_account": "Hai già un account?"
+  },
+  "cart": {
+    "title": "Carrello della Spesa",
+    "empty": "Il carrello è vuoto",
+    "quantity": "Quantità",
+    "total": "Totale",
+    "checkout": "Procedi all'Acquisto",
+    "remove": "Rimuovi"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Prodotti",
+    "categories": "Categorie",
+    "orders": "Ordini",
+    "users": "Utenti",
+    "add_product": "Aggiungi Prodotto",
+    "edit_product": "Modifica Prodotto",
+    "add_category": "Aggiungi Categoria"
+  }
+}

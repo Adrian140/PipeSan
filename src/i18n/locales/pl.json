@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Strona Główna",
+    "products": "Produkty",
+    "about": "O Nas",
+    "contact": "Kontakt",
+    "login": "Zaloguj",
+    "register": "Zarejestruj",
+    "admin": "Admin",
+    "cart": "Koszyk"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Rozwiązania Sanitarne",
+    "subtitle": "Wysokiej jakości złączki, baterie i akcesoria sanitarne dla profesjonalistów i osób prywatnych",
+    "cta": "Przeglądaj Produkty",
+    "cta_secondary": "Skontaktuj się z nami"
+  },
+  "products": {
+    "title": "Nasz Katalog",
+    "subtitle": "Odkryj pełną gamę produktów sanitarnych PipeSan",
+    "view_details": "Zobacz Szczegóły",
+    "add_to_cart": "Dodaj do Koszyka",
+    "buy_amazon": "Kup na Amazon",
+    "price": "Cena",
+    "specifications": "Specyfikacje",
+    "description": "Opis"
+  },
+  "about": {
+    "title": "O PipeSan",
+    "content": "PipeSan to marka premium w dziedzinie produktów sanitarnych, oferująca kompleksowe rozwiązania dla instalacji sanitarnych w całej Europie. Założona w 2022 roku przez oddany zespół, specjalizujemy się w produktach najwyższej jakości dostępnych przez Amazon w 9 krajach europejskich."
+  },
+  "contact": {
+    "title": "Skontaktuj się z nami",
+    "name": "Imię",
+    "email": "Email",
+    "message": "Wiadomość",
+    "send": "Wyślij",
+    "phone": "Telefon",
+    "address": "Adres"
+  },
+  "auth": {
+    "login": "Zaloguj",
+    "register": "Zarejestruj",
+    "email": "Email",
+    "password": "Hasło",
+    "confirm_password": "Potwierdź Hasło",
+    "full_name": "Pełne Imię",
+    "phone": "Telefon",
+    "company": "Firma",
+    "company_name": "Nazwa Firmy",
+    "contact_person": "Osoba Kontaktowa",
+    "company_address": "Adres Firmy",
+    "fiscal_code": "NIP",
+    "vat_number": "Numer VAT",
+    "account_type": "Typ Konta",
+    "individual": "Osoba Prywatna",
+    "company_account": "Firma",
+    "forgot_password": "Zapomniałeś hasła?",
+    "no_account": "Nie masz konta?",
+    "have_account": "Masz już konto?"
+  },
+  "cart": {
+    "title": "Koszyk Zakupowy",
+    "empty": "Koszyk jest pusty",
+    "quantity": "Ilość",
+    "total": "Razem",
+    "checkout": "Przejdź do Kasy",
+    "remove": "Usuń"
+  },
+  "admin": {
+    "dashboard": "Panel Administracyjny",
+    "products": "Produkty",
+    "categories": "Kategorie",
+    "orders": "Zamówienia",
+    "users": "Użytkownicy",
+    "add_product": "Dodaj Produkt",
+    "edit_product": "Edytuj Produkt",
+    "add_category": "Dodaj Kategorię"
+  }
+}

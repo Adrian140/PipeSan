@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Hem",
+    "products": "Produkter",
+    "about": "Om Oss",
+    "contact": "Kontakt",
+    "login": "Logga In",
+    "register": "Registrera",
+    "admin": "Admin",
+    "cart": "Kundvagn"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitära Lösningar",
+    "subtitle": "Högkvalitativa kopplingar, kranar och sanitära tillbehör för proffs och privatpersoner",
+    "cta": "Utforska Produkter",
+    "cta_secondary": "Kontakta Oss"
+  },
+  "products": {
+    "title": "Vår Katalog",
+    "subtitle": "Upptäck det kompletta sortimentet av PipeSan sanitära produkter",
+    "view_details": "Visa Detaljer",
+    "add_to_cart": "Lägg i Kundvagn",
+    "buy_amazon": "Köp på Amazon",
+    "price": "Pris",
+    "specifications": "Specifikationer",
+    "description": "Beskrivning"
+  },
+  "about": {
+    "title": "Om PipeSan",
+    "content": "PipeSan är ett premiummärke inom sanitära produkter som erbjuder kompletta lösningar för sanitära installationer över hela Europa. Grundat 2022 av ett dedikerat team, specialiserar vi oss på produkter av högsta kvalitet tillgängliga via Amazon i 9 europeiska länder."
+  },
+  "contact": {
+    "title": "Kontakta Oss",
+    "name": "Namn",
+    "email": "E-post",
+    "message": "Meddelande",
+    "send": "Skicka",
+    "phone": "Telefon",
+    "address": "Adress"
+  },
+  "auth": {
+    "login": "Logga In",
+    "register": "Registrera",
+    "email": "E-post",
+    "password": "Lösenord",
+    "confirm_password": "Bekräfta Lösenord",
+    "full_name": "Fullständigt Namn",
+    "phone": "Telefon",
+    "company": "Företag",
+    "company_name": "Företagsnamn",
+    "contact_person": "Kontaktperson",
+    "company_address": "Företagsadress",
+    "fiscal_code": "Skattenummer",
+    "vat_number": "Momsregistreringsnummer",
+    "account_type": "Kontotyp",
+    "individual": "Privatperson",
+    "company_account": "Företag",
+    "forgot_password": "Glömt lösenord?",
+    "no_account": "Har du inget konto?",
+    "have_account": "Har du redan ett konto?"
+  },
+  "cart": {
+    "title": "Kundvagn",
+    "empty": "Kundvagnen är tom",
+    "quantity": "Antal",
+    "total": "Totalt",
+    "checkout": "Gå till Kassan",
+    "remove": "Ta Bort"
+  },
+  "admin": {
+    "dashboard": "Instrumentpanel",
+    "products": "Produkter",
+    "categories": "Kategorier",
+    "orders": "Beställningar",
+    "users": "Användare",
+    "add_product": "Lägg Till Produkt",
+    "edit_product": "Redigera Produkt",
+    "add_category": "Lägg Till Kategori"
+  }
+}

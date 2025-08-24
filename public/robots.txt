@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://pipesan.eu/sitemap.xml
+
+# Disallow admin pages from search engines
+User-agent: *
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+
+# Allow important pages
+Allow: /
+Allow: /products
+Allow: /about
+Allow: /contact

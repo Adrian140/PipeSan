@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Koti",
+    "products": "Tuotteet",
+    "about": "Tietoa Meistä",
+    "contact": "Yhteystiedot",
+    "login": "Kirjaudu Sisään",
+    "register": "Rekisteröidy",
+    "admin": "Admin",
+    "cart": "Ostoskori"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitaariset Ratkaisut",
+    "subtitle": "Korkealaatuiset liittimet, hanat ja sanitaariset tarvikkeet ammattilaisille ja yksityishenkilöille",
+    "cta": "Tutustu Tuotteisiin",
+    "cta_secondary": "Ota Yhteyttä"
+  },
+  "products": {
+    "title": "Tuotekatalogimme",
+    "subtitle": "Tutustu PipeSanin kattavaan sanitaarituotteiden valikoimaan",
+    "view_details": "Näytä Tiedot",
+    "add_to_cart": "Lisää Ostoskoriin",
+    "buy_amazon": "Osta Amazonista",
+    "price": "Hinta",
+    "specifications": "Tekniset Tiedot",
+    "description": "Kuvaus"
+  },
+  "about": {
+    "title": "Tietoa PipeSanista",
+    "content": "PipeSan on premium-brändi sanitaarituotteissa, tarjoten kokonaisvaltaisia ratkaisuja sanitaariasennuksiin kaikkialla Euroopassa. Vuonna 2022 omistautuneen tiimin perustama yritys erikoistuu korkeimpaan laatuun Amazonin kautta 9 Euroopan maassa."
+  },
+  "contact": {
+    "title": "Ota Yhteyttä",
+    "name": "Nimi",
+    "email": "Sähköposti",
+    "message": "Viesti",
+    "send": "Lähetä",
+    "phone": "Puhelin",
+    "address": "Osoite"
+  },
+  "auth": {
+    "login": "Kirjaudu Sisään",
+    "register": "Rekisteröidy",
+    "email": "Sähköposti",
+    "password": "Salasana",
+    "confirm_password": "Vahvista Salasana",
+    "full_name": "Koko Nimi",
+    "phone": "Puhelin",
+    "company": "Yritys",
+    "company_name": "Yrityksen Nimi",
+    "contact_person": "Yhteyshenkilö",
+    "company_address": "Yrityksen Osoite",
+    "fiscal_code": "Veronumero",
+    "vat_number": "ALV-numero",
+    "account_type": "Tilin Tyyppi",
+    "individual": "Yksityishenkilö",
+    "company_account": "Yritys",
+    "forgot_password": "Unohditko salasanan?",
+    "no_account": "Eikö sinulla ole tiliä?",
+    "have_account": "Onko sinulla jo tili?"
+  },
+  "cart": {
+    "title": "Ostoskori",
+    "empty": "Ostoskori on tyhjä",
+    "quantity": "Määrä",
+    "total": "Yhteensä",
+    "checkout": "Siirry Kassalle",
+    "remove": "Poista"
+  },
+  "admin": {
+    "dashboard": "Hallintapaneeli",
+    "products": "Tuotteet",
+    "categories": "Kategoriat",
+    "orders": "Tilaukset",
+    "users": "Käyttäjät",
+    "add_product": "Lisää Tuote",
+    "edit_product": "Muokkaa Tuotetta",
+    "add_category": "Lisää Kategoria"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "admin": "Admin",
+    "cart": "Warenkorb"
+  },
+  "hero": {
+    "title": "PipeSan - Premium Sanitärlösungen",
+    "subtitle": "Hochwertige Armaturen, Wasserhähne und Sanitärzubehör für Profis und Privatpersonen",
+    "cta": "Produkte Erkunden",
+    "cta_secondary": "Kontaktieren Sie uns"
+  },
+  "products": {
+    "title": "Unser Katalog",
+    "subtitle": "Entdecken Sie das komplette Sortiment an PipeSan Sanitärprodukten",
+    "view_details": "Details Anzeigen",
+    "add_to_cart": "In den Warenkorb",
+    "buy_amazon": "Bei Amazon Kaufen",
+    "price": "Preis",
+    "specifications": "Spezifikationen",
+    "description": "Beschreibung"
+  },
+  "about": {
+    "title": "Über PipeSan",
+    "content": "PipeSan ist eine Premium-Marke für Sanitärprodukte und bietet komplette Lösungen für Sanitärinstallationen in ganz Europa. 2022 von einem engagierten Team gegründet, spezialisieren wir uns auf Produkte höchster Qualität, die über Amazon in 9 europäischen Ländern verfügbar sind."
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "send": "Senden",
+    "phone": "Telefon",
+    "address": "Adresse"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirm_password": "Passwort bestätigen",
+    "full_name": "Vollständiger Name",
+    "phone": "Telefon",
+    "company": "Unternehmen",
+    "company_name": "Firmenname",
+    "contact_person": "Ansprechpartner",
+    "company_address": "Firmenadresse",
+    "fiscal_code": "Steuernummer",
+    "vat_number": "USt-IdNr.",
+    "account_type": "Kontotyp",
+    "individual": "Privatperson",
+    "company_account": "Unternehmen",
+    "forgot_password": "Passwort vergessen?",
+    "no_account": "Kein Konto?",
+    "have_account": "Bereits ein Konto?"
+  },
+  "cart": {
+    "title": "Einkaufswagen",
+    "empty": "Warenkorb ist leer",
+    "quantity": "Menge",
+    "total": "Gesamt",
+    "checkout": "Zur Kasse",
+    "remove": "Entfernen"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Produkte",
+    "categories": "Kategorien",
+    "orders": "Bestellungen",
+    "users": "Benutzer",
+    "add_product": "Produkt Hinzufügen",
+    "edit_product": "Produkt Bearbeiten",
+    "add_category": "Kategorie Hinzufügen"
+  }
+}
