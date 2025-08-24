@@ -1,208 +1,236 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useCart } from '../contexts/CartContext';
-import { useCountry } from '../contexts/CountryContext';
-import { db } from '../lib/supabase.jsx';
-import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-  Chip,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  CircularProgress,
-  Alert
-} from '@mui/material';
-import {
-  ShoppingCart,
-  Launch
-} from '@mui/icons-material';
+import { Search, Filter, Grid, List, SlidersHorizontal } from 'lucide-react';
+import ProductGrid from '../components/products/ProductGrid';
+import { apiClient } from '../config/api';
 
-const Products = () => {
-  const { t } = useTranslation();
-  const { addItem } = useCart();
-  const { getAmazonLink, formatPrice } = useCountry();
+function Products() {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [viewMode, setViewMode] = useState('grid');
+  const [filters, setFilters] = useState({
+    search: '',
+    category: '',
+    priceRange: [0, 1000],
+    inStock: false,
+    sortBy: 'name'
+  });
+  const [showFilters, setShowFilters] = useState(false);
+
+  const categories = [
+    'All Categories',
+    'Pipe Fittings',
+    'Valves',
+    'Connectors',
+    'Gaskets',
+    'Tools',
+    'Accessories'
+  ];
+
+  const sortOptions = [
+    { value: 'name', label: 'Name A-Z' },
+    { value: 'price-low', label: 'Price: Low to High' },
+    { value: 'price-high', label: 'Price: High to Low' },
+    { value: 'rating', label: 'Highest Rated' },
+    { value: 'newest', label: 'Newest First' }
+  ];
 
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        setLoading(true);
-        const [productsData, categoriesData] = await Promise.all([
-          db.getProducts({ active: true }),
-          db.getCategories()
-        ]);
-        
-        setProducts(productsData);
-        setCategories(categoriesData);
-      } catch (err) {
-        console.error('Error loading data:', err);
-        setError('Eroare la încărcarea produselor. Încercați din nou.');
-      } finally {
-        setLoading(false);
-      }
-    };
+     fetchProducts();
+ }, []);
 
-    loadData();
-  }, []);
-
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = !selectedCategory || product.category_id === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
-
-  const handleAddToCart = async (product) => {
+   const fetchProducts = async () => {
     try {
-      await addItem(product);
+      setLoading(true);
+      const data = await apiClient.products.getAll(filters);
+      setProducts(data);
     } catch (error) {
-      console.error('Error adding to cart:', error);
+      console.error('Error fetching products:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (loading) {
-    return (
-      <Container maxWidth="lg" sx={{ py: 4, textAlign: 'center' }}>
-        <CircularProgress size={60} />
-        <Typography variant="h6" sx={{ mt: 2 }}>
-          Se încarcă produsele...
-        </Typography>
-      </Container>
-    );
-  }
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      fetchProducts();
+    }, 300);
+    
+    return () => clearTimeout(timeoutId);
+  }, [filters.search, filters.category]);
+ const filteredProducts = products.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(filters.search.toLowerCase()) ||
+                         product.sku.toLowerCase().includes(filters.search.toLowerCase());
+    const matchesCategory = !filters.category || filters.category === 'All Categories' || 
+                           product.category === filters.category;
+    const matchesPrice = product.price >= filters.priceRange[0] && product.price <= filters.priceRange[1];
+    const matchesStock = !filters.inStock || product.inStock;
 
-  if (error) {
-    return (
-      <Container maxWidth="lg" sx={{ py: 4 }}>
-        <Alert severity="error" sx={{ mb: 3 }}>
-          {error}
-        </Alert>
-      </Container>
-    );
-  }
+    return matchesSearch && matchesCategory && matchesPrice && matchesStock;
+  });
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (filters.sortBy) {
+      case 'price-low':
+        return (a.salePrice || a.price) - (b.salePrice || b.price);
+      case 'price-high':
+        return (b.salePrice || b.price) - (a.salePrice || a.price);
+      case 'rating':
+        return b.rating - a.rating;
+      case 'newest':
+        return b.id - a.id;
+      default:
+        return a.name.localeCompare(b.name);
+    }
+  });
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography variant="h2" gutterBottom>
-        {t('products.title')}
-      </Typography>
-      <Typography variant="h6" sx={{ mb: 4, color: 'text.secondary' }}>
-        {t('products.subtitle')}
-      </Typography>
+    <div className="min-h-screen py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-text-primary mb-4">Products</h1>
+          <p className="text-text-secondary">
+            Professional pipe fittings, valves, and plumbing components
+          </p>
+        </div>
 
-      {/* Filters */}
-      <Box sx={{ mb: 4, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-        <TextField
-          label="Caută produse..."
-          variant="outlined"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          sx={{ minWidth: 300 }}
-        />
-        <FormControl sx={{ minWidth: 200 }}>
-          <InputLabel>Categorie</InputLabel>
-          <Select
-            value={selectedCategory}
-            label="Categorie"
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            <MenuItem value="">Toate categoriile</MenuItem>
-            {categories.map((category) => (
-              <MenuItem key={category.id} value={category.id}>
-                {category.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box>
-
-      {/* Products Grid */}
-      <Grid container spacing={3}>
-        {filteredProducts.map((product) => (
-          <Grid item xs={12} sm={6} md={4} key={product.id}>
-            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-              <CardMedia
-                component="img"
-                height="200"
-                image={product.image_url || "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop"}
-                alt={product.name}
+        {/* Search and Filters Bar */}
+        <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
+          <div className="flex flex-col lg:flex-row gap-4 items-center">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={filters.search}
+                onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
               />
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h6" gutterBottom>
-                  {product.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                  {product.description}
-                </Typography>
-                
-                <Chip
-                  label={product.categories?.name || 'Fără categorie'}
-                  size="small"
-                  sx={{ mb: 2 }}
-                />
-                
-                {product.specifications && (
-                  <Typography variant="body2" sx={{ mb: 2, fontSize: '0.875rem' }}>
-                    <strong>Specificații:</strong> {product.specifications}
-                  </Typography>
-                )}
-                
-                <Typography variant="h5" color="primary.main" sx={{ fontWeight: 'bold', mb: 2 }}>
-                  {formatPrice(product.price)}
-                </Typography>
-                
-                <Box sx={{ display: 'flex', gap: 1, flexDirection: 'column' }}>
-                  <Button
-                    variant="contained"
-                    startIcon={<ShoppingCart />}
-                    onClick={() => handleAddToCart(product)}
-                    fullWidth
-                    disabled={product.stock <= 0}
-                  >
-                    {product.stock <= 0 ? 'Stoc epuizat' : t('products.add_to_cart')}
-                  </Button>
-                  {product.amazon_links && Object.keys(product.amazon_links).length > 0 && (
-                    <Button
-                      variant="outlined"
-                      startIcon={<Launch />}
-                      href={getAmazonLink(product.amazon_links)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      fullWidth
-                    >
-                      {t('products.buy_amazon')}
-                    </Button>
-                  )}
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+            </div>
 
-      {filteredProducts.length === 0 && (
-        <Box sx={{ textAlign: 'center', py: 8 }}>
-          <Typography variant="h6" color="text.secondary">
-            Nu au fost găsite produse care să corespundă criteriilor de căutare.
-          </Typography>
-        </Box>
-      )}
-    </Container>
+            {/* Category Filter */}
+            <select
+              value={filters.category}
+              onChange={(e) => setFilters(prev => ({ ...prev, category: e.target.value }))}
+              className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+            >
+              {categories.map(category => (
+                <option key={category} value={category}>{category}</option>
+              ))}
+            </select>
+
+            {/* Sort */}
+            <select
+              value={filters.sortBy}
+              onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value }))}
+              className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+            >
+              {sortOptions.map(option => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
+            </select>
+
+            {/* View Mode */}
+            <div className="flex border border-gray-300 rounded-lg overflow-hidden">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-3 ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+              >
+                <Grid className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-3 ${viewMode === 'list' ? 'bg-primary text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+              >
+                <List className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Advanced Filters Toggle */}
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className="flex items-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50"
+            >
+              <SlidersHorizontal className="w-5 h-5" />
+              Filters
+            </button>
+          </div>
+
+          {/* Advanced Filters */}
+          {showFilters && (
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Price Range */}
+                <div>
+                  <label className="block text-sm font-medium text-text-primary mb-2">
+                    Price Range (€)
+                  </label>
+                  <div className="flex gap-2">
+                    <input
+                      type="number"
+                      placeholder="Min"
+                      value={filters.priceRange[0]}
+                      onChange={(e) => setFilters(prev => ({
+                        ...prev,
+                        priceRange: [parseInt(e.target.value) || 0, prev.priceRange[1]]
+                      }))}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    />
+                    <input
+                      type="number"
+                      placeholder="Max"
+                      value={filters.priceRange[1]}
+                      onChange={(e) => setFilters(prev => ({
+                        ...prev,
+                        priceRange: [prev.priceRange[0], parseInt(e.target.value) || 1000]
+                      }))}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                    />
+                  </div>
+                </div>
+
+                {/* Stock Filter */}
+                <div>
+                  <label className="block text-sm font-medium text-text-primary mb-2">
+                    Availability
+                  </label>
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={filters.inStock}
+                      onChange={(e) => setFilters(prev => ({ ...prev, inStock: e.target.checked }))}
+                      className="mr-2"
+                    />
+                    In Stock Only
+                  </label>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Results Count */}
+        <div className="flex justify-between items-center mb-6">
+          <p className="text-text-secondary">
+            Showing {sortedProducts.length} of {products.length} products
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <ProductGrid products={sortedProducts} loading={loading} />
+
+        {/* Load More Button */}
+        {!loading && sortedProducts.length > 0 && (
+          <div className="text-center mt-12">
+            <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors">
+              Load More Products
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   );
-};
+}
 
 export default Products;

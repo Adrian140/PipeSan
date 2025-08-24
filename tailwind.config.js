@@ -8,15 +8,20 @@ export default {
       },
       colors: {
         primary: {
-          light: '#8AB6FF',
-          DEFAULT: '#3B82F6',
-          dark: '#1D4ED8',
+          DEFAULT: '#1F6FEB',
+          dark: '#0969DA',
+          light: '#4285F4'
         },
         accent: {
-          light: '#FDE68A',
-          DEFAULT: '#F59E0B',
-          dark: '#B45309',
+          DEFAULT: '#FF7A00',
+          dark: '#E85D00',
+          light: '#FF9533'
         },
+        text: {
+          primary: '#0F172A',
+          secondary: '#64748B',
+          light: '#94A3B8'
+        }
       },
       borderRadius: {
         'xl': '1rem',

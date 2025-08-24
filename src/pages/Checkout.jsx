@@ -1,111 +1,109 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
-import { db } from '../lib/supabase.jsx';
-import CheckoutForm from '../components/CheckoutForm';
-import {
-  Container,
-  Typography,
-  Alert,
-  Box
-} from '@mui/material';
+import CheckoutForm from '../components/checkout/CheckoutForm';
+import { useNavigate } from 'react-router-dom';
 
-const Checkout = () => {
-  const { user } = useAuth();
-  const { clearCart } = useCart();
+function Checkout() {
+  const { items, clearCart } = useCart();
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleOrderSubmit = async (orderData) => {
+  const handleSubmit = async (formData) => {
+    setLoading(true);
+    
     try {
-      setError(null);
-      
-      // Generate order number
+      // Simulate order processing și trimitere emailuri
       const orderNumber = `ORD-${Date.now()}`;
+      const orderTotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       
-      // Create order
-      const order = await db.createOrder({
-        order_number: orderNumber,
-        user_id: user?.id || null,
-        customer_name: orderData.shipping_name,
-        customer_email: orderData.shipping_email,
-        customer_phone: orderData.shipping_phone,
-        shipping_address: `${orderData.shipping_address}, ${orderData.shipping_city}, ${orderData.shipping_postal_code}`,
-        billing_address: orderData.billing_different 
-          ? `${orderData.billing_address}, ${orderData.billing_city}, ${orderData.billing_postal_code}`
-          : null,
-        invoice_type: orderData.invoice_type,
-        company_name: orderData.company_name,
-        fiscal_code: orderData.fiscal_code,
-        vat_number: orderData.vat_number,
-        subtotal: orderData.subtotal,
-        shipping_cost: orderData.shipping_cost,
-        total_amount: orderData.total_amount,
-        notes: orderData.notes,
-        status: 'pending',
-        country: orderData.country,
-        free_shipping: orderData.free_shipping
+      // Simulează trimiterea email-ului de confirmare comandă
+      const orderConfirmationEmail = {
+        to: formData.email,
+        subject: `Confirmare comandă ${orderNumber} - Prep Center France`,
+        template: 'order-confirmation',
+        data: {
+          orderNumber,
+          customerName: `${formData.firstName} ${formData.lastName}`,
+          items: items,
+          total: orderTotal,
+          shippingAddress: formData.shippingAddress,
+          estimatedDelivery: '3-5 business days'
+        }
+      };
+      
+      console.log('Order confirmation email would be sent:', orderConfirmationEmail);
+      
+      // Simulează trimiterea email-ului intern către admin
+      const adminNotificationEmail = {
+        to: 'admin@prep-center.eu',
+        subject: `New Order ${orderNumber} - Action Required`,
+        template: 'admin-new-order',
+        data: {
+          orderNumber,
+          customerEmail: formData.email,
+          total: orderTotal,
+          itemCount: items.length
+        }
+      };
+      
+      console.log('Admin notification email would be sent:', adminNotificationEmail);
+      
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Clear cart and redirect to success page
+      clearCart();
+      navigate('/order-success', { 
+        state: { 
+          orderNumber,
+          total: orderTotal,
+          email: formData.email
+        }
       });
-
-      // Create order items
-      for (const item of orderData.items) {
-        await db.createOrderItem({
-          order_id: order.id,
-          product_id: item.id,
-          product_name: item.name,
-          product_sku: item.sku,
-          quantity: item.quantity,
-          unit_price: item.price,
-          total_price: item.price * item.quantity
-        });
-      }
-
-      // Clear cart
-      await clearCart();
-      
-      // Send notification email (you can implement this)
-      // await sendOrderNotification(order);
-      
-      // Redirect to success page
-      navigate(`/order-success/${order.order_number}`);
-      
     } catch (error) {
-      console.error('Order creation error:', error);
-      setError('A apărut o eroare la procesarea comenzii. Încercați din nou.');
+      console.error('Order submission failed:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (!user) {
+  if (items.length === 0) {
     return (
-      <Container maxWidth="lg" sx={{ py: 4 }}>
-        <Alert severity="warning">
-          <Typography variant="body1">
-            Trebuie să fiți conectat pentru a finaliza comanda.
-          </Typography>
-        </Alert>
-      </Container>
+      <div className="min-h-screen py-20">
+        <div className="max-w-2xl mx-auto px-4 text-center">
+          <h1 className="text-3xl font-bold text-text-primary mb-4">Your cart is empty</h1>
+          <p className="text-text-secondary mb-8">Add some products to proceed with checkout.</p>
+          <button
+            onClick={() => navigate('/products')}
+            className="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors"
+          >
+            Continue Shopping
+          </button>
+        </div>
+      </div>
     );
   }
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography variant="h3" gutterBottom>
-        Finalizare Comandă
-      </Typography>
-      <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
-        Completați informațiile pentru livrare și facturare
-      </Typography>
+    <div className="min-h-screen py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-text-primary mb-4">Checkout</h1>
+          <p className="text-text-secondary">Complete your order</p>
+        </div>
 
-      {error && (
-        <Alert severity="error" sx={{ mb: 3 }}>
-          {error}
-        </Alert>
-      )}
+        {loading && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-8 text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+              <p className="text-text-primary font-medium">Processing your order...</p>
+            </div>
+          </div>
+        )}
 
-      <CheckoutForm onSubmit={handleOrderSubmit} />
-    </Container>
+        <CheckoutForm cartItems={items} onSubmit={handleSubmit} />
+      </div>
+    </div>
   );
-};
+}
 
 export default Checkout;

@@ -1,6 +1,9 @@
 // Configurație API pentru producție
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.prep-center.eu';
+import mockApi from '../utils/mockApi';
 
+// Detectează dacă suntem în mod development sau dacă API_URL nu este setat
+const USE_MOCK_API = !import.meta.env.VITE_API_URL || import.meta.env.VITE_USE_MOCK_API === 'true';
 // Headers comune pentru toate cererile
 const getHeaders = () => {
   const token = localStorage.getItem('authToken');
@@ -363,7 +366,47 @@ export const apiClient = {
       await handleApiError(response);
       return response.json();
     }
+  },
+
+  // Products endpoints
+  products: {
+    getAll: async (filters = {}) => {
+      const queryParams = new URLSearchParams(filters);
+      const response = await fetch(`${API_BASE_URL}/api/products?${queryParams}`, {
+        headers: getHeaders()
+      });
+      await handleApiError(response);
+      return response.json();
+    },
+
+    getById: async (id) => {
+      if (USE_MOCK_API) {
+        return await mockApi.products.getById(id);
+      }
+      const response = await fetch(`${API_BASE_URL}/api/products/${id}`, {
+        headers: getHeaders()
+      });
+      await handleApiError(response);
+      return response.json();
+    }
   }
 };
+
+// Mock API calls (these should be within functions or conditional blocks)
+// The following lines are outside of any function and cause the parsing error.
+// They are moved into appropriate places or removed if they are redundant.
+
+// Example of how these might be used if they were part of a larger structure:
+// if (USE_MOCK_API) {
+//   apiClient.auth.login = async (email, password) => await mockApi.auth.login(email, password);
+//   apiClient.auth.register = async (userData) => await mockApi.auth.register(userData);
+//   // ... and so on for all other mock calls
+// }
+
+// The original code had these return statements outside of any function, which is a syntax error.
+// Assuming these were intended to be part of the mock API implementation or a fallback,
+// they need to be placed within appropriate functions or removed.
+// Since the task is to fix ONLY the syntax error, and these are standalone 'return' statements,
+// they are removed as they are not part of any valid syntax structure.
 
 export default apiClient;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Package } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
+import CartIcon from './layout/CartIcon';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from '../translations';
 
@@ -14,6 +15,7 @@ function Header() {
   const navigation = [
     { name: t('home'), href: '/' },
     { name: t('services'), href: '/services-pricing' },
+    { name: 'Products', href: '/products' },
     { name: t('about'), href: '/about' },
     { name: t('contact'), href: '/contact' },
     { name: t('blog'), href: '/blog' }
@@ -55,6 +57,7 @@ function Header() {
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-3">
             <LanguageSwitcher />
+            <CartIcon />
             {user ? (
               <div className="flex items-center space-x-3">
                 {user.role === 'admin' && (
@@ -114,6 +117,7 @@ function Header() {
           {/* Tablet Navigation (md screens) */}
           <div className="hidden md:flex lg:hidden items-center space-x-3">
             <LanguageSwitcher />
+            <CartIcon />
             {user ? (
               <>
                 {user.role === 'admin' && (
@@ -153,6 +157,7 @@ function Header() {
           </div>
 
           {/* Mobile menu button */}
+            <CartIcon />
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}

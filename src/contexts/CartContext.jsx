@@ -1,202 +1,129 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useAuth } from './AuthContext';
-import { db } from '../lib/supabase.jsx';
+
 const CartContext = createContext();
 
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error("useCart must be used within a CartProvider");
+    throw new Error('useCart must be used within a CartProvider');
   }
   return context;
 };
 
 export const CartProvider = ({ children }) => {
-  const { user } = useAuth();
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
+  // Load cart from localStorage on mount
   useEffect(() => {
-    const loadCart = async () => {
-      // Check if we're in demo mode
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      if (!supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
-        console.log('Demo mode: Using localStorage for cart');
-        const savedCart = localStorage.getItem("pipesan_cart");
-        if (savedCart) {
-          setItems(JSON.parse(savedCart));
-        }
-        return;
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      try {
+        setItems(JSON.parse(savedCart));
+      } catch (error) {
+        console.error('Error loading cart from localStorage:', error);
       }
-      
-      if (user) {
-        try {
-          setLoading(true);
-          const cartItems = await db.getCartItems(user.id);
-          setItems(cartItems.map(item => ({
-            ...item.products,
-            quantity: item.quantity,
-            cartItemId: item.id
-          })));
-        } catch (error) {
-          console.error('Error loading cart:', error);
-          // Fallback to localStorage for guests
-          const savedCart = localStorage.getItem("pipesan_cart");
-          if (savedCart) {
-            setItems(JSON.parse(savedCart));
-          }
-        } finally {
-          setLoading(false);
-        }
-      } else {
-        // Load from localStorage for guests
-        const savedCart = localStorage.getItem("pipesan_cart");
-        if (savedCart) {
-          setItems(JSON.parse(savedCart));
-        }
-      }
-    };
-
-    loadCart();
-  }, [user]);
-
-  useEffect(() => {
-    // Save to localStorage for guests
-    if (!user) {
-      localStorage.setItem("pipesan_cart", JSON.stringify(items));
     }
- }, [items]);
+  }, []);
 
-   const addItem = async (product, quantity = 1) => {
-    try {
-      // Demo mode or guest mode - use localStorage
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      if (!user || !supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
-        setItems(prevItems => {
-          const existingItem = prevItems.find(item => item.id === product.id);
-          
-          if (existingItem) {
-            return prevItems.map(item =>
-              item.id === product.id
-                ? { ...item, quantity: item.quantity + quantity }
-                : item
-            );
-          }
-          
-          return [...prevItems, { ...product, quantity }];
-        });
-        return;
-      }
+  // Save cart to localStorage whenever items change
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(items));
+  }, [items]);
+
+  const addItem = (product, quantity = 1, variant = null) => {
+    const itemId = variant ? `${product.id}-${variant.id}` : product.id.toString();
+    
+    setItems(prevItems => {
+      const existingItem = prevItems.find(item => item.id === itemId);
       
-      if (user) {
-        // Add to database for authenticated users
-        await db.addToCart(user.id, product.id, quantity);
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.id === itemId
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      } else {
+        const newItem = {
+          id: itemId,
+          productId: product.id,
+          name: variant ? `${product.name} - ${variant.name}` : product.name,
+          sku: variant ? variant.sku : product.sku,
+          price: variant ? variant.price : (product.salePrice || product.price),
+          image: product.image || product.images?.[0],
+          quantity,
+          variant: variant ? {
+            id: variant.id,
+            name: variant.name,
+            sku: variant.sku
+          } : null
+        };
         
-        // Update local state
-        setItems(prevItems => {
-          const existingItem = prevItems.find(item => item.id === product.id);
-          
-          if (existingItem) {
-            return prevItems.map(item =>
-              item.id === product.id
-                ? { ...item, quantity: item.quantity + quantity }
-                : item
-            );
-          }
-          
-          return [...prevItems, { ...product, quantity }];
-        });
-      } else {
-        // Add to localStorage for guests
-        setItems(prevItems => {
-          const existingItem = prevItems.find(item => item.id === product.id);
-          
-          if (existingItem) {
-            return prevItems.map(item =>
-              item.id === product.id
-                ? { ...item, quantity: item.quantity + quantity }
-                : item
-            );
-          }
-          
-          return [...prevItems, { ...product, quantity }];
-        });
+        return [...prevItems, newItem];
       }
-    } catch (error) {
-      console.error('Error adding to cart:', error);
-      throw error;
-    }
- };
-
-   const removeItem = async (productId) => {
-    try {
-      if (user) {
-        await db.removeFromCart(user.id, productId);
-      }
-      
-      setItems(prevItems => prevItems.filter(item => item.id !== productId));
-    } catch (error) {
-      console.error('Error removing from cart:', error);
-      throw error;
-    }
- };
-
-   const updateQuantity = async (productId, quantity) => {
-    try {
-      if (quantity <= 0) {
-        await removeItem(productId);
-        return;
-      }
-      
-      if (user) {
-        await db.updateCartItem(user.id, productId, quantity);
-      }
-      
-      setItems(prevItems =>
-        prevItems.map(item =>
-          item.id === productId ? { ...item, quantity } : item
-        )
-      );
-    } catch (error) {
-      console.error('Error updating cart quantity:', error);
-      throw error;
-    }
- };
-
-   const clearCart = async () => {
-    try {
-      if (user) {
-        await db.clearCart(user.id);
-      }
-      
-      setItems([]);
-      
-      if (!user) {
-        localStorage.removeItem("pipesan_cart");
-      }
-    } catch (error) {
-      console.error('Error clearing cart:', error);
-      throw error;
-    }
- };
-
-  const getTotalPrice = () => {
-    return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    });
   };
 
-  const getTotalItems = () => {
+  const updateQuantity = async (itemId, newQuantity) => {
+    if (newQuantity < 1) {
+      return removeItem(itemId);
+    }
+    
+    setItems(prevItems =>
+      prevItems.map(item =>
+        item.id === itemId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    );
+  };
+
+  const removeItem = async (itemId) => {
+    setItems(prevItems => prevItems.filter(item => item.id !== itemId));
+  };
+
+  const clearCart = () => {
+    setItems([]);
+  };
+
+  const getItemCount = () => {
     return items.reduce((total, item) => total + item.quantity, 0);
   };
 
+  const getSubtotal = () => {
+    return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
+
+  const getTax = (subtotal = getSubtotal()) => {
+    return subtotal * 0.20; // 20% VAT
+  };
+
+  const getShipping = (subtotal = getSubtotal()) => {
+    return subtotal > 100 ? 0 : 9.99; // Free shipping over €100
+  };
+
+  const getTotal = () => {
+    const subtotal = getSubtotal();
+    return subtotal + getTax(subtotal) + getShipping(subtotal);
+  };
+
+  const openCart = () => setIsOpen(true);
+  const closeCart = () => setIsOpen(false);
+
   const value = {
     items,
-     loading,
-   addItem,
-    removeItem,
+    isOpen,
+    addItem,
     updateQuantity,
+    removeItem,
     clearCart,
-    getTotalPrice,
-    getTotalItems
+    getItemCount,
+    getSubtotal,
+    getTax,
+    getShipping,
+    getTotal,
+    openCart,
+    closeCart
   };
 
   return (
@@ -205,5 +132,3 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
-
-export default CartProvider;

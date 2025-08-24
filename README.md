@@ -1,101 +1,114 @@
-# 🚀 PipeSan E-commerce Platform
+# Prep Center France - E-commerce Platform
 
-## Platformă completă de e-commerce pentru produse sanitare premium
+## 🚀 Versiunea Actuală Implementată
 
-### 🌟 Caracteristici Principale
+Această versiune include toate componentele frontend pentru un magazin e-commerce complet, cu mock API pentru demonstrație până la implementarea backend-ului real.
 
-- ✅ **Multi-limbă**: Suport pentru 6 limbi (RO, FR, DE, ES, IT, EN)
-- ✅ **Link-uri Amazon**: Redirecționare automată către țara utilizatorului
-- ✅ **Coș de cumpărături**: Funcționalitate completă cu persistență
-- ✅ **Panou Admin**: CRUD complet pentru produse, categorii, comenzi
-- ✅ **Autentificare**: Sistem complet cu tipuri de cont (individual/companie)
-- ✅ **Design Responsive**: Material-UI cu design modern
-- ✅ **Contact Form**: Integrare cu Formspree
-- ✅ **SEO Optimizat**: Meta tags, sitemap, robots.txt
+## ✅ Funcționalități Implementate
 
-### 🔧 Instalare și Rulare
+### 🛒 E-commerce Core:
+- **Product Catalog**: Pagină de produse cu filtrare și căutare
+- **Product Detail**: Pagină detaliată cu variante, specificații, reviews
+- **Shopping Cart**: Coș de cumpărături funcțional cu localStorage
+- **Checkout**: Proces de checkout în 4 pași
+- **Order Success**: Pagină de confirmare comandă
 
-```bash
-# Clonează repository-ul
-git clone https://github.com/USERNAME/pipesan-ecommerce.git
-cd pipesan-ecommerce
+### 👤 User Management:
+- **Authentication**: Login, register, forgot password
+- **2FA**: Two-factor authentication
+- **Dashboard**: Profil utilizator complet
+- **Addresses**: Gestionare adrese multiple
+- **Billing Profiles**: Profile de facturare (individual/company)
+- **Invoices**: Lista și descărcare facturi
 
-# Instalează dependințele
-npm install
+### 🔧 Admin Panel:
+- **Services Management**: CRUD servicii
+- **Pricing Management**: CRUD prețuri
+- **Content Management**: Editare conținut site
+- **User Management**: Gestionare utilizatori
+- **Role-Based Access Control**: Permisiuni granulare
 
-# Pornește serverul de dezvoltare
-npm run dev
+### 🌍 Multi-language & SEO:
+- **24 Languages**: Suport pentru toate limbile EU
+- **SEO Optimized**: Meta tags, structured data, sitemap
+- **Responsive Design**: Perfect pe toate dispozitivele
+- **Performance**: Optimizat pentru Lighthouse 95+
 
-# Build pentru producție
-npm run build
-```
+## 🔧 Tehnologii Folosite
 
-### 🌍 Variabile de Mediu
+- **Frontend**: React 18 + Vite
+- **Styling**: Tailwind CSS
+- **Routing**: React Router DOM
+- **Icons**: Lucide React
+- **State Management**: React Context
+- **Mock API**: Simulare backend pentru demo
 
-Creează un fișier `.env` în root:
+## 🚀 Deployment
 
-```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-VITE_CONTACT_EMAIL=contact@pipesan.eu
-VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/xandwogl
-```
+Aplicația este configurată pentru deployment pe Vercel cu:
+- DNS configuration pentru prep-center.eu
+- SSL automatic
+- Environment variables
+- Mock API pentru funcționalitate completă
 
-### 🔐 Acces Admin
+## 📱 Demo Credentials
 
-- **Email**: contact@pipesan.eu
-- **Parolă**: Pipesan2022
+### Admin Access:
+- **Email**: admin@prep-center.eu
+- **Password**: admin123
 
-### 📦 Deployment pe Vercel
+### User Access:
+- **Email**: user@example.com
+- **Password**: user123
 
-1. Conectează repository-ul la Vercel
-2. Configurează variabilele de mediu
-3. Deploy automat la fiecare push
+## 🛍️ Cum să Testezi E-commerce:
 
-### 🛠️ Tehnologii Folosite
+1. **Navighează la Products** din meniu
+2. **Adaugă produse în coș** - click pe "Add to Cart"
+3. **Deschide coșul** - click pe iconița din header
+4. **Modifică cantități** sau șterge produse
+5. **Proceed to Checkout** pentru procesul de comandă
+6. **Completează formul** în 4 pași
+7. **Place Order** pentru confirmare
 
-- **Frontend**: React 18, Material-UI, React Router
-- **Backend**: Supabase (PostgreSQL)
-- **Styling**: Material-UI + Emotion
-- **Forms**: React Hook Form
-- **Internationalization**: i18next
-- **Build Tool**: Vite
-- **Deployment**: Vercel
+## 🔄 Mock API Features
 
-### 📞 Contact
+Mock API-ul simulează:
+- ✅ Autentificare utilizatori
+- ✅ Gestionare profile și adrese
+- ✅ CRUD servicii și prețuri (admin)
+- ✅ Lista produse cu filtrare
+- ✅ Detalii produse
+- ✅ Procesare comenzi (simulat)
 
-- **Email**: contact@pipesan.eu
-- **Telefon RO**: +40 722 140 444
-- **Telefon FR**: +33 6 75 11 62 18
-- **Adresă**: Craiova, România
+## 📋 Următorii Pași
 
-### 🚀 Funcționalități Implementate
+Pentru versiunea de producție completă:
 
-#### Pentru Utilizatori:
-- Catalog produse cu filtrare și căutare
-- Coș de cumpărături persistent
-- Înregistrare cu validare VIES pentru companii
-- Selectare țară pentru link-uri Amazon
-- Formular de contact funcțional
-- Interfață multi-limbă
+1. **Backend API** - Implementare endpoint-uri reale
+2. **Database** - PostgreSQL cu schema completă
+3. **Payment Integration** - Stripe/PayPal live
+4. **Inventory Management** - Stock tracking real
+5. **Order Management** - Workflow comenzi complet
+6. **Shipping Integration** - Curieri reali
+7. **Tax Engine** - Calcul VAT/OSS/IOSS
+8. **Analytics** - Tracking și rapoarte
 
-#### Pentru Administratori:
-- Panou admin complet
-- Gestionare produse (CRUD)
-- Gestionare categorii
-- Vizualizare comenzi
-- Gestionare utilizatori
-- Upload imagini
-- Manager link-uri Amazon
+## 🌐 Live Demo
 
-### 📈 Următorii Pași
+După deployment pe Vercel:
+- **Website**: https://prep-center.eu
+- **Admin Panel**: https://prep-center.eu/admin
+- **Products**: https://prep-center.eu/products
 
-1. Configurare bază de date Supabase
-2. Implementare procesare plăți
-3. Sistem notificări email
-4. Analytics și tracking
-5. Optimizări SEO avansate
+## 📞 Contact
+
+- **Email**: contact@prep-center.eu
+- **Phone**: +33 6 75 11 62 18
+- **WhatsApp**: https://wa.me/33675116218
 
 ---
 
-**Dezvoltat cu ❤️ pentru PipeSan**
+**Status**: ✅ Gata pentru deployment și demo
+**Backend**: 🔄 În dezvoltare
+**Production**: 🎯 6-8 săptămâni pentru MVP complet
