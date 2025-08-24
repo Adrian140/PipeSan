@@ -19,11 +19,15 @@ export const AuthProvider = ({ children }) => {
     // Check for existing session
     const checkAuth = async () => {
       try {
+        console.log('Checking authentication...');
         const currentUser = await auth.getCurrentUser();
+        console.log('Current user result:', currentUser);
         if (currentUser?.profile) {
           setUser(currentUser.profile);
+          console.log('User set:', currentUser.profile);
         } else {
           setUser(null);
+          console.log('No user found');
         }
       } catch (error) {
         console.error('Auth check error:', error);
@@ -38,11 +42,14 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
      try {
+      console.log('Attempting login for:', email);
       const result = await auth.signIn(email, password);
+      console.log('Login result:', result);
       const authUser = result?.user;
       
       if (authUser) {
         const profile = await db.getUser(authUser.id);
+        console.log('User profile:', profile);
         setUser(profile);
         return profile;
       }
@@ -55,6 +62,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
      try {
+      console.log('Attempting registration for:', userData.email);
       const { email, password, ...profileData } = userData;
       
       const result = await auth.signUp(email, password, {
@@ -63,6 +71,7 @@ export const AuthProvider = ({ children }) => {
         country: profileData.country || 'FR'
       });
       
+      console.log('Registration result:', result);
       const authUser = result?.user;
       if (authUser) {
         const profile = await db.getUser(authUser.id);
@@ -79,6 +88,7 @@ export const AuthProvider = ({ children }) => {
  };
 
   const logout = () => {
+     console.log('Logging out...');
      auth.signOut();
     setUser(null);
  };
