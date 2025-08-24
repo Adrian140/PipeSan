@@ -20,7 +20,11 @@ export const AuthProvider = ({ children }) => {
     const checkAuth = async () => {
       try {
         const currentUser = await auth.getCurrentUser();
-        setUser(currentUser?.profile || null);
+        if (currentUser?.profile) {
+          setUser(currentUser.profile);
+        } else {
+          setUser(null);
+        }
       } catch (error) {
         console.error('Auth check error:', error);
         setUser(null);
@@ -34,13 +38,15 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
      try {
-      const { user: authUser } = await auth.signIn(email, password);
+      const result = await auth.signIn(email, password);
+      const authUser = result?.user;
       
       if (authUser) {
         const profile = await db.getUser(authUser.id);
         setUser(profile);
         return profile;
       }
+      throw new Error('Login failed');
     } catch (error) {
       console.error('Login error:', error);
       throw error;
@@ -51,17 +57,21 @@ export const AuthProvider = ({ children }) => {
      try {
       const { email, password, ...profileData } = userData;
       
-      const { user: authUser } = await auth.signUp(email, password, {
+      const result = await auth.signUp(email, password, {
         ...profileData,
         role: 'customer',
         country: profileData.country || 'FR'
       });
       
+      const authUser = result?.user;
       if (authUser) {
         const profile = await db.getUser(authUser.id);
-        setUser(profile);
+        if (profile) {
+          setUser(profile);
+        }
         return profile;
       }
+      throw new Error('Registration failed');
     } catch (error) {
       console.error('Registration error:', error);
       throw error;

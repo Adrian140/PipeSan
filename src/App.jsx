@@ -24,6 +24,21 @@ import UserManagement from './pages/Admin/UserManagement';
 import './i18n';
 
 function App() {
+  // Error boundary for production debugging
+  React.useEffect(() => {
+    const handleError = (error) => {
+      console.error('Application error:', error);
+    };
+    
+    window.addEventListener('error', handleError);
+    window.addEventListener('unhandledrejection', handleError);
+    
+    return () => {
+      window.removeEventListener('error', handleError);
+      window.removeEventListener('unhandledrejection', handleError);
+    };
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
