@@ -1,129 +1,101 @@
-# PipeSan E-commerce Platform
+# 🚀 PipeSan E-commerce Platform
 
-## 🚀 Deployment pe Vercel
+## Platformă completă de e-commerce pentru produse sanitare premium
 
-### Pași pentru deployment:
+### 🌟 Caracteristici Principale
 
-1. **Conectează repository-ul la Vercel:**
-   ```bash
-   # Dacă nu ai Vercel CLI instalat
-   npm i -g vercel
-   
-   # Login în Vercel
-   vercel login
-   
-   # Deploy proiectul
-   vercel --prod
-   ```
+- ✅ **Multi-limbă**: Suport pentru 6 limbi (RO, FR, DE, ES, IT, EN)
+- ✅ **Link-uri Amazon**: Redirecționare automată către țara utilizatorului
+- ✅ **Coș de cumpărături**: Funcționalitate completă cu persistență
+- ✅ **Panou Admin**: CRUD complet pentru produse, categorii, comenzi
+- ✅ **Autentificare**: Sistem complet cu tipuri de cont (individual/companie)
+- ✅ **Design Responsive**: Material-UI cu design modern
+- ✅ **Contact Form**: Integrare cu Formspree
+- ✅ **SEO Optimizat**: Meta tags, sitemap, robots.txt
 
-2. **Configurează domeniul custom în Vercel:**
-   - Accesează dashboard-ul Vercel
-   - Selectează proiectul PipeSan
-   - Mergi la Settings → Domains
-   - Adaugă domeniul: `pipesan.eu`
-   - Adaugă și: `www.pipesan.eu` (redirect către pipesan.eu)
+### 🔧 Instalare și Rulare
 
-3. **Configurează variabilele de mediu în Vercel:**
-   - Mergi la Settings → Environment Variables
-   - Adaugă toate variabilele din `.env.example`
+```bash
+# Clonează repository-ul
+git clone https://github.com/USERNAME/pipesan-ecommerce.git
+cd pipesan-ecommerce
 
-### 📋 DNS Configuration Required:
+# Instalează dependințele
+npm install
 
-Pentru domeniul `pipesan.eu`, configurează următoarele înregistrări DNS:
+# Pornește serverul de dezvoltare
+npm run dev
 
-```
-Type: A
-Name: @
-Value: 76.76.19.61
-
-Type: CNAME  
-Name: www
-Value: cname.vercel-dns.com
-
-Type: TXT
-Name: @
-Value: "v=spf1 include:_spf.google.com ~all"
+# Build pentru producție
+npm run build
 ```
 
-### 🔧 Environment Variables pentru Vercel:
+### 🌍 Variabile de Mediu
 
-```
+Creează un fișier `.env` în root:
+
+```env
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-VITE_APP_URL=https://pipesan.eu
 VITE_CONTACT_EMAIL=contact@pipesan.eu
 VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/xandwogl
 ```
 
-### �� Features Implemented:
+### 🔐 Acces Admin
 
-- ✅ Multi-language support (23 languages)
-- ✅ Country-specific Amazon links
-- ✅ Shopping cart functionality
-- ✅ Admin panel with full CRUD
-- ✅ Contact form with Formspree integration
-- ✅ User authentication system
-- ✅ Responsive design with Material-UI
-- ✅ SEO optimization
+- **Email**: contact@pipesan.eu
+- **Parolă**: Pipesan2022
 
-### 🔐 Admin Access:
+### 📦 Deployment pe Vercel
 
-- Email: `contact@pipesan.eu`
-- Password: `Pipesan2022`
+1. Conectează repository-ul la Vercel
+2. Configurează variabilele de mediu
+3. Deploy automat la fiecare push
 
-### 📞 Contact Information:
+### 🛠️ Tehnologii Folosite
 
-- Email: contact@pipesan.eu
-- Phone RO: +40 722 140 444
-- Phone FR: +33 6 75 11 62 18
-- Address: Craiova, România
+- **Frontend**: React 18, Material-UI, React Router
+- **Backend**: Supabase (PostgreSQL)
+- **Styling**: Material-UI + Emotion
+- **Forms**: React Hook Form
+- **Internationalization**: i18next
+- **Build Tool**: Vite
+- **Deployment**: Vercel
 
-## 🛠️ Development
+### 📞 Contact
 
-```bash
-# Install dependencies
-npm install
+- **Email**: contact@pipesan.eu
+- **Telefon RO**: +40 722 140 444
+- **Telefon FR**: +33 6 75 11 62 18
+- **Adresă**: Craiova, România
 
-# Start development server
-npm run dev
+### 🚀 Funcționalități Implementate
 
-# Build for production
-npm run build
+#### Pentru Utilizatori:
+- Catalog produse cu filtrare și căutare
+- Coș de cumpărături persistent
+- Înregistrare cu validare VIES pentru companii
+- Selectare țară pentru link-uri Amazon
+- Formular de contact funcțional
+- Interfață multi-limbă
 
-# Preview production build
-npm run preview
-```
+#### Pentru Administratori:
+- Panou admin complet
+- Gestionare produse (CRUD)
+- Gestionare categorii
+- Vizualizare comenzi
+- Gestionare utilizatori
+- Upload imagini
+- Manager link-uri Amazon
 
-## 📦 Project Structure
+### 📈 Următorii Pași
 
-```
-src/
-├── components/          # Reusable components
-├── contexts/           # React contexts (Auth, Cart, Country)
-├── pages/              # Page components
-├── i18n/               # Internationalization
-└── theme.js            # Material-UI theme
+1. Configurare bază de date Supabase
+2. Implementare procesare plăți
+3. Sistem notificări email
+4. Analytics și tracking
+5. Optimizări SEO avansate
 
-public/                 # Static assets
-vercel.json            # Vercel configuration
-```
+---
 
-## �� Supported Countries & Amazon Links:
-
-- ��🇷 France (amazon.fr) - Primary
-- 🇧🇪 Belgium (amazon.com.be)
-- 🇮🇹 Italy (amazon.it)
-- 🇩🇪 Germany (amazon.de)
-- 🇪🇸 Spain (amazon.es)
-- 🇸🇪 Sweden (amazon.se)
-- 🇵🇱 Poland (amazon.pl)
-- 🇳🇱 Netherlands (amazon.nl)
-- 🇬🇧 United Kingdom (amazon.co.uk)
-
-## 📈 Next Steps:
-
-1. Configure Supabase database
-2. Set up email notifications
-3. Implement payment processing
-4. Add analytics tracking
-5. Configure SSL certificates
+**Dezvoltat cu ❤️ pentru PipeSan**

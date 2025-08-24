@@ -19,6 +19,25 @@ export const AuthProvider = ({ children }) => {
     const checkAuth = async () => {
       try {
         console.log('Checking authentication...');
+        
+        // Check if we're in demo mode
+        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+        if (!supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
+          console.log('Demo mode: Using mock authentication');
+          setUser({
+            id: 'demo-user',
+            email: 'contact@pipesan.eu',
+            name: 'Administrator PipeSan',
+            role: 'admin',
+            account_type: 'company',
+            company_name: 'PipeSan',
+            country: 'RO',
+            phone: '+40 722 140 444'
+          });
+          setLoading(false);
+          return;
+        }
+        
         const currentUser = await auth.getCurrentUser();
         console.log('Current user result:', currentUser);
         if (currentUser?.profile) {
@@ -42,6 +61,41 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
      try {
       console.log('Attempting login for:', email);
+      
+      // Demo mode login
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      if (!supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
+        console.log('Demo mode: Mock login successful');
+        // Admin credentials check
+        if (email === 'contact@pipesan.eu' && password === 'Pipesan2022') {
+          const mockUser = {
+            id: 'admin-user',
+            email: 'contact@pipesan.eu',
+            name: 'Administrator PipeSan',
+            role: 'admin',
+            account_type: 'company',
+            company_name: 'PipeSan',
+            country: 'RO',
+            phone: '+40 722 140 444'
+          };
+          setUser(mockUser);
+          return mockUser;
+        }
+        
+        // Regular demo user
+        const mockUser = {
+          id: 'demo-user-' + Date.now(),
+          email: email,
+          name: 'Demo User',
+          role: 'customer',
+          account_type: 'individual',
+          country: 'FR',
+          phone: ''
+        };
+        setUser(mockUser);
+        return mockUser;
+      }
+      
       const result = await auth.signIn(email, password);
       console.log('Login result:', result);
       const authUser = result?.user;
@@ -62,6 +116,24 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
      try {
       console.log('Attempting registration for:', userData.email);
+      
+      // Demo mode registration
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      if (!supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
+        console.log('Demo mode: Mock registration successful');
+        const mockUser = {
+          id: 'demo-user-' + Date.now(),
+          email: userData.email,
+          name: userData.name,
+          role: 'customer',
+          account_type: userData.accountType || 'individual',
+          country: userData.country || 'FR',
+          phone: userData.phone
+        };
+        setUser(mockUser);
+        return mockUser;
+      }
+      
       const { email, password, ...profileData } = userData;
       
       const result = await auth.signUp(email, password, {

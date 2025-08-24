@@ -27,10 +27,14 @@ const Login = () => {
     try {
       setError('');
       setLoading(true);
+      
+      console.log('Login attempt:', data.email);
+      
       await login(data.email, data.password);
       navigate('/');
     } catch (err) {
-      setError('Email sau parolă incorectă');
+      console.error('Login error:', err);
+      setError('Email sau parolă incorectă. Pentru admin folosiți: contact@pipesan.eu / Pipesan2022');
     } finally {
       setLoading(false);
     }
