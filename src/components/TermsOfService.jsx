@@ -219,10 +219,10 @@ function TermsOfService() {
                   <strong>Email:</strong> contact@pipesan.eu
                 </p>
                 <p className="text-text-secondary">
-                  <strong>Telefon:</strong> +40 264 123 456
+                  <strong>Telefon:</strong> +33 675 111 62 18
                 </p>
                 <p className="text-text-secondary">
-                  <strong>Adresă:</strong> Strada Industriei 25, Craiova 200746, România
+                  <strong>Adresă:</strong> Sat Leamna de jos, Comuna Bucovat, nr.159 A, Region: Dolj, România
                 </p>
               </div>
             </div>

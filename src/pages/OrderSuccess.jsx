@@ -68,8 +68,8 @@ function OrderSuccess() {
                   contact@pipesan.eu
                 </a>{' '}
                 or{' '}
-                <a href="tel:+40264123456" className="text-primary hover:text-primary-dark">
-                  +40 264 123 456
+                <a href="/contact" className="text-primary hover:text-primary-dark">
+                  visit our contact page
                 </a>
               </p>
             </div>

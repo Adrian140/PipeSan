@@ -44,15 +44,14 @@ function Footer() {
              </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-text-secondary" />
-                 <span className="text-text-secondary">+40 264 123 456</span>
+                 <span className="text-text-secondary">+33 675 111 62 18</span>
              </div>
               <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-text-secondary mt-1" />
                 <span className="text-text-secondary">
-                   Strada Industriei 25<br />
-                  Craiova 200746, România
-                   Strada Industriei 25<br />
-                  Craiova 200746, România
+                   Sat Leamna de jos, Comuna Bucovat, nr.159 A<br />
+                  Region: Dolj, România<br />
+                  VAT Number: RO39535603
                </span>
               </div>
             </div>

@@ -1,9 +1,11 @@
 // Configurație API pentru producție
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.pipesan.eu';
+import { supabase } from './supabase';
 import mockApi from '../utils/mockApi';
 
 // Detectează dacă suntem în mod development sau dacă API_URL nu este setat
-const USE_MOCK_API = !import.meta.env.VITE_API_URL || import.meta.env.VITE_USE_MOCK_API === 'true';
+const USE_SUPABASE = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY;
+const USE_MOCK_API = !USE_SUPABASE && (!import.meta.env.VITE_API_URL || import.meta.env.VITE_USE_MOCK_API === 'true');
 // Headers comune pentru toate cererile
 const getHeaders = () => {
   const token = localStorage.getItem('authToken');
@@ -440,6 +442,58 @@ export const apiClient = {
         method: 'PUT',
         headers: getHeaders(),
         body: JSON.stringify(contentData)
+      });
+      await handleApiError(response);
+      return response.json();
+    },
+
+    getDocuments: async () => {
+      if (USE_MOCK_API) {
+        return await mockApi.documents.getAll();
+      }
+      const response = await fetch(`${API_BASE_URL}/api/admin/documents`, {
+        headers: getHeaders()
+      });
+      await handleApiError(response);
+      return response.json();
+    },
+
+    createDocument: async (documentData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { id: Date.now(), ...documentData };
+      }
+      const response = await fetch(`${API_BASE_URL}/api/admin/documents`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(documentData)
+      });
+      await handleApiError(response);
+      return response.json();
+    },
+
+    updateDocument: async (id, documentData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { id, ...documentData };
+      }
+      const response = await fetch(`${API_BASE_URL}/api/admin/documents/${id}`, {
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify(documentData)
+      });
+      await handleApiError(response);
+      return response.json();
+    },
+
+    deleteDocument: async (id) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { success: true };
+      }
+      const response = await fetch(`${API_BASE_URL}/api/admin/documents/${id}`, {
+        method: 'DELETE',
+        headers: getHeaders()
       });
       await handleApiError(response);
       return response.json();

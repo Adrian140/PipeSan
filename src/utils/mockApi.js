@@ -5,8 +5,8 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 const mockUsers = [
   {
     id: 1,
-    email: 'admin@pipesan.eu',
-    password: 'admin123',
+    email: 'contact@pipesan.eu',
+    password: 'Pipesan2022',
     firstName: 'Admin',
     lastName: 'User',
     role: 'admin',
@@ -113,6 +113,54 @@ const mockInvoices = [
     vatAmount: 42.15,
     status: 'pending',
     description: 'Professional Installation Kit - February 2024'
+  }
+];
+
+// Mock documents
+let mockDocuments = [
+  {
+    id: 1,
+    title: 'Complete Technical Catalog 2024',
+    description: 'Full product specifications, dimensions and technical data',
+    type: 'PDF',
+    size: '15.2 MB',
+    pages: 156,
+    languages: ['EN', 'FR', 'DE', 'IT', 'ES'],
+    downloadUrl: '#',
+    category: 'technical'
+  },
+  {
+    id: 2,
+    title: 'Installation Guidelines',
+    description: 'Professional installation procedures and best practices',
+    type: 'PDF',
+    size: '8.7 MB',
+    pages: 89,
+    languages: ['EN', 'FR', 'DE'],
+    downloadUrl: '#',
+    category: 'installation'
+  },
+  {
+    id: 3,
+    title: 'CE Certificates & Declarations',
+    description: 'Complete certification documentation for all products',
+    type: 'PDF',
+    size: '12.4 MB',
+    pages: 234,
+    languages: ['EN', 'FR'],
+    downloadUrl: '#',
+    category: 'certification'
+  },
+  {
+    id: 4,
+    title: 'Material Safety Data Sheets',
+    description: 'MSDS for all materials used in our products',
+    type: 'PDF',
+    size: '6.1 MB',
+    pages: 67,
+    languages: ['EN', 'FR', 'DE', 'IT', 'ES'],
+    downloadUrl: '#',
+    category: 'safety'
   }
 ];
 
@@ -470,6 +518,43 @@ const mockApi = {
       const product = mockProducts.find(p => p.id === parseInt(id));
       if (!product) throw new Error('Product not found');
       return product;
+    }
+  },
+
+  // Documents
+  documents: {
+    getAll: async (filters = {}) => {
+      await delay(600);
+      let filteredDocuments = [...mockDocuments];
+
+      if (filters.category && filters.category !== 'All Categories') {
+        filteredDocuments = filteredDocuments.filter(d => d.category === filters.category);
+      }
+
+      return filteredDocuments;
+    },
+
+    add: async (document) => {
+      await delay(500);
+      const newDocument = { ...document, id: mockDocuments.length + 1 };
+      mockDocuments.push(newDocument);
+      return newDocument;
+    },
+
+    update: async (id, updatedDocument) => {
+      await delay(500);
+      const index = mockDocuments.findIndex(d => d.id === id);
+      if (index === -1) throw new Error('Document not found');
+      mockDocuments[index] = { ...mockDocuments[index], ...updatedDocument };
+      return mockDocuments[index];
+    },
+
+    remove: async (id) => {
+      await delay(500);
+      const initialLength = mockDocuments.length;
+      mockDocuments = mockDocuments.filter(d => d.id !== id);
+      if (mockDocuments.length === initialLength) throw new Error('Document not found');
+      return true;
     }
   }
 };

@@ -121,21 +121,6 @@ function ProductDetail() {
     const selectedVariantData = product.variants.length > 0 ? currentVariant : null;
     addItem(product, quantity, selectedVariantData);
   };
-  return (
-    <div className="min-h-screen py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <nav className="mb-8">
-          <ol className="flex items-center space-x-2 text-sm">
-            <li><a href="/" className="text-primary hover:text-primary-dark">Home</a></li>
-            <li className="text-gray-500">/</li>
-            <li><a href="/products" className="text-primary hover:text-primary-dark">Products</a></li>
-            <li className="text-gray-500">/</li>
-            <li className="text-gray-500">Pipe Fittings</li>
-            <li className="text-gray-500">/</li>
-            <li className="text-text-primary font-medium">{product.name}</li>
-          </ol>
-        </nav>
 
   const handleBuyOnAmazon = () => {
     const userCountry = user?.deliveryCountry;
@@ -155,6 +140,22 @@ function ProductDetail() {
       window.open(amazonUrl, '_blank');
     }
   };
+
+  return (
+    <div className="min-h-screen py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumb */}
+        <nav className="mb-8">
+          <ol className="flex items-center space-x-2 text-sm">
+            <li><a href="/" className="text-primary hover:text-primary-dark">Home</a></li>
+            <li className="text-gray-500">/</li>
+            <li><a href="/products" className="text-primary hover:text-primary-dark">Products</a></li>
+            <li className="text-gray-500">/</li>
+            <li className="text-gray-500">Pipe Fittings</li>
+            <li className="text-gray-500">/</li>
+            <li className="text-text-primary font-medium">{product.name}</li>
+          </ol>
+        </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Product Images */}

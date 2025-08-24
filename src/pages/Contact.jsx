@@ -200,7 +200,7 @@ function Contact() {
               <h3 className="text-xl font-bold text-text-primary mb-6">Quick Actions</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <a
-                href="https://wa.me/40264123456"
+                href="https://wa.me/33675111618"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center w-full bg-accent text-white py-4 px-6 rounded-lg font-semibold hover:bg-accent-dark transition-colors"
@@ -236,7 +236,7 @@ function Contact() {
                   <Phone className="w-5 h-5 text-primary flex-shrink-0" />
                   <div>
                     <p className="font-medium text-text-primary">{t('phone')}</p>
-                    <p className="text-text-secondary">+40 264 123 456</p>
+                    <p className="text-text-secondary">+33 675 111 62 18</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
@@ -269,7 +269,7 @@ function Contact() {
               <div className="pt-3 border-t border-gray-200 mt-4">
                   <div className="flex justify-between">
                     <span className="text-text-secondary">Technical Support</span>
-                    <span className="text-text-primary font-medium">Mon-Fri: 8:00 AM - 6:00 PM</span>
+                    <span className="text-text-primary font-medium">Mon-Fri: 8:00 AM - 6:00 PM CET</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-text-secondary">Emergency Support</span>
@@ -285,14 +285,14 @@ function Contact() {
           <h2 className="text-3xl font-bold text-text-primary mb-8 text-center">Our Location</h2>
           <div className="rounded-xl overflow-hidden shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.123456789!2d23.8234567890123456!3d44.3212345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40ae97ea1234567890%3A0x1234567890abcdef!2sCraiova%2C%20Romania!5e0!3m2!1sen!2sus!4v1234567890123"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.123456789!2d23.8234567890123456!3d44.3212345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40ae97ea1234567890%3A0x1234567890abcdef!2sLeamna+de+jos%2C+Bucovat%2C+Dolj%2C+Romania!5e0!3m2!1sen!2sus!4v1234567890123"
               width="100%"
               height="400"
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="PipeSan Location - Craiova"
+              title="PipeSan Location - Leamna de jos, Bucovat, Dolj"
             ></iframe>
           </div>
           <div className="mt-6 text-center">
@@ -300,7 +300,7 @@ function Contact() {
               <MapPin className="w-5 h-5 text-primary mr-3" />
               <div className="text-left">
                 <p className="font-semibold text-text-primary">PipeSan</p>
-                <p className="text-text-secondary">Craiova 200746, România</p>
+                <p className="text-text-secondary">Sat Leamna de jos, Comuna Bucovat, nr.159 A, Region: Dolj, România</p>
                 <p className="text-sm text-text-light">Professional plumbing parts supplier for Europe</p>
               </div>
             </div>

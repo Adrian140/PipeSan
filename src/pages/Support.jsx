@@ -119,7 +119,7 @@ function Support() {
               <Phone className="w-12 h-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-text-primary mb-2">Phone Support</h3>
               <p className="text-text-secondary mb-4">Direct line to our technical team</p>
-              <p className="font-semibold text-primary mb-4">+33 1 23 45 67 89</p>
+              <p className="font-semibold text-primary mb-4">+33 675 111 62 18</p>
               <p className="text-sm text-text-light">Mon-Fri: 8:00-18:00 CET</p>
             </div>
 
@@ -127,7 +127,7 @@ function Support() {
               <Mail className="w-12 h-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-text-primary mb-2">Email Support</h3>
               <p className="text-text-secondary mb-4">Detailed technical inquiries</p>
-              <p className="font-semibold text-primary mb-4">technical@pipesan.eu</p>
+              <p className="font-semibold text-primary mb-4">contact@pipesan.eu</p>
               <p className="text-sm text-text-light">Response within 4 hours</p>
             </div>
 

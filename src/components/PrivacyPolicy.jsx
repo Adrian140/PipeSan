@@ -219,12 +219,12 @@ function PrivacyPolicy() {
                 </div>
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 text-primary mr-2" />
-                  <span className="text-text-secondary">Telefon: +40 264 123 456</span>
+                  <span className="text-text-secondary">Telefon: +33 675 111 62 18</span>
                 </div>
                 <div className="flex items-start">
                   <Mail className="w-4 h-4 text-primary mr-2 mt-1" />
                   <span className="text-text-secondary">
-                    Adresă: Strada Industriei 25, Craiova 200746, România
+                    Adresă: Sat Leamna de jos, Comuna Bucovat, nr.159 A, Region: Dolj, România
                   </span>
                 </div>
               </div>

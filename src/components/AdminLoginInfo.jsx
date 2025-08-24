@@ -15,7 +15,7 @@ function AdminLoginInfo() {
             <User className="w-5 h-5 text-blue-600 mr-2" />
             <span className="font-medium text-blue-900">Email Admin:</span>
           </div>
-            <code className="text-blue-800 bg-blue-100 px-2 py-1 rounded">admin@pipesan.eu</code>
+            <code className="text-blue-800 bg-blue-100 px-2 py-1 rounded">contact@pipesan.eu</code>
         </div>
         
         <div className="bg-white rounded-lg p-4">
@@ -23,7 +23,7 @@ function AdminLoginInfo() {
             <Key className="w-5 h-5 text-blue-600 mr-2" />
             <span className="font-medium text-blue-900">Parolă Admin:</span>
           </div>
-          <code className="text-blue-800 bg-blue-100 px-2 py-1 rounded">admin123</code>
+          <code className="text-blue-800 bg-blue-100 px-2 py-1 rounded">Pipesan2022</code>
         </div>
       </div>
       

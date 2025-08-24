@@ -10,6 +10,7 @@ function AdminPanel() {
   const [pricing, setPricing] = useState([]);
   const [content, setContent] = useState({});
   const [users, setUsers] = useState([]);
+  const [documents, setDocuments] = useState([]);
   const [isEditing, setIsEditing] = useState(null);
   const [editForm, setEditForm] = useState({});
   const [loading, setLoading] = useState(false);
@@ -22,7 +23,7 @@ function AdminPanel() {
     { id: 'products', label: 'Produse', icon: Package },
     { id: 'pricing', label: 'Prețuri', icon: DollarSign },
     { id: 'content', label: 'Conținut', icon: FileText },
-    { id: 'pricingContent', label: 'Prețuri & Texte', icon: FileText },
+    { id: 'documents', label: 'Documentație Tehnică', icon: FileText },
     { id: 'users', label: 'Utilizatori', icon: Users },
     { id: 'settings', label: 'Setări', icon: Settings }
   ];
@@ -53,9 +54,9 @@ function AdminPanel() {
           data = await apiClient.admin.getContent();
           setContent(data);
           break;
-        case 'pricingContent':
-          data = await apiClient.admin.getPricingContent();
-          setContent(data);
+        case 'documents':
+          data = await apiClient.admin.getDocuments();
+          setDocuments(data);
           break;
         case 'users':
           data = await apiClient.admin.getUsers();
@@ -93,8 +94,12 @@ function AdminPanel() {
         }
       } else if (type === 'content') {
         await apiClient.admin.updateContent(item);
-      } else if (type === 'pricingContent') {
-        await apiClient.admin.updatePricingContent(item);
+      } else if (type === 'documents') {
+        if (item.id) {
+          await apiClient.admin.updateDocument(item.id, item);
+        } else {
+          await apiClient.admin.createDocument(item);
+        }
       }
       
       setMessage('Salvat cu succes!');
@@ -117,6 +122,8 @@ function AdminPanel() {
         await apiClient.admin.deleteProduct(id);
       } else if (type === 'pricing') {
         await apiClient.admin.deletePricing(id);
+      } else if (type === 'documents') {
+        await apiClient.admin.deleteDocument(id);
       }
       
       setMessage('Șters cu succes!');
@@ -270,6 +277,188 @@ function AdminPanel() {
     </div>
   );
 
+  const renderDocumentsTab = () => (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-text-primary">Gestionare Documentație Tehnică</h2>
+        <button
+          onClick={() => startEdit({ 
+            title: '', 
+            description: '', 
+            type: 'PDF',
+            size: '',
+            pages: '',
+            languages: ['EN'],
+            downloadUrl: '',
+            category: 'technical'
+          }, 'documents')}
+          className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors flex items-center"
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          Adaugă Document
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {documents.map((document) => (
+          <div key={document.id} className="bg-white border border-gray-200 rounded-xl p-6">
+            {isEditing === `documents-${document.id}` ? (
+              <div className="space-y-4">
+                <input
+                  type="text"
+                  value={editForm.title || ''}
+                  onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
+                  placeholder="Titlu document"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                />
+                <textarea
+                  value={editForm.description || ''}
+                  onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
+                  placeholder="Descriere"
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                />
+                <div className="grid grid-cols-2 gap-4">
+                  <select
+                    value={editForm.type || 'PDF'}
+                    onChange={(e) => setEditForm({ ...editForm, type: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  >
+                    <option value="PDF">PDF</option>
+                    <option value="DOC">DOC</option>
+                    <option value="XLS">XLS</option>
+                  </select>
+                  <select
+                    value={editForm.category || 'technical'}
+                    onChange={(e) => setEditForm({ ...editForm, category: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  >
+                    <option value="technical">Technical Specs</option>
+                    <option value="installation">Installation Guide</option>
+                    <option value="certification">Certifications</option>
+                    <option value="safety">Safety Data</option>
+                  </select>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    value={editForm.size || ''}
+                    onChange={(e) => setEditForm({ ...editForm, size: e.target.value })}
+                    placeholder="Mărime fișier (ex: 15.2 MB)"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  />
+                  <input
+                    type="number"
+                    value={editForm.pages || ''}
+                    onChange={(e) => setEditForm({ ...editForm, pages: e.target.value })}
+                    placeholder="Număr pagini"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  />
+                </div>
+                <input
+                  type="url"
+                  value={editForm.downloadUrl || ''}
+                  onChange={(e) => setEditForm({ ...editForm, downloadUrl: e.target.value })}
+                  placeholder="URL descărcare document"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                />
+                <div>
+                  <label className="block text-sm font-medium mb-2">Limbi disponibile:</label>
+                  <div className="flex flex-wrap gap-2">
+                    {['EN', 'FR', 'DE', 'IT', 'ES', 'RO'].map(lang => (
+                      <label key={lang} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          checked={(editForm.languages || []).includes(lang)}
+                          onChange={(e) => {
+                            const languages = editForm.languages || [];
+                            if (e.target.checked) {
+                              setEditForm({ ...editForm, languages: [...languages, lang] });
+                            } else {
+                              setEditForm({ ...editForm, languages: languages.filter(l => l !== lang) });
+                            }
+                          }}
+                          className="mr-1"
+                        />
+                        <span className="text-sm">{lang}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleSave(editForm, 'documents')}
+                    className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center"
+                  >
+                    <Save className="w-4 h-4 mr-2" />
+                    Salvează
+                  </button>
+                  <button
+                    onClick={cancelEdit}
+                    className="flex-1 bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                  >
+                    Anulează
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className="flex items-center mb-4">
+                  <FileText className="w-8 h-8 text-primary mr-3" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-text-primary">{document.title}</h3>
+                    <p className="text-sm text-text-secondary">{document.description}</p>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-3 gap-4 text-sm text-text-secondary mb-4">
+                  <div>
+                    <span className="font-medium">Type:</span> {document.type}
+                  </div>
+                  <div>
+                    <span className="font-medium">Size:</span> {document.size}
+                  </div>
+                  <div>
+                    <span className="font-medium">Pages:</span> {document.pages}
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex gap-1">
+                    {document.languages?.map((lang, langIndex) => (
+                      <span key={langIndex} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                        {lang}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    {document.category}
+                  </span>
+                </div>
+                
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => startEdit(document, 'documents')}
+                    className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
+                  >
+                    <Edit className="w-4 h-4 mr-2" />
+                    Editează
+                  </button>
+                  <button
+                    onClick={() => handleDelete(document.id, 'documents')}
+                    className="flex-1 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center"
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Șterge
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
   const renderProductsTab = () => (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -278,6 +467,7 @@ function AdminPanel() {
           onClick={() => startEdit({ 
             title: '', 
             sku: '', 
+            image: '',
             bulletPoints: ['', '', '', '', ''], 
             description: '', 
             dimensions: '', 
@@ -313,6 +503,29 @@ function AdminPanel() {
                     placeholder="SKU"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg"
                   />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium mb-2">Imagine produs:</label>
+                  <input
+                    type="url"
+                    value={editForm.image || ''}
+                    onChange={(e) => setEditForm({ ...editForm, image: e.target.value })}
+                    placeholder="URL imagine (ex: https://images.unsplash.com/photo-...)"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  />
+                  {editForm.image && (
+                    <div className="mt-2">
+                      <img 
+                        src={editForm.image} 
+                        alt="Preview" 
+                        className="w-24 h-24 object-cover rounded-lg border border-gray-300"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
                 
                 <div>
@@ -402,6 +615,13 @@ function AdminPanel() {
               <div>
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
+                    {product.image && (
+                      <img 
+                        src={product.image} 
+                        alt={product.title}
+                        className="w-20 h-20 object-cover rounded-lg border border-gray-300 mb-4"
+                      />
+                    )}
                     <h3 className="text-lg font-semibold text-text-primary mb-2">{product.title}</h3>
                     <p className="text-sm text-gray-500 mb-2">SKU: {product.sku}</p>
                     <p className="text-text-secondary mb-4">{product.description}</p>
@@ -753,306 +973,7 @@ function AdminPanel() {
     </div>
   );
 
-  const renderPricingContentTab = () => (
-    <div className="space-y-8">
-      <h2 className="text-2xl font-bold text-text-primary">Editare Prețuri și Texte</h2>
-      
-      {/* Standard FBA Services */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-text-primary mb-6">Standard FBA Services</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Titlu Secțiune</label>
-              <input
-                type="text"
-                defaultValue="Standard FBA Services"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Subtitlu</label>
-              <input
-                type="text"
-                defaultValue="Complete prep solution with everything included"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Titlu Serviciu</label>
-              <input
-                type="text"
-                defaultValue="FNSKU Labeling Service"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Preț Standard</label>
-              <input
-                type="text"
-                defaultValue="€0.50"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Preț Clienți Noi</label>
-              <input
-                type="text"
-                defaultValue="€0.45"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-        <button className="mt-4 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
-          Salvează Modificările
-        </button>
-      </div>
-
-      {/* Contact Settings */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-text-primary mb-6">Setări Contact</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Adresă Completă</label>
-              <textarea
-                rows={3}
-                defaultValue="Strada Industriei 25, Craiova 200746, România"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Telefon</label>
-              <input
-                type="text"
-                defaultValue="+40 264 123 456"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Email</label>
-              <input
-                type="email"
-                defaultValue="contact@pipesan.eu"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Google Maps Embed URL</label>
-              <textarea
-                rows={4}
-                defaultValue="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.123456789!2d23.8234567890123456!3d44.3212345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40ae97ea1234567890%3A0x1234567890abcdef!2sCraiova%2C%20Romania!5e0!3m2!1sen!2sus!4v1234567890123"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">WhatsApp Număr</label>
-              <input
-                type="text"
-                defaultValue="+40264123456"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-        <button className="mt-4 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
-          Salvează Setările Contact
-        </button>
-      </div>
-
-      {/* Private Label & Multi-Platform */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-text-primary mb-6">Private Label & Multi-Platform Services</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Titlu Secțiune</label>
-              <input
-                type="text"
-                defaultValue="Private Label & Multi-Platform Services"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Subtitlu</label>
-              <textarea
-                rows={2}
-                defaultValue="Complete fulfillment solutions for Amazon, eBay, Shopify and custom websites"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Custom Packaging Design</label>
-              <input
-                type="text"
-                defaultValue="Custom Quote"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Product Sourcing Consultation</label>
-              <input
-                type="text"
-                defaultValue="Free"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Brand Compliance Check</label>
-              <input
-                type="text"
-                defaultValue="€0.20 / unit"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Amazon FBM Orders</label>
-              <input
-                type="text"
-                defaultValue="€1.20 / order"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">eBay Integration</label>
-              <input
-                type="text"
-                defaultValue="€1.30 / order"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Shopify/Website Orders</label>
-              <input
-                type="text"
-                defaultValue="€1.40 / order"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-        <button className="mt-4 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
-          Salvează Modificările
-        </button>
-      </div>
-
-      {/* FBM Shipping Rates */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-text-primary mb-6">FBM Shipping Rates</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Titlu Secțiune</label>
-              <input
-                type="text"
-                defaultValue="FBM Shipping Rates"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Subtitlu</label>
-              <input
-                type="text"
-                defaultValue="Competitive rates based on your monthly volume"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Starter (0-999 units/month)</label>
-              <input
-                type="text"
-                defaultValue="€1.20"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Growth (1000-1999 units/month)</label>
-              <input
-                type="text"
-                defaultValue="€1.10"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Enterprise (2000+ units/month)</label>
-              <input
-                type="text"
-                defaultValue="€0.95"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-        <button className="mt-4 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
-          Salvează Modificările
-        </button>
-      </div>
-
-      {/* FBM Transport Pricing */}
-      <div className="bg-white border border-gray-200 rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-text-primary mb-6">FBM Transport Pricing</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Titlu Secțiune</label>
-              <input
-                type="text"
-                defaultValue="FBM Transport Pricing"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Delivery in France (&lt;2kg)</label>
-              <input
-                type="text"
-                defaultValue="€5.25"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">International delivery (&lt;3kg)</label>
-              <input
-                type="text"
-                defaultValue="€10.60"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Dangerous goods (max 60x40x40cm, 20kg)</label>
-              <input
-                type="text"
-                defaultValue="€12.40"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Descriere Transport Periculos</label>
-              <input
-                type="text"
-                defaultValue="Via UPS - 24h delivery"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
-          </div>
-        </div>
-        <button className="mt-4 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
-          Salvează Modificările
-        </button>
-      </div>
-    </div>
-  );
-  const renderTabContent = () => {
+ const renderTabContent = () => {
     switch (activeTab) {
       case 'services':
         return renderServicesTab();
@@ -1062,12 +983,12 @@ function AdminPanel() {
         return renderPricingTab();
       case 'content':
         return renderContentTab();
+      case 'documents':
+        return renderDocumentsTab();
       case 'users':
         return renderUsersTab();
       case 'settings':
         return renderSettingsTab();
-      case 'pricingContent':
-        return renderPricingContentTab();
       default:
         return renderServicesTab();
     }

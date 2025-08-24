@@ -1,5 +1,6 @@
 import React from 'react';
 import { FileText, Download, Settings, Wrench, Info, CheckCircle } from 'lucide-react';
+import TechnicalDocuments from '../components/TechnicalDocuments';
 
 function TechnicalSpecs() {
   const specifications = [
@@ -147,49 +148,35 @@ function TechnicalSpecs() {
           <h2 className="text-3xl font-bold text-text-primary mb-12 text-center">
             Technical Documentation
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {documents.map((doc, index) => (
-              <div key={index} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center">
-                    <FileText className="w-8 h-8 text-primary mr-3" />
-                    <div>
-                      <h3 className="text-lg font-semibold text-text-primary">{doc.title}</h3>
-                      <p className="text-sm text-text-secondary">{doc.description}</p>
-                    </div>
+          {documents.map((doc, index) => (
+            <div key={index} className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-semibold text-text-primary">{doc.title}</h3>
+                  <div className="flex items-center space-x-2">
+                    <FileText className="w-5 h-5 text-primary" />
+                    <span className="text-sm text-text-secondary">{doc.type}</span>
                   </div>
-                  <button className="bg-primary text-white p-2 rounded-lg hover:bg-primary-dark transition-colors">
-                    <Download className="w-5 h-5" />
-                  </button>
                 </div>
-                
-                <div className="grid grid-cols-3 gap-4 text-sm text-text-secondary mb-4">
-                  <div>
-                    <span className="font-medium">Type:</span> {doc.type}
-                  </div>
+                <p className="text-text-secondary mb-4">{doc.description}</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-text-secondary mb-4">
                   <div>
                     <span className="font-medium">Size:</span> {doc.size}
                   </div>
                   <div>
                     <span className="font-medium">Pages:</span> {doc.pages}
                   </div>
+                  <div>
+                    <span className="font-medium">Languages:</span> {doc.languages.join(', ')}
+                  </div>
                 </div>
                 
                 <div className="flex items-center justify-between">
-                  <div className="flex gap-1">
-                    {doc.languages.map((lang, langIndex) => (
-                      <span key={langIndex} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                        {lang}
-                      </span>
-                    ))}
-                  </div>
                   <button className="text-primary hover:text-primary-dark font-medium text-sm">
                     Download PDF
                   </button>
                 </div>
-              </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </section>
 
         {/* Standards & Compliance */}
