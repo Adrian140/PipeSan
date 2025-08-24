@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
-import { db } from '../lib/supabase.jsx';
+import { db } from '../lib/supabase';
 import CheckoutForm from '../components/CheckoutForm';
 import {
   Container,

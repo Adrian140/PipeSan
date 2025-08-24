@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { auth, db } from '../lib/supabase.jsx';
+import { auth, db } from '../lib/supabase';
 const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -20,25 +20,18 @@ export const AuthProvider = ({ children }) => {
       try {
         console.log('Checking authentication...');
         
-        // Auto logout on every site entry
-        console.log('Auto logout: Clearing any existing session...');
-        setUser(null);
-        
-        // Check if we're in demo mode
-        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-        if (!supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
-          console.log('Demo mode: Using mock authentication');
-          // Start with no user - require manual login
-          setUser(null);
-          setLoading(false);
-          return;
-        }
-        
+        // Try to get current session from Supabase
         const currentUser = await auth.getCurrentUser();
         console.log('Current user result:', currentUser);
-        // Always start logged out
-        setUser(null);
-        console.log('Auto logout completed - user must login manually');
+        
+        if (currentUser) {
+          // Get user profile from database
+          const profile = await db.getUser(currentUser.id);
+          if (profile) {
+            setUser(profile);
+            console.log('User session restored:', profile.email);
+          }
+        }
       } catch (error) {
         console.error('Auth check error:', error);
         setUser(null);
@@ -54,50 +47,7 @@ export const AuthProvider = ({ children }) => {
      try {
       console.log('Attempting login for:', email);
       
-      // Demo mode login
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      if (!supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
-        console.log('Demo mode: Mock login successful');
-        // Admin credentials check
-        if (email === 'contact@pipesan.eu' && password === 'Pipesan2022') {
-          const mockUser = {
-            id: 'admin-user',
-            email: 'contact@pipesan.eu',
-            name: 'Administrator PipeSan',
-            role: 'admin',
-            account_type: 'company',
-            company_name: 'PipeSan',
-            country: 'RO',
-            phone: '+40 722 140 444'
-          };
-          setUser(mockUser);
-          return mockUser;
-        }
-        
-        // Regular demo user
-        // Admin credentials check
-        if (email === 'contact@pipesan.eu' && password === 'Pipesan2022') {
-          const mockUser = {
-            id: 'admin-user',
-          };
-          setUser(mockUser);
-          return mockUser;
-        }
-        
-        // Regular demo user
-        const mockUser = {
-          id: 'demo-user-' + Date.now(),
-          email: email,
-          name: 'Demo User',
-          role: 'customer',
-          account_type: 'individual',
-          country: 'FR',
-          phone: ''
-        };
-        setUser(mockUser);
-        return mockUser;
-      }
-      
+      // Real Supabase authentication
       const result = await auth.signIn(email, password);
       console.log('Login result:', result);
       const authUser = result?.user;
@@ -111,7 +61,8 @@ export const AuthProvider = ({ children }) => {
       throw new Error('Login failed');
     } catch (error) {
       console.error('Login error:', error);
-      throw error;
+      // Don't expose detailed error information
+      throw new Error('Autentificare eșuată. Verificați email-ul și parola.');
     }
  };
 
@@ -119,23 +70,7 @@ export const AuthProvider = ({ children }) => {
      try {
       console.log('Attempting registration for:', userData.email);
       
-      // Demo mode registration
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      if (!supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
-        console.log('Demo mode: Mock registration successful');
-        const mockUser = {
-          id: 'demo-user-' + Date.now(),
-          email: userData.email,
-          name: userData.name,
-          role: 'customer',
-          account_type: userData.accountType || 'individual',
-          country: userData.country || 'FR',
-          phone: userData.phone
-        };
-        setUser(mockUser);
-        return mockUser;
-      }
-      
+      // Real Supabase registration
       const { email, password, ...profileData } = userData;
       
       const result = await auth.signUp(email, password, {
@@ -143,7 +78,6 @@ export const AuthProvider = ({ children }) => {
         role: 'customer',
         country: profileData.country || 'FR'
       });
-      setUser(null);
       
       console.log('Registration result:', result);
       const authUser = result?.user;
@@ -157,7 +91,14 @@ export const AuthProvider = ({ children }) => {
       throw new Error('Registration failed');
     } catch (error) {
       console.error('Registration error:', error);
-      throw error;
+      // Provide user-friendly error messages
+      if (error.message.includes('already registered')) {
+        throw new Error('Acest email este deja înregistrat');
+      } else if (error.message.includes('password')) {
+        throw new Error('Parola nu respectă cerințele de securitate');
+      } else {
+        throw new Error('Înregistrare eșuată. Încercați din nou.');
+      }
     }
  };
 

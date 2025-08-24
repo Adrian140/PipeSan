@@ -122,6 +122,7 @@ const Register = () => {
       
       const userData = {
         email: data.email,
+        password: data.password,
         accountType,
         name: accountType === 'individual' ? data.fullName : data.companyName,
         phone: data.phone,
@@ -139,7 +140,14 @@ const Register = () => {
       await registerUser(userData);
       navigate('/');
     } catch (err) {
-      setError('A apărut o eroare la înregistrare. Încercați din nou.');
+      console.error('Registration error:', err);
+      if (err.message.includes('already registered')) {
+        setError('Acest email este deja înregistrat. Încercați să vă conectați sau folosiți alt email.');
+      } else if (err.message.includes('password')) {
+        setError('Parola trebuie să aibă cel puțin 6 caractere și să conțină litere și cifre.');
+      } else {
+        setError('A apărut o eroare la înregistrare. Verificați datele și încercați din nou.');
+      }
     } finally {
       setLoading(false);
     }
@@ -155,14 +163,6 @@ const Register = () => {
           <Typography variant="body1" align="center" color="text.secondary" sx={{ mb: 4 }}>
             Creează un cont nou pentru a accesa catalogul complet PipeSan
           </Typography>
-
-          {/* Demo Mode Info */}
-          <Alert severity="info" sx={{ mb: 3 }}>
-            <Typography variant="body2">
-              <strong>🔧 Mod Demo Activ</strong><br />
-              Poți crea un cont demo cu orice email valid. Datele nu vor fi salvate permanent.
-            </Typography>
-          </Alert>
 
           {/* Account Type Selection */}
           <Card sx={{ p: 3, mb: 4, backgroundColor: 'grey.50' }}>

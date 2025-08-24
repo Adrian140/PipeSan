@@ -41,11 +41,9 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.NEXT_PU
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 console.log('🌍 Environment check:', {
-  SUPABASE_URL: supabaseUrl ? (supabaseUrl.startsWith('https://') ? 'VALID FORMAT' : 'INVALID FORMAT') : 'NOT SET',
-  SUPABASE_KEY: supabaseKey ? (supabaseKey.length > 50 ? 'VALID LENGTH' : 'INVALID LENGTH') : 'NOT SET',
-  URL_PREVIEW: supabaseUrl ? `${supabaseUrl.substring(0, 30)}...` : 'N/A',
-  KEY_PREVIEW: supabaseKey ? `${supabaseKey.substring(0, 20)}...` : 'N/A',
-  MODE: (!supabaseUrl || !supabaseKey || !supabaseUrl.startsWith('https://') || !supabaseUrl.includes('supabase')) ? 'DEMO MODE' : 'PRODUCTION MODE'
+  SUPABASE_URL: supabaseUrl ? 'CONFIGURED' : 'MISSING',
+  SUPABASE_KEY: supabaseKey ? 'CONFIGURED' : 'MISSING',
+  STATUS: (supabaseUrl && supabaseKey) ? 'PRODUCTION READY' : 'NEEDS CONFIGURATION'
 });
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

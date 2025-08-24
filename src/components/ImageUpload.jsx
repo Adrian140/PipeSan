@@ -16,7 +16,7 @@ import {
   Image as ImageIcon,
   Add
 } from '@mui/icons-material';
-import { db } from '../lib/supabase';
+import { db, supabase } from '../lib/supabase';
 
 const ImageUpload = ({ 
   currentImages = [], 
@@ -62,7 +62,7 @@ const ImageUpload = ({
         }
 
         // Check if we have Supabase connection
-        if (db.supabase) {
+        if (supabase) {
           // Create unique filename
           const fileExt = file.name.split('.').pop();
           const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
@@ -106,7 +106,7 @@ const ImageUpload = ({
      }
 
        // Only update if not in demo mode (demo mode updates in FileReader callback)
-      if (db.supabase) {
+      if (supabase) {
         setImages(newImages);
         onImagesChange(newImages);
       }

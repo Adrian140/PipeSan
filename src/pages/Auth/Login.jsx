@@ -34,7 +34,7 @@ const Login = () => {
       navigate('/');
     } catch (err) {
       console.error('Login error:', err);
-      setError('Email sau parolă incorectă. Pentru admin folosiți: contact@pipesan.eu / Pipesan2022');
+      setError('Email sau parolă incorectă. Verificați datele introduse și încercați din nou.');
     } finally {
       setLoading(false);
     }
@@ -51,6 +51,15 @@ const Login = () => {
             Conectează-te la contul tău PipeSan
           </Typography>
           
+            <Alert severity="info" sx={{ mb: 3 }}>
+              <Typography variant="body2">
+                <strong>💡 Informații de conectare:</strong><br />
+                • Folosește email-ul și parola cu care te-ai înregistrat<br />
+                • Dacă ai uitat parola, folosește opțiunea "Parolă uitată"<br />
+                • Pentru probleme tehnice, contactează support la contact@pipesan.eu
+              </Typography>
+            </Alert>
+            
          {error && (
             <Alert severity="error" sx={{ mb: 3 }}>
               {error}

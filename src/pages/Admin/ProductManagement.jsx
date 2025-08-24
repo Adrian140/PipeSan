@@ -136,7 +136,7 @@ const ProductManagement = () => {
         stock: parseInt(data.stock)
       };
 
-      console.log('�� Processed product data:', productData);
+      console.log(' Processed product data:', productData);
 
       let result;
       if (editingProduct) {
@@ -230,17 +230,7 @@ const ProductManagement = () => {
         </Alert>
       )}
 
-      {/* Demo Mode Warning */}
-      {!db.supabase && (
-        <Alert severity="info" sx={{ mb: 3 }}>
-          <Typography variant="body2">
-            <strong>🔧 Mod Demo Activ</strong><br />
-            Aplicația rulează în modul demo. Pentru a salva datele permanent, configurează credențialele Supabase în fișierul .env
-          </Typography>
-        </Alert>
-      )}
-
-      {/* Products Table */}
+     {/* Products Table */}
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { db } from '../lib/supabase.jsx';
+import { db } from '../lib/supabase';
 const CartContext = createContext();
 
 export const useCart = () => {
@@ -18,17 +18,6 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     const loadCart = async () => {
-      // Check if we're in demo mode
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      if (!supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
-        console.log('Demo mode: Using localStorage for cart');
-        const savedCart = localStorage.getItem("pipesan_cart");
-        if (savedCart) {
-          setItems(JSON.parse(savedCart));
-        }
-        return;
-      }
-      
       if (user) {
         try {
           setLoading(true);
@@ -69,9 +58,8 @@ export const CartProvider = ({ children }) => {
 
    const addItem = async (product, quantity = 1) => {
     try {
-      // Demo mode or guest mode - use localStorage
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      if (!user || !supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
+      if (!user) {
+        // Guest mode - use localStorage
         setItems(prevItems => {
           const existingItem = prevItems.find(item => item.id === product.id);
           
@@ -93,21 +81,6 @@ export const CartProvider = ({ children }) => {
         await db.addToCart(user.id, product.id, quantity);
         
         // Update local state
-        setItems(prevItems => {
-          const existingItem = prevItems.find(item => item.id === product.id);
-          
-          if (existingItem) {
-            return prevItems.map(item =>
-              item.id === product.id
-                ? { ...item, quantity: item.quantity + quantity }
-                : item
-            );
-          }
-          
-          return [...prevItems, { ...product, quantity }];
-        });
-      } else {
-        // Add to localStorage for guests
         setItems(prevItems => {
           const existingItem = prevItems.find(item => item.id === product.id);
           
