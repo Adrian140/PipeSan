@@ -76,40 +76,5 @@
     "add_product": "Aggiungi Prodotto",
     "edit_product": "Modifica Prodotto",
     "add_category": "Aggiungi Categoria"
-  },
-  "home": {
-    "why_pipesan": "Perché PipeSan?",
-    "advantages_subtitle": "I vantaggi che ci differenziano sul mercato",
-    "featured_products": "Prodotti Consigliati",
-    "popular_products_subtitle": "I prodotti più popolari del nostro catalogo",
-    "quality_premium": "Qualità Premium",
-    "quality_description": "Prodotti di alta qualità per impianti sanitari durevoli",
-    "extended_warranty": "Garanzia Estesa",
-    "warranty_description": "Tutti i prodotti hanno garanzia estesa e supporto tecnico",
-    "fast_delivery": "Consegna Rapida",
-    "delivery_description": "Consegna in tutto il paese con opzioni di trasporto flessibili",
-    "vast_experience": "Vasta Esperienza",
-    "experience_description": "Oltre 15 anni di esperienza nel settore degli impianti sanitari"
-  },
-  "contact_info": {
-    "email_title": "Email",
-    "phone_title": "Telefono",
-    "address_title": "Indirizzo",
-    "schedule_title": "Orari",
-    "schedule_text": "Lunedì - Venerdì: 08:00 - 18:00",
-    "address_text": "Craiova, Romania",
-    "contact_information": "Informazioni di Contatto",
-    "contact_subtitle": "Siamo qui per aiutarti. Contattaci per qualsiasi domanda o richiesta.",
-    "send_message": "Inviaci un Messaggio",
-    "subject": "Oggetto",
-    "subject_required": "L'oggetto è obbligatorio",
-    "phone_optional": "Opzionale - per poterti contattare telefonicamente",
-    "message_success": "Messaggio inviato con successo!",
-    "message_success_detail": "Grazie per il tuo messaggio. Il team PipeSan ti risponderà il prima possibile all'indirizzo email fornito.",
-    "message_error": "Errore nell'invio del messaggio",
-    "message_error_detail": "Si è verificato un problema tecnico. Riprova o contattaci direttamente a contact@pipesan.eu",
-    "message_sending": "Invio messaggio...",
-    "message_sending_detail": "Attendi, il messaggio è in elaborazione.",
-    "sending": "Invio..."
   }
 }

@@ -76,40 +76,5 @@
     "add_product": "Ajouter Produit",
     "edit_product": "Modifier Produit",
     "add_category": "Ajouter Catégorie"
-  },
-  "home": {
-    "why_pipesan": "Pourquoi PipeSan?",
-    "advantages_subtitle": "Les avantages qui nous différencient sur le marché",
-    "featured_products": "Produits Recommandés",
-    "popular_products_subtitle": "Les produits les plus populaires de notre catalogue",
-    "quality_premium": "Qualité Premium",
-    "quality_description": "Produits de haute qualité pour des installations sanitaires durables",
-    "extended_warranty": "Garantie Étendue",
-    "warranty_description": "Tous les produits bénéficient d'une garantie étendue et d'un support technique",
-    "fast_delivery": "Livraison Rapide",
-    "delivery_description": "Livraison dans tout le pays avec des options de transport flexibles",
-    "vast_experience": "Vaste Expérience",
-    "experience_description": "Plus de 15 ans d'expérience dans le domaine des installations sanitaires"
-  },
-  "contact_info": {
-    "email_title": "Email",
-    "phone_title": "Téléphone",
-    "address_title": "Adresse",
-    "schedule_title": "Horaires",
-    "schedule_text": "Lundi - Vendredi: 08:00 - 18:00",
-    "address_text": "Craiova, Roumanie",
-    "contact_information": "Informations de Contact",
-    "contact_subtitle": "Nous sommes là pour vous aider. Contactez-nous pour toute question ou demande.",
-    "send_message": "Envoyez-nous un Message",
-    "subject": "Sujet",
-    "subject_required": "Le sujet est obligatoire",
-    "phone_optional": "Optionnel - pour pouvoir vous contacter par téléphone",
-    "message_success": "Message envoyé avec succès!",
-    "message_success_detail": "Merci pour votre message. L'équipe PipeSan vous répondra dans les plus brefs délais à l'adresse email fournie.",
-    "message_error": "Erreur lors de l'envoi du message",
-    "message_error_detail": "Un problème technique est survenu. Veuillez réessayer ou nous contacter directement à contact@pipesan.eu",
-    "message_sending": "Envoi du message...",
-    "message_sending_detail": "Veuillez patienter, le message est en cours de traitement.",
-    "sending": "Envoi..."
   }
 }

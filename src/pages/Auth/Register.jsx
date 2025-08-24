@@ -122,7 +122,6 @@ const Register = () => {
       
       const userData = {
         email: data.email,
-        password: data.password,
         accountType,
         name: accountType === 'individual' ? data.fullName : data.companyName,
         phone: data.phone,
@@ -140,14 +139,7 @@ const Register = () => {
       await registerUser(userData);
       navigate('/');
     } catch (err) {
-      console.error('Registration error:', err);
-      if (err.message.includes('already registered')) {
-        setError('Acest email este deja înregistrat. Încercați să vă conectați sau folosiți alt email.');
-      } else if (err.message.includes('password')) {
-        setError('Parola trebuie să aibă cel puțin 6 caractere și să conțină litere și cifre.');
-      } else {
-        setError('A apărut o eroare la înregistrare. Verificați datele și încercați din nou.');
-      }
+      setError('A apărut o eroare la înregistrare. Încercați din nou.');
     } finally {
       setLoading(false);
     }

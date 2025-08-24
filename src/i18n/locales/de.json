@@ -76,40 +76,5 @@
     "add_product": "Produkt Hinzufügen",
     "edit_product": "Produkt Bearbeiten",
     "add_category": "Kategorie Hinzufügen"
-  },
-  "home": {
-    "why_pipesan": "Warum PipeSan?",
-    "advantages_subtitle": "Die Vorteile, die uns am Markt unterscheiden",
-    "featured_products": "Empfohlene Produkte",
-    "popular_products_subtitle": "Die beliebtesten Produkte aus unserem Katalog",
-    "quality_premium": "Premium Qualität",
-    "quality_description": "Hochwertige Produkte für langlebige Sanitärinstallationen",
-    "extended_warranty": "Erweiterte Garantie",
-    "warranty_description": "Alle Produkte haben erweiterte Garantie und technischen Support",
-    "fast_delivery": "Schnelle Lieferung",
-    "delivery_description": "Lieferung im ganzen Land mit flexiblen Transportoptionen",
-    "vast_experience": "Umfangreiche Erfahrung",
-    "experience_description": "Über 15 Jahre Erfahrung im Bereich Sanitärinstallationen"
-  },
-  "contact_info": {
-    "email_title": "E-Mail",
-    "phone_title": "Telefon",
-    "address_title": "Adresse",
-    "schedule_title": "Öffnungszeiten",
-    "schedule_text": "Montag - Freitag: 08:00 - 18:00",
-    "address_text": "Craiova, Rumänien",
-    "contact_information": "Kontaktinformationen",
-    "contact_subtitle": "Wir sind hier, um Ihnen zu helfen. Kontaktieren Sie uns für Fragen oder Anfragen.",
-    "send_message": "Senden Sie uns eine Nachricht",
-    "subject": "Betreff",
-    "subject_required": "Der Betreff ist erforderlich",
-    "phone_optional": "Optional - um Sie telefonisch kontaktieren zu können",
-    "message_success": "Nachricht erfolgreich gesendet!",
-    "message_success_detail": "Vielen Dank für Ihre Nachricht. Das PipeSan-Team wird Ihnen schnellstmöglich an die angegebene E-Mail-Adresse antworten.",
-    "message_error": "Fehler beim Senden der Nachricht",
-    "message_error_detail": "Ein technisches Problem ist aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter contact@pipesan.eu",
-    "message_sending": "Nachricht wird gesendet...",
-    "message_sending_detail": "Bitte warten Sie, die Nachricht wird verarbeitet.",
-    "sending": "Wird gesendet..."
   }
 }

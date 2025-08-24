@@ -76,40 +76,5 @@
     "add_product": "Añadir Producto",
     "edit_product": "Editar Producto",
     "add_category": "Añadir Categoría"
-  },
-  "home": {
-    "why_pipesan": "¿Por Qué PipeSan?",
-    "advantages_subtitle": "Las ventajas que nos diferencian en el mercado",
-    "featured_products": "Productos Recomendados",
-    "popular_products_subtitle": "Los productos más populares de nuestro catálogo",
-    "quality_premium": "Calidad Premium",
-    "quality_description": "Productos de alta calidad para instalaciones sanitarias duraderas",
-    "extended_warranty": "Garantía Extendida",
-    "warranty_description": "Todos los productos tienen garantía extendida y soporte técnico",
-    "fast_delivery": "Entrega Rápida",
-    "delivery_description": "Entrega en todo el país con opciones de transporte flexibles",
-    "vast_experience": "Amplia Experiencia",
-    "experience_description": "Más de 15 años de experiencia en instalaciones sanitarias"
-  },
-  "contact_info": {
-    "email_title": "Email",
-    "phone_title": "Teléfono",
-    "address_title": "Dirección",
-    "schedule_title": "Horario",
-    "schedule_text": "Lunes - Viernes: 08:00 - 18:00",
-    "address_text": "Craiova, Rumania",
-    "contact_information": "Información de Contacto",
-    "contact_subtitle": "Estamos aquí para ayudarte. Contáctanos para cualquier pregunta o solicitud.",
-    "send_message": "Envíanos un Mensaje",
-    "subject": "Asunto",
-    "subject_required": "El asunto es obligatorio",
-    "phone_optional": "Opcional - para poder contactarte por teléfono",
-    "message_success": "¡Mensaje enviado con éxito!",
-    "message_success_detail": "Gracias por tu mensaje. El equipo de PipeSan te responderá lo antes posible a la dirección de email proporcionada.",
-    "message_error": "Error al enviar el mensaje",
-    "message_error_detail": "Ha ocurrido un problema técnico. Por favor, inténtalo de nuevo o contáctanos directamente en contact@pipesan.eu",
-    "message_sending": "Enviando mensaje...",
-    "message_sending_detail": "Por favor espera, el mensaje se está procesando.",
-    "sending": "Enviando..."
   }
 }

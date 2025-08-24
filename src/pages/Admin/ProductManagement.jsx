@@ -44,7 +44,6 @@ import {
   Info
 } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
-import { db } from '../../lib/supabase';
 
 const ProductManagement = () => {
   const { t } = useTranslation();
@@ -54,38 +53,78 @@ const ProductManagement = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
   const [alert, setAlert] = useState(null);
-  const [productImages, setProductImages] = useState([]);
+  const [productImage, setProductImage] = useState(null);
   const [amazonLinks, setAmazonLinks] = useState({});
-  const [loading, setLoading] = useState(false);
   const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  // Mock categories - replace with actual data
+  const mockCategories = [
+    { id: 'racorduri', name: 'Racorduri' },
+    { id: 'robinete', name: 'Robinete' },
+    { id: 'accesorii', name: 'Accesorii' },
+    { id: 'teflon', name: 'Teflon & Etanșare' },
+    { id: 'tevi', name: 'Țevi' },
+    { id: 'sifoane', name: 'Sifoane' }
+  ];
 
-  const loadData = async () => {
-    try {
-      setLoading(true);
-      console.log('🔄 Loading products and categories...');
-      const [productsData, categoriesData] = await Promise.all([
-        db.getProducts(),
-        db.getCategories()
-      ]);
-      
-      console.log('📊 Data loaded:', { 
-        products: productsData?.length || 0, 
-        categories: categoriesData?.length || 0 
-      });
-      
-      setProducts(productsData);
-      setCategories(categoriesData);
-    } catch (error) {
-      console.error('❌ Error loading data:', error);
-      setAlert({ type: 'error', message: `Eroare la încărcarea datelor: ${error.message}` });
-    } finally {
-      setLoading(false);
+  // Mock products - replace with actual data
+  const mockProducts = [
+    {
+      id: 1,
+      name: "Racord Flexibil Premium 1/2\"",
+      description: "Racord flexibil de înaltă calitate pentru instalații sanitare",
+      bullet_points: ["Material: Inox", "Lungime: 30cm", "Diametru: 1/2\""],
+      price: 45.99,
+      estimated_shipping_price: 5.99,
+      category: 'racorduri',
+      image_url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop",
+      amazon_links: {
+        FR: "https://amazon.fr/dp/B08XYZ123",
+        BE: "https://amazon.com.be/dp/B08XYZ123",
+        IT: "https://amazon.it/dp/B08XYZ123",
+        DE: "https://amazon.de/dp/B08XYZ123",
+        ES: "https://amazon.es/dp/B08XYZ123",
+        SE: "https://amazon.se/dp/B08XYZ123",
+        PL: "https://amazon.pl/dp/B08XYZ123",
+        NL: "https://amazon.nl/dp/B08XYZ123",
+        UK: "https://amazon.co.uk/dp/B08XYZ123"
+      },
+      specifications: "Material: Inox, Lungime: 30cm, Diametru: 1/2\"",
+      stock: 25,
+      active: true,
+      sku: "RF-001"
+    },
+    {
+      id: 2,
+      name: "Robinet Monocomandă Bucătărie",
+      description: "Robinet modern cu design elegant pentru bucătărie",
+      bullet_points: ["Material: Alamă cromată", "Înălțime: 35cm", "Garanție: 5 ani"],
+      price: 189.99,
+      estimated_shipping_price: 12.99,
+      category: 'robinete',
+      image_url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300&h=200&fit=crop",
+      amazon_links: {
+        FR: "https://amazon.fr/dp/B08ABC456",
+        BE: "https://amazon.com.be/dp/B08ABC456",
+        IT: "https://amazon.it/dp/B08ABC456",
+        DE: "https://amazon.de/dp/B08ABC456",
+        ES: "https://amazon.es/dp/B08ABC456",
+        SE: "https://amazon.se/dp/B08ABC456",
+        PL: "https://amazon.pl/dp/B08ABC456",
+        NL: "https://amazon.nl/dp/B08ABC456",
+        UK: "https://amazon.co.uk/dp/B08ABC456"
+      },
+      specifications: "Material: Alamă cromată, Înălțime: 35cm, Garanție: 5 ani",
+      stock: 12,
+      active: true,
+      sku: "RM-002"
     }
-  };
+  ];
+
+  useEffect(() => {
+    setProducts(mockProducts);
+    setCategories(mockCategories);
+  }, []);
 
   const handleOpenDialog = (product = null) => {
     setEditingProduct(product);
@@ -95,8 +134,8 @@ const ProductManagement = () => {
       setValue('bullet_points', product.bullet_points?.join('\n') || '');
       setValue('price', product.price);
       setValue('estimated_shipping_price', product.estimated_shipping_price || 0);
-      setValue('category_id', product.category_id);
-      setProductImages(product.images || [product.image_url].filter(Boolean));
+      setValue('category', product.category);
+      setProductImage(product.image_url);
       setAmazonLinks(product.amazon_links || {});
       setValue('specifications', product.specifications);
       setValue('stock', product.stock);
@@ -104,7 +143,7 @@ const ProductManagement = () => {
       setValue('active', product.active);
     } else {
       reset();
-      setProductImages([]);
+      setProductImage(null);
       setAmazonLinks({});
     }
     setOpenDialog(true);
@@ -113,92 +152,58 @@ const ProductManagement = () => {
   const handleCloseDialog = () => {
     setOpenDialog(false);
     setEditingProduct(null);
-    setProductImages([]);
+    setProductImage(null);
     setAmazonLinks({});
     reset();
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     try {
-      setLoading(true);
-      setAlert(null);
-      
-      console.log('🚀 Form submission started:', { editingProduct: !!editingProduct, data });
-      
       const productData = {
         ...data,
         bullet_points: data.bullet_points ? data.bullet_points.split('\n').filter(point => point.trim()) : [],
         amazon_links: amazonLinks,
-        images: productImages,
-        image_url: productImages[0]?.url || productImages[0] || null,
-        estimated_shipping_price: parseFloat(data.estimated_shipping_price) || 0,
-        price: parseFloat(data.price),
-        stock: parseInt(data.stock)
+        image_url: productImage,
+        estimated_shipping_price: parseFloat(data.estimated_shipping_price) || 0
       };
 
-      console.log(' Processed product data:', productData);
-
-      let result;
       if (editingProduct) {
-        console.log('✏️ Updating existing product:', editingProduct.id);
-        result = await db.updateProduct(editingProduct.id, productData);
+        // Update existing product
+        setProducts(prev => prev.map(p => 
+          p.id === editingProduct.id 
+            ? { ...p, ...productData, id: editingProduct.id }
+            : p
+        ));
         setAlert({ type: 'success', message: 'Produsul a fost actualizat cu succes!' });
       } else {
-        console.log('➕ Creating new product');
-        result = await db.createProduct(productData);
+        // Add new product
+        const newProduct = {
+          ...productData,
+          id: Date.now(),
+          image_url: productImage || "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop"
+        };
+        setProducts(prev => [...prev, newProduct]);
         setAlert({ type: 'success', message: 'Produsul a fost adăugat cu succes!' });
       }
-
-      console.log('✅ Operation completed successfully:', result?.id);
-
-      // Reload data to reflect changes
-      await loadData();
       handleCloseDialog();
       setTimeout(() => setAlert(null), 3000);
     } catch (error) {
-      console.error('❌ Error saving product:', error);
-      console.error('❌ Error details:', {
-        message: error.message,
-        code: error.code,
-        details: error.details,
-        hint: error.hint
-      });
-      setAlert({ 
-        type: 'error', 
-        message: `Eroare la salvarea produsului: ${error.message || 'Încercați din nou.'}` 
-      });
-      setTimeout(() => setAlert(null), 3000);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDelete = async (productId) => {
-    try {
-      await db.deleteProduct(productId);
-      await loadData();
-      setDeleteConfirm(null);
-      setAlert({ type: 'success', message: 'Produsul a fost șters cu succes!' });
-      setTimeout(() => setAlert(null), 3000);
-    } catch (error) {
-      console.error('Error deleting product:', error);
-      setAlert({ type: 'error', message: 'Eroare la ștergerea produsului' });
+      setAlert({ type: 'error', message: 'A apărut o eroare. Încercați din nou.' });
       setTimeout(() => setAlert(null), 3000);
     }
   };
 
-  const toggleProductStatus = async (productId) => {
-    try {
-      const product = products.find(p => p.id === productId);
-      if (product) {
-        await db.updateProduct(productId, { active: !product.active });
-        await loadData();
-      }
-    } catch (error) {
-      console.error('Error updating product status:', error);
-      setAlert({ type: 'error', message: 'Eroare la actualizarea statusului' });
-      setTimeout(() => setAlert(null), 3000);
-    }
+  const handleDelete = (productId) => {
+    setProducts(prev => prev.filter(p => p.id !== productId));
+    setDeleteConfirm(null);
+    setAlert({ type: 'success', message: 'Produsul a fost șters cu succes!' });
+    setTimeout(() => setAlert(null), 3000);
+  };
+
+  const toggleProductStatus = (productId) => {
+    setProducts(prev => prev.map(p => 
+      p.id === productId ? { ...p, active: !p.active } : p
+    ));
   };
 
   const formatPrice = (price) => {
@@ -230,7 +235,7 @@ const ProductManagement = () => {
         </Alert>
       )}
 
-     {/* Products Table */}
+      {/* Products Table */}
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -251,7 +256,7 @@ const ProductManagement = () => {
                 <TableCell>
                   <Box
                     component="img"
-                    src={product.image_url || "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=60&h=60&fit=crop"}
+                    src={product.image_url}
                     alt={product.name}
                     sx={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 1 }}
                   />
@@ -267,7 +272,7 @@ const ProductManagement = () => {
                 <TableCell>{product.sku}</TableCell>
                 <TableCell>
                   <Chip 
-                    label={product.categories?.name || 'Fără categorie'} 
+                    label={categories.find(cat => cat.id === product.category)?.name} 
                     size="small" 
                   />
                 </TableCell>
@@ -345,10 +350,9 @@ const ProductManagement = () => {
 
               <Grid item xs={12}>
                 <ImageUpload
-                  currentImages={productImages}
-                  onImagesChange={setProductImages}
+                  currentImage={productImage}
+                  onImageChange={setProductImage}
                   bucket="products"
-                  maxImages={3}
                 />
               </Grid>
               
@@ -419,8 +423,8 @@ const ProductManagement = () => {
                 <FormControl fullWidth>
                   <InputLabel>Categorie</InputLabel>
                   <Select
-                    {...register('category_id', { required: 'Categoria este obligatorie' })}
-                    error={!!errors.category_id}
+                    {...register('category', { required: 'Categoria este obligatorie' })}
+                    error={!!errors.category}
                     label="Categorie"
                   >
                     {categories.map((category) => (
@@ -470,9 +474,8 @@ const ProductManagement = () => {
             onClick={handleSubmit(onSubmit)} 
             variant="contained" 
             startIcon={<Save />}
-            disabled={loading}
           >
-            {loading ? 'Se salvează...' : (editingProduct ? 'Actualizează' : 'Adaugă')} Produs
+            {editingProduct ? 'Actualizează' : 'Adaugă'} Produs
           </Button>
         </DialogActions>
       </Dialog>
