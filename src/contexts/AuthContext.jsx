@@ -62,6 +62,23 @@ export const AuthProvider = ({ children }) => {
         if (email === 'contact@pipesan.eu' && password === 'Pipesan2022') {
           const mockUser = {
             id: 'admin-user',
+            email: 'contact@pipesan.eu',
+            name: 'Administrator PipeSan',
+            role: 'admin',
+            account_type: 'company',
+            company_name: 'PipeSan',
+            country: 'RO',
+            phone: '+40 722 140 444'
+          };
+          setUser(mockUser);
+          return mockUser;
+        }
+        
+        // Regular demo user
+        // Admin credentials check
+        if (email === 'contact@pipesan.eu' && password === 'Pipesan2022') {
+          const mockUser = {
+            id: 'admin-user',
           };
           setUser(mockUser);
           return mockUser;
