@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
-import CountrySelector from '../CountrySelector';
 import {
   AppBar,
   Toolbar,
@@ -96,33 +95,44 @@ const Header = () => {
                 displayEmpty
                 sx={{ color: 'text.primary' }}
               >
-                <MenuItem value="ro">��🇴 RO</MenuItem>
-                <MenuItem value="en">��🇧 EN</MenuItem>
-                <MenuItem value="fr">��🇷 FR</MenuItem>
-                <MenuItem value="de">��🇪 DE</MenuItem>
-                <MenuItem value="es">��🇸 ES</MenuItem>
-                <MenuItem value="it">��🇹 IT</MenuItem>
-                <MenuItem value="nl">��🇱 NL</MenuItem>
-                <MenuItem value="pl">��🇱 PL</MenuItem>
-                <MenuItem value="pt">��🇹 PT</MenuItem>
-                <MenuItem value="sv">��🇪 SV</MenuItem>
-                <MenuItem value="da">��🇰 DA</MenuItem>
-                <MenuItem value="fi">��🇮 FI</MenuItem>
-                <MenuItem value="el">��🇷 EL</MenuItem>
-                <MenuItem value="hu">��🇺 HU</MenuItem>
-                <MenuItem value="cs">��🇿 CS</MenuItem>
-                <MenuItem value="sk">��🇰 SK</MenuItem>
-                <MenuItem value="sl">��🇮 SI</MenuItem>
-                <MenuItem value="bg">��🇬 BG</MenuItem>
-                <MenuItem value="hr">��🇷 HR</MenuItem>
-                <MenuItem value="et">��🇪 ET</MenuItem>
-                <MenuItem value="lv">��🇻 LV</MenuItem>
-                <MenuItem value="lt">��🇹 LT</MenuItem>
-                <MenuItem value="mt">��🇹 MT</MenuItem>
+                <MenuItem value="ro">
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <img src="https://flagcdn.com/w20/ro.png" alt="RO" width="20" height="15" />
+                    RO
+                  </Box>
+                </MenuItem>
+                <MenuItem value="fr">
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <img src="https://flagcdn.com/w20/fr.png" alt="FR" width="20" height="15" />
+                    FR
+                  </Box>
+                </MenuItem>
+                <MenuItem value="de">
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <img src="https://flagcdn.com/w20/de.png" alt="DE" width="20" height="15" />
+                    DE
+                  </Box>
+                </MenuItem>
+                <MenuItem value="es">
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <img src="https://flagcdn.com/w20/es.png" alt="ES" width="20" height="15" />
+                    ES
+                  </Box>
+                </MenuItem>
+                <MenuItem value="it">
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <img src="https://flagcdn.com/w20/it.png" alt="IT" width="20" height="15" />
+                    IT
+                  </Box>
+                </MenuItem>
+                <MenuItem value="en">
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <img src="https://flagcdn.com/w20/gb.png" alt="EN" width="20" height="15" />
+                    EN
+                  </Box>
+                </MenuItem>
               </Select>
             </FormControl>
-
-            <CountrySelector />
 
             <IconButton component={Link} to="/cart" color="inherit">
               <Badge badgeContent={getTotalItems()} color="secondary">

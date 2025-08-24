@@ -372,7 +372,180 @@ const Register = () => {
                     <MenuItem value="SK"> Slovacia</MenuItem>
                     <MenuItem value="SI"> Slovenia</MenuItem>
                     <MenuItem value="UK">🇧 Marea Britanie</MenuItem>
-                    <MenuItem value="OTHER">🌍 Altă țară</MenuItem>
+                    <MenuItem value="FR">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/fr.png" alt="FR" width="20" height="15" />
+                        Franța
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="BE">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/be.png" alt="BE" width="20" height="15" />
+                        Belgia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="IT">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/it.png" alt="IT" width="20" height="15" />
+                        Italia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="DE">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/de.png" alt="DE" width="20" height="15" />
+                        Germania
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="ES">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/es.png" alt="ES" width="20" height="15" />
+                        Spania
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="AT">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/at.png" alt="AT" width="20" height="15" />
+                        Austria
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="BG">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/bg.png" alt="BG" width="20" height="15" />
+                        Bulgaria
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="HR">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/hr.png" alt="HR" width="20" height="15" />
+                        Croația
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="CY">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/cy.png" alt="CY" width="20" height="15" />
+                        Cipru
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="CZ">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/cz.png" alt="CZ" width="20" height="15" />
+                        Cehia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="DK">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/dk.png" alt="DK" width="20" height="15" />
+                        Danemarca
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="EE">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/ee.png" alt="EE" width="20" height="15" />
+                        Estonia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="FI">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/fi.png" alt="FI" width="20" height="15" />
+                        Finlanda
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="GR">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/gr.png" alt="GR" width="20" height="15" />
+                        Grecia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="HU">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/hu.png" alt="HU" width="20" height="15" />
+                        Ungaria
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="IE">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/ie.png" alt="IE" width="20" height="15" />
+                        Irlanda
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="LV">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/lv.png" alt="LV" width="20" height="15" />
+                        Letonia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="LT">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/lt.png" alt="LT" width="20" height="15" />
+                        Lituania
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="LU">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/lu.png" alt="LU" width="20" height="15" />
+                        Luxemburg
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="MT">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/mt.png" alt="MT" width="20" height="15" />
+                        Malta
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="SE">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/se.png" alt="SE" width="20" height="15" />
+                        Suedia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="PL">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/pl.png" alt="PL" width="20" height="15" />
+                        Polonia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="NL">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/nl.png" alt="NL" width="20" height="15" />
+                        Olanda
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="PT">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/pt.png" alt="PT" width="20" height="15" />
+                        Portugalia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="RO">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/ro.png" alt="RO" width="20" height="15" />
+                        România
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="SK">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/sk.png" alt="SK" width="20" height="15" />
+                        Slovacia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="SI">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/si.png" alt="SI" width="20" height="15" />
+                        Slovenia
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="UK">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/gb.png" alt="UK" width="20" height="15" />
+                        Marea Britanie
+                      </Box>
+                    </MenuItem>
+                    <MenuItem value="OTHER">
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <img src="https://flagcdn.com/w20/un.png" alt="OTHER" width="20" height="15" />
+                        Altă țară
+                      </Box>
+                    </MenuItem>
                   </Select>
                   {errors.country && (
                     <Typography variant="caption" color="error" sx={{ mt: 0.5 }}>

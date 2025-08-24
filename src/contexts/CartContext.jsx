@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { db } from '../lib/supabase';
-
+import { db } from '../lib/supabase.jsx';
 const CartContext = createContext();
 
 export const useCart = () => {
@@ -176,3 +175,5 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+export default CartProvider;

@@ -26,14 +26,17 @@ const AmazonLinksManager = ({ amazonLinks = {}, onLinksChange }) => {
 
   const countries = [
     { code: 'FR', name: 'Franța', flag: '🇫��', amazon: 'amazon.fr' },
-    { code: 'BE', name: 'Belgia', flag: '🇧🇪', amazon: 'amazon.com.be' },
-    { code: 'IT', name: 'Italia', flag: '🇮🇹', amazon: 'amazon.it' },
-    { code: 'DE', name: 'Germania', flag: '🇩🇪', amazon: 'amazon.de' },
     { code: 'ES', name: 'Spania', flag: '🇪��', amazon: 'amazon.es' },
-    { code: 'SE', name: 'Suedia', flag: '🇸🇪', amazon: 'amazon.se' },
     { code: 'PL', name: 'Polonia', flag: '🇵🇱', amazon: 'amazon.pl' },
-    { code: 'NL', name: 'Olanda', flag: '🇳🇱', amazon: 'amazon.nl' },
-    { code: 'UK', name: 'Marea Britanie', flag: '🇬🇧', amazon: 'amazon.co.uk' }
+    { code: 'FR', name: 'Franța', flag: 'https://flagcdn.com/w20/fr.png', amazon: 'amazon.fr' },
+    { code: 'BE', name: 'Belgia', flag: 'https://flagcdn.com/w20/be.png', amazon: 'amazon.com.be' },
+    { code: 'IT', name: 'Italia', flag: 'https://flagcdn.com/w20/it.png', amazon: 'amazon.it' },
+    { code: 'DE', name: 'Germania', flag: 'https://flagcdn.com/w20/de.png', amazon: 'amazon.de' },
+    { code: 'ES', name: 'Spania', flag: 'https://flagcdn.com/w20/es.png', amazon: 'amazon.es' },
+    { code: 'SE', name: 'Suedia', flag: 'https://flagcdn.com/w20/se.png', amazon: 'amazon.se' },
+    { code: 'PL', name: 'Polonia', flag: 'https://flagcdn.com/w20/pl.png', amazon: 'amazon.pl' },
+    { code: 'NL', name: 'Olanda', flag: 'https://flagcdn.com/w20/nl.png', amazon: 'amazon.nl' },
+    { code: 'UK', name: 'Marea Britanie', flag: 'https://flagcdn.com/w20/gb.png', amazon: 'amazon.co.uk' }
   ];
 
   const handleLinkChange = (countryCode, value) => {
@@ -136,8 +139,9 @@ const AmazonLinksManager = ({ amazonLinks = {}, onLinksChange }) => {
                 <CardContent>
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <img src={country.flag} alt={country.code} width="24" height="18" />
                       <Typography variant="h6">
-                        {country.flag} {country.name}
+                        {country.name}
                       </Typography>
                       <Chip 
                         label={country.amazon} 

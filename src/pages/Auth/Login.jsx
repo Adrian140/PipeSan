@@ -47,15 +47,7 @@ const Login = () => {
             Conectează-te la contul tău PipeSan
           </Typography>
           
-          <Alert severity="info" sx={{ mb: 3 }}>
-            <Typography variant="body2">
-              <strong>Cont Administrator PipeSan:</strong><br />
-              Email: contact@pipesan.eu<br />
-              Parolă: Pipesan2022
-            </Typography>
-          </Alert>
-
-          {error && (
+         {error && (
             <Alert severity="error" sx={{ mb: 3 }}>
               {error}
             </Alert>

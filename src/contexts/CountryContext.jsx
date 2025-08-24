@@ -16,35 +16,38 @@ export const CountryProvider = ({ children }) => {
   const [selectedCountry, setSelectedCountry] = useState('FR');
 
   const countries = [
-    { code: 'FR', name: 'France', flag: '🇫🇷', amazon: 'amazon.fr', currency: 'EUR', primary: true },
-    { code: 'BE', name: 'Belgium', flag: '🇧🇪', amazon: 'amazon.com.be', currency: 'EUR' },
-    { code: 'IT', name: 'Italy', flag: '🇮🇹', amazon: 'amazon.it', currency: 'EUR' },
-    { code: 'DE', name: 'Germany', flag: '🇩🇪', amazon: 'amazon.de', currency: 'EUR' },
-    { code: 'ES', name: 'Spain', flag: '🇪🇸', amazon: 'amazon.es', currency: 'EUR' },
-    { code: 'AT', name: 'Austria', flag: '🇦🇹', amazon: 'amazon.de', currency: 'EUR' },
-    { code: 'BG', name: 'Bulgaria', flag: '🇧🇬', amazon: 'amazon.de', currency: 'BGN' },
-    { code: 'HR', name: 'Croatia', flag: '🇭🇷', amazon: 'amazon.de', currency: 'EUR' },
-    { code: 'CY', name: 'Cyprus', flag: '🇨🇾', amazon: 'amazon.de', currency: 'EUR' },
-    { code: 'CZ', name: 'Czech Republic', flag: '🇨🇿', amazon: 'amazon.de', currency: 'CZK' },
-    { code: 'DK', name: 'Denmark', flag: '🇩��', amazon: 'amazon.de', currency: 'DKK' },
     { code: 'EE', name: 'Estonia', flag: '🇪🇪', amazon: 'amazon.de', currency: 'EUR' },
-    { code: 'FI', name: 'Finland', flag: '🇫🇮', amazon: 'amazon.de', currency: 'EUR' },
     { code: 'GR', name: 'Greece', flag: '🇬��', amazon: 'amazon.de', currency: 'EUR' },
-    { code: 'HU', name: 'Hungary', flag: '🇭🇺', amazon: 'amazon.de', currency: 'HUF' },
-    { code: 'IE', name: 'Ireland', flag: '🇮🇪', amazon: 'amazon.co.uk', currency: 'EUR' },
-    { code: 'LV', name: 'Latvia', flag: '🇱🇻', amazon: 'amazon.de', currency: 'EUR' },
     { code: 'LT', name: 'Lithuania', flag: '🇱��', amazon: 'amazon.de', currency: 'EUR' },
-    { code: 'LU', name: 'Luxembourg', flag: '🇱🇺', amazon: 'amazon.fr', currency: 'EUR' },
-    { code: 'MT', name: 'Malta', flag: '🇲🇹', amazon: 'amazon.de', currency: 'EUR' },
-    { code: 'SE', name: 'Sweden', flag: '🇸🇪', amazon: 'amazon.se', currency: 'SEK' },
-    { code: 'PL', name: 'Poland', flag: '🇵🇱', amazon: 'amazon.pl', currency: 'PLN' },
-    { code: 'NL', name: 'Netherlands', flag: '🇳🇱', amazon: 'amazon.nl', currency: 'EUR' },
-    { code: 'PT', name: 'Portugal', flag: '🇵🇹', amazon: 'amazon.es', currency: 'EUR' },
-    { code: 'RO', name: 'Romania', flag: '🇷🇴', amazon: 'amazon.de', currency: 'RON' },
-    { code: 'SK', name: 'Slovakia', flag: '🇸🇰', amazon: 'amazon.de', currency: 'EUR' },
-    { code: 'SI', name: 'Slovenia', flag: '🇸🇮', amazon: 'amazon.de', currency: 'EUR' },
-    { code: 'UK', name: 'United Kingdom', flag: '🇬🇧', amazon: 'amazon.co.uk', currency: 'GBP' },
-    { code: 'OTHER', name: 'Altă țară', flag: '🌍', amazon: 'amazon.de', currency: 'EUR' }
+    { code: 'FR', name: 'France', flag: 'https://flagcdn.com/w20/fr.png', amazon: 'amazon.fr', currency: 'EUR', primary: true },
+    { code: 'BE', name: 'Belgium', flag: 'https://flagcdn.com/w20/be.png', amazon: 'amazon.com.be', currency: 'EUR' },
+    { code: 'IT', name: 'Italy', flag: 'https://flagcdn.com/w20/it.png', amazon: 'amazon.it', currency: 'EUR' },
+    { code: 'DE', name: 'Germany', flag: 'https://flagcdn.com/w20/de.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'ES', name: 'Spain', flag: 'https://flagcdn.com/w20/es.png', amazon: 'amazon.es', currency: 'EUR' },
+    { code: 'AT', name: 'Austria', flag: 'https://flagcdn.com/w20/at.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'BG', name: 'Bulgaria', flag: 'https://flagcdn.com/w20/bg.png', amazon: 'amazon.de', currency: 'BGN' },
+    { code: 'HR', name: 'Croatia', flag: 'https://flagcdn.com/w20/hr.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'CY', name: 'Cyprus', flag: 'https://flagcdn.com/w20/cy.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'CZ', name: 'Czech Republic', flag: 'https://flagcdn.com/w20/cz.png', amazon: 'amazon.de', currency: 'CZK' },
+    { code: 'DK', name: 'Denmark', flag: 'https://flagcdn.com/w20/dk.png', amazon: 'amazon.de', currency: 'DKK' },
+    { code: 'EE', name: 'Estonia', flag: 'https://flagcdn.com/w20/ee.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'FI', name: 'Finland', flag: 'https://flagcdn.com/w20/fi.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'GR', name: 'Greece', flag: 'https://flagcdn.com/w20/gr.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'HU', name: 'Hungary', flag: 'https://flagcdn.com/w20/hu.png', amazon: 'amazon.de', currency: 'HUF' },
+    { code: 'IE', name: 'Ireland', flag: 'https://flagcdn.com/w20/ie.png', amazon: 'amazon.co.uk', currency: 'EUR' },
+    { code: 'LV', name: 'Latvia', flag: 'https://flagcdn.com/w20/lv.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'LT', name: 'Lithuania', flag: 'https://flagcdn.com/w20/lt.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'LU', name: 'Luxembourg', flag: 'https://flagcdn.com/w20/lu.png', amazon: 'amazon.fr', currency: 'EUR' },
+    { code: 'MT', name: 'Malta', flag: 'https://flagcdn.com/w20/mt.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'SE', name: 'Sweden', flag: 'https://flagcdn.com/w20/se.png', amazon: 'amazon.se', currency: 'SEK' },
+    { code: 'PL', name: 'Poland', flag: 'https://flagcdn.com/w20/pl.png', amazon: 'amazon.pl', currency: 'PLN' },
+    { code: 'NL', name: 'Netherlands', flag: 'https://flagcdn.com/w20/nl.png', amazon: 'amazon.nl', currency: 'EUR' },
+    { code: 'PT', name: 'Portugal', flag: 'https://flagcdn.com/w20/pt.png', amazon: 'amazon.es', currency: 'EUR' },
+    { code: 'RO', name: 'Romania', flag: 'https://flagcdn.com/w20/ro.png', amazon: 'amazon.de', currency: 'RON' },
+    { code: 'SK', name: 'Slovakia', flag: 'https://flagcdn.com/w20/sk.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'SI', name: 'Slovenia', flag: 'https://flagcdn.com/w20/si.png', amazon: 'amazon.de', currency: 'EUR' },
+    { code: 'UK', name: 'United Kingdom', flag: 'https://flagcdn.com/w20/gb.png', amazon: 'amazon.co.uk', currency: 'GBP' },
+    { code: 'OTHER', name: 'Altă țară', flag: 'https://flagcdn.com/w20/un.png', amazon: 'amazon.de', currency: 'EUR' }
   ];
 
   useEffect(() => {
@@ -163,3 +166,5 @@ export const CountryProvider = ({ children }) => {
     </CountryContext.Provider>
   );
 };
+
+export default CountryProvider;

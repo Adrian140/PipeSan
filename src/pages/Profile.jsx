@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useCountry } from '../contexts/CountryContext';
-import { db } from '../lib/supabase';
+import { db } from '../lib/supabase.jsx';
 import { useForm } from 'react-hook-form';
 import {
   Container,
@@ -145,7 +145,7 @@ const Profile = () => {
                         {countries.map((country) => (
                           <MenuItem key={country.code} value={country.code}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                              <span>{country.flag}</span>
+                              <img src={country.flag} alt={country.code} width="20" height="15" />
                               <span>{country.name}</span>
                             </Box>
                           </MenuItem>
@@ -232,7 +232,7 @@ const Profile = () => {
                   Țara de Livrare
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1 }}>
-                  <span style={{ fontSize: '1.5em' }}>{currentCountry?.flag}</span>
+                  <img src={currentCountry?.flag} alt={currentCountry?.code} width="24" height="18" />
                   <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
                     {currentCountry?.name}
                   </Typography>

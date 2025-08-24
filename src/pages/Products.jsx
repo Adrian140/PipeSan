@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCart } from '../contexts/CartContext';
 import { useCountry } from '../contexts/CountryContext';
-import { db } from '../lib/supabase';
+import { db } from '../lib/supabase.jsx';
 import {
   Box,
   Container,

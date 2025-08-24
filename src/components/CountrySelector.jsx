@@ -48,7 +48,7 @@ const CountrySelector = () => {
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <span style={{ fontSize: '1.2em' }}>{currentCountry.flag}</span>
+          <img src={currentCountry.flag} alt={currentCountry.code} width="20" height="15" />
           <Typography variant="body2">
             {currentCountry.code}
           </Typography>
@@ -76,7 +76,7 @@ const CountrySelector = () => {
             disabled={user ? true : false}
           >
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, width: '100%' }}>
-              <span style={{ fontSize: '1.2em' }}>{country.flag}</span>
+              <img src={country.flag} alt={country.code} width="20" height="15" />
               <Box sx={{ flexGrow: 1 }}>
                 <Typography variant="body2">
                   {country.name}

@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CategoryManagement from './pages/Admin/CategoryManagement';
+import OrderManagement from './pages/Admin/OrderManagement';
+import UserManagement from './pages/Admin/UserManagement';
+import './i18n';
 import { ThemeProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
 import theme from './theme';
-import { AuthProvider } from './contexts/AuthContext';
-import { CartProvider } from './contexts/CartContext';
-import { CountryProvider } from './contexts/CountryContext';
-import Layout from './components/Layout/Layout';
+import CssBaseline from '@mui/material/CssBaseline';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import About from './pages/About';
@@ -18,12 +18,26 @@ import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import ProductManagement from './pages/Admin/ProductManagement';
-import CategoryManagement from './pages/Admin/CategoryManagement';
-import OrderManagement from './pages/Admin/OrderManagement';
-import UserManagement from './pages/Admin/UserManagement';
-import './i18n';
-
+import AuthProvider from './contexts/AuthContext';
+import CountryProvider from './contexts/CountryContext';
+import CartProvider from './contexts/CartContext';
+import Layout from './components/Layout/Layout';
 function App() {
+  // Error boundary for production debugging
+  React.useEffect(() => {
+    const handleError = (error) => {
+      console.error('Application error:', error);
+    };
+    
+    window.addEventListener('error', handleError);
+    window.addEventListener('unhandledrejection', handleError);
+    
+    return () => {
+      window.removeEventListener('error', handleError);
+      window.removeEventListener('unhandledrejection', handleError);
+    };
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
