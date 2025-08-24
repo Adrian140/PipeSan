@@ -1,146 +1,151 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  Avatar
-} from '@mui/material';
-import {
-  Engineering,
-  Verified,
-  Groups,
-  TrendingUp
-} from '@mui/icons-material';
-
-const About = () => {
+import { Award, Users, Clock, Shield } from 'lucide-react';
+import { useTranslation } from '../translations';
+function About() {
   const { t } = useTranslation();
-
   const stats = [
-    {
-      icon: <Engineering sx={{ fontSize: 40, color: 'primary.main' }} />,
-      number: "2+",
-      label: "Ani de Experiență"
-    },
-    {
-      icon: <Verified sx={{ fontSize: 40, color: 'primary.main' }} />,
-      number: "50+",
-      label: "Produse Premium"
-    },
-    {
-      icon: <Groups sx={{ fontSize: 40, color: 'primary.main' }} />,
-      number: "500+",
-      label: "Clienți Mulțumiți"
-    },
-    {
-      icon: <TrendingUp sx={{ fontSize: 40, color: 'primary.main' }} />,
-      number: "9",
-      label: "Țări Europene"
-    }
+    { number: "4+", labelKey: "yearsExperience", icon: Clock },
+    { number: "1000+", labelKey: "ordersProcessed", icon: Award },
+    { number: "50+", labelKey: "happyClients", icon: Users },
+    { number: "24h", labelKey: "averageTurnaround", icon: Shield }
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography variant="h2" gutterBottom align="center">
-        {t('about.title')}
-      </Typography>
-      
-      <Grid container spacing={6} sx={{ mb: 8 }}>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h5" gutterBottom sx={{ color: 'primary.main' }}>
-            Povestea Noastră
-          </Typography>
-          <Typography variant="body1" paragraph>
-            {t('about.content')}
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Fondată în 2022, PipeSan a devenit rapid un nume de referință în domeniul 
-            produselor sanitare din Europa. Începând ca o afacere de echipă dedicată, 
-            am crescut constant prin dedicarea noastră față de calitate și servicii 
-            excepționale pentru clienți.
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Astăzi, oferim o gamă completă de produse sanitare premium, de la racorduri și 
-            robinete până la accesorii specializate, toate selectate cu atenție pentru 
-            a îndeplini cele mai înalte standarde de calitate și durabilitate. Produsele 
-            noastre sunt disponibile în toată Europa prin platformele Amazon locale.
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Box
-            component="img"
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop"
-            alt="PipeSan Workshop"
-            sx={{
-              width: '100%',
-              height: 'auto',
-              borderRadius: 2,
-              boxShadow: 3
-            }}
-          />
-        </Grid>
-      </Grid>
+    <div className="min-h-screen py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+            {t('aboutPageTitle')}
+          </h1>
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto">
+            {t('aboutPageSubtitle')}
+          </p>
+        </div>
 
-      {/* Stats Section */}
-      <Box sx={{ mb: 8 }}>
-        <Typography variant="h4" gutterBottom align="center" sx={{ mb: 4 }}>
-          PipeSan în Cifre
-        </Typography>
-        <Grid container spacing={4}>
-          {stats.map((stat, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card sx={{ textAlign: 'center', p: 3, height: '100%' }}>
-                <CardContent>
-                  <Box sx={{ mb: 2 }}>
-                    {stat.icon}
-                  </Box>
-                  <Typography variant="h3" sx={{ fontWeight: 'bold', color: 'primary.main', mb: 1 }}>
-                    {stat.number}
-                  </Typography>
-                  <Typography variant="h6" color="text.secondary">
-                    {stat.label}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+          {/* Story */}
+          <div>
+            <h2 className="text-3xl font-bold text-text-primary mb-6">{t('ourStory')}</h2>
+            <div className="space-y-4 text-text-secondary">
+              <p>
+                {t('ourStoryP1')}
+              </p>
+              <p>
+                {t('ourStoryP2')}
+              </p>
+              <p>
+                {t('ourStoryP3')}
+              </p>
+              <p>
+                {t('ourStoryP4')}
+              </p>
+            </div>
+          </div>
 
-      {/* Mission & Vision */}
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={6}>
-          <Card sx={{ p: 4, height: '100%', backgroundColor: 'primary.main', color: 'white' }}>
-            <Typography variant="h5" gutterBottom>
-              Misiunea Noastră
-            </Typography>
-            <Typography variant="body1">
-              Să oferim produse sanitare de cea mai înaltă calitate, 
-              sprijinind profesioniștii și particularii în realizarea 
-              instalațiilor sanitare durabile și eficiente. Ne angajăm 
-              să fim partenerul de încredere pentru toate nevoile dvs. sanitare.
-            </Typography>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Card sx={{ p: 4, height: '100%', backgroundColor: 'secondary.main', color: 'white' }}>
-            <Typography variant="h5" gutterBottom>
-              Viziunea Noastră
-            </Typography>
-            <Typography variant="body1">
-              Viziunea noastră este să fim partenerul de încredere al clienților 
-              din întreaga Europă, prin produse sanitare inovatoare și servicii de calitate. 
-              Aspirăm să redefinim standardele industriei și să extindem constant 
-              granițele excelenței.
-            </Typography>
-          </Card>
-        </Grid>
-      </Grid>
-    </Container>
+          {/* Image Placeholder */}
+          <div className="bg-gray-200 rounded-xl h-96 flex items-center justify-center">
+            <div className="text-center">
+              <Award className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-500">Warehouse Facility Photo</p>
+              <p className="text-sm text-gray-400">Professional prep center operations</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <section className="mb-20">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <stat.icon className="w-12 h-12 text-primary mx-auto mb-4" />
+                <div className="text-3xl font-bold text-text-primary mb-2">{stat.number}</div>
+                <div className="text-text-secondary">{t(stat.labelKey)}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Values */}
+        <section className="mb-20">
+          <h2 className="text-3xl font-bold text-text-primary mb-12 text-center">{t('ourValues')}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <Clock className="w-12 h-12 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-text-primary mb-4">{t('speedEfficiency')}</h3>
+              <p className="text-text-secondary">
+                {t('speedEfficiencyDesc')}
+              </p>
+            </div>
+            <div className="text-center">
+              <Shield className="w-12 h-12 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-text-primary mb-4">{t('qualityCompliance')}</h3>
+              <p className="text-text-secondary">
+                {t('qualityComplianceDesc')}
+              </p>
+            </div>
+            <div className="text-center">
+              <Users className="w-12 h-12 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-text-primary mb-4">{t('partnershipSupport')}</h3>
+              <p className="text-text-secondary">
+                {t('partnershipSupportDesc')}
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Team */}
+        <section className="mb-20">
+          <h2 className="text-3xl font-bold text-text-primary mb-12 text-center">{t('meetFounder')}</h2>
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-xl border border-gray-200 p-8">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Users className="w-16 h-16 text-gray-400" />
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl font-bold text-text-primary mb-2">{t('adrianBucur')}</h3>
+                  <p className="text-primary font-medium mb-4">{t('founderCEO')}</p>
+                  <p className="text-text-secondary">
+                    {t('adrianDesc')}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="text-center">
+          <div className="bg-gradient-to-br from-blue-50 to-white rounded-xl p-12">
+            <h2 className="text-3xl font-bold text-text-primary mb-6">
+              {t('readyPartner')}
+            </h2>
+            <p className="text-xl text-text-secondary mb-8">
+              {t('joinCommunity')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contact"
+              className="bg-primary text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-dark transition-colors text-center"
+            >
+                {t('getStartedToday')}
+            </a>
+              <a
+                href="https://wa.me/33675116218"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-accent text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-accent-dark transition-colors"
+              >
+                {t('chatWhatsApp')}
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   );
-};
+}
 
 export default About;
