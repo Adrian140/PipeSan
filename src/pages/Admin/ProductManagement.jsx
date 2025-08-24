@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import ImageUpload from '../../components/ImageUpload';
+import AmazonLinksManager from '../../components/AmazonLinksManager';
 import {
   Box,
   Container,
@@ -39,7 +41,6 @@ import {
   VisibilityOff,
   Save,
   Cancel,
-  CloudUpload,
   Info
 } from '@mui/icons-material';
 import { useForm } from 'react-hook-form';
@@ -52,6 +53,8 @@ const ProductManagement = () => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
   const [alert, setAlert] = useState(null);
+  const [productImage, setProductImage] = useState(null);
+  const [amazonLinks, setAmazonLinks] = useState({});
   const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
 
   // Mock categories - replace with actual data
@@ -70,10 +73,12 @@ const ProductManagement = () => {
       id: 1,
       name: "Racord Flexibil Premium 1/2\"",
       description: "Racord flexibil de înaltă calitate pentru instalații sanitare",
+      bullet_points: ["Material: Inox", "Lungime: 30cm", "Diametru: 1/2\""],
       price: 45.99,
+      estimated_shipping_price: 5.99,
       category: 'racorduri',
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop",
-      amazonLinks: {
+      image_url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop",
+      amazon_links: {
         FR: "https://amazon.fr/dp/B08XYZ123",
         BE: "https://amazon.com.be/dp/B08XYZ123",
         IT: "https://amazon.it/dp/B08XYZ123",
@@ -93,10 +98,12 @@ const ProductManagement = () => {
       id: 2,
       name: "Robinet Monocomandă Bucătărie",
       description: "Robinet modern cu design elegant pentru bucătărie",
+      bullet_points: ["Material: Alamă cromată", "Înălțime: 35cm", "Garanție: 5 ani"],
       price: 189.99,
+      estimated_shipping_price: 12.99,
       category: 'robinete',
-      image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300&h=200&fit=crop",
-      amazonLinks: {
+      image_url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300&h=200&fit=crop",
+      amazon_links: {
         FR: "https://amazon.fr/dp/B08ABC456",
         BE: "https://amazon.com.be/dp/B08ABC456",
         IT: "https://amazon.it/dp/B08ABC456",
@@ -124,26 +131,20 @@ const ProductManagement = () => {
     if (product) {
       setValue('name', product.name);
       setValue('description', product.description);
+      setValue('bullet_points', product.bullet_points?.join('\n') || '');
       setValue('price', product.price);
+      setValue('estimated_shipping_price', product.estimated_shipping_price || 0);
       setValue('category', product.category);
-      // Set Amazon links for each country
-      if (product.amazonLinks) {
-        setValue('amazonFR', product.amazonLinks.FR || '');
-        setValue('amazonBE', product.amazonLinks.BE || '');
-        setValue('amazonIT', product.amazonLinks.IT || '');
-        setValue('amazonDE', product.amazonLinks.DE || '');
-        setValue('amazonES', product.amazonLinks.ES || '');
-        setValue('amazonSE', product.amazonLinks.SE || '');
-        setValue('amazonPL', product.amazonLinks.PL || '');
-        setValue('amazonNL', product.amazonLinks.NL || '');
-        setValue('amazonUK', product.amazonLinks.UK || '');
-      }
+      setProductImage(product.image_url);
+      setAmazonLinks(product.amazon_links || {});
       setValue('specifications', product.specifications);
       setValue('stock', product.stock);
       setValue('sku', product.sku);
       setValue('active', product.active);
     } else {
       reset();
+      setProductImage(null);
+      setAmazonLinks({});
     }
     setOpenDialog(true);
   };
@@ -151,37 +152,19 @@ const ProductManagement = () => {
   const handleCloseDialog = () => {
     setOpenDialog(false);
     setEditingProduct(null);
+    setProductImage(null);
+    setAmazonLinks({});
     reset();
   };
 
   const onSubmit = (data) => {
     try {
-      // Construct Amazon links object
-      const amazonLinks = {
-        FR: data.amazonFR || '',
-        BE: data.amazonBE || '',
-        IT: data.amazonIT || '',
-        DE: data.amazonDE || '',
-        ES: data.amazonES || '',
-        SE: data.amazonSE || '',
-        PL: data.amazonPL || '',
-        NL: data.amazonNL || '',
-        UK: data.amazonUK || ''
-      };
-
       const productData = {
         ...data,
-        amazonLinks,
-        // Remove individual amazon fields
-        amazonFR: undefined,
-        amazonBE: undefined,
-        amazonIT: undefined,
-        amazonDE: undefined,
-        amazonES: undefined,
-        amazonSE: undefined,
-        amazonPL: undefined,
-        amazonNL: undefined,
-        amazonUK: undefined
+        bullet_points: data.bullet_points ? data.bullet_points.split('\n').filter(point => point.trim()) : [],
+        amazon_links: amazonLinks,
+        image_url: productImage,
+        estimated_shipping_price: parseFloat(data.estimated_shipping_price) || 0
       };
 
       if (editingProduct) {
@@ -197,7 +180,7 @@ const ProductManagement = () => {
         const newProduct = {
           ...productData,
           id: Date.now(),
-          image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop"
+          image_url: productImage || "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop"
         };
         setProducts(prev => [...prev, newProduct]);
         setAlert({ type: 'success', message: 'Produsul a fost adăugat cu succes!' });
@@ -273,7 +256,7 @@ const ProductManagement = () => {
                 <TableCell>
                   <Box
                     component="img"
-                    src={product.image}
+                    src={product.image_url}
                     alt={product.name}
                     sx={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 1 }}
                   />
@@ -364,15 +347,13 @@ const ProductManagement = () => {
                   helperText={errors.sku?.message}
                 />
               </Grid>
-              
-              {/* Amazon Links Section */}
+
               <Grid item xs={12}>
-                <Typography variant="h6" gutterBottom sx={{ mt: 2, mb: 1, color: 'primary.main' }}>
-                  Link-uri Amazon pentru fiecare țară
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                  Adaugă link-urile complete Amazon pentru fiecare țară unde vinzi produsul
-                </Typography>
+                <ImageUpload
+                  currentImage={productImage}
+                  onImageChange={setProductImage}
+                  bucket="products"
+                />
               </Grid>
               
               <Grid item xs={12} sm={6}>
@@ -386,6 +367,19 @@ const ProductManagement = () => {
                   helperText={errors.description?.message}
                 />
               </Grid>
+              
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  label="Bullet Points"
+                  multiline
+                  rows={3}
+                  {...register('bullet_points')}
+                  helperText="Un punct per linie - caracteristici principale ale produsului"
+                  placeholder="• Caracteristică 1&#10;• Caracteristică 2&#10;• Caracteristică 3"
+                />
+              </Grid>
+              
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth
@@ -400,6 +394,18 @@ const ProductManagement = () => {
                   helperText={errors.price?.message}
                 />
               </Grid>
+              
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  label="Preț Transport Estimativ (EUR)"
+                  type="number"
+                  step="0.01"
+                  {...register('estimated_shipping_price')}
+                  helperText="Costul estimativ de transport pentru acest produs"
+                />
+              </Grid>
+              
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth
@@ -450,116 +456,12 @@ const ProductManagement = () => {
                   helperText="Detalii tehnice despre produs"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="��🇷 Amazon Franța"
-                  {...register('amazonFR')}
-                  placeholder="https://amazon.fr/dp/B08XYZ123"
-                  helperText="Link complet Amazon Franța"
-                />
-              </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="��🇪 Amazon Belgia"
-                  {...register('amazonBE')}
-                  placeholder="https://amazon.com.be/dp/B08XYZ123"
-                  helperText="Link complet Amazon Belgia"
-                />
-              </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="🇮🇹 Amazon Italia"
-                  {...register('amazonIT')}
-                  placeholder="https://amazon.it/dp/B08XYZ123"
-                  helperText="Link complet Amazon Italia"
-                />
-              </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="🇩🇪 Amazon Germania"
-                  {...register('amazonDE')}
-                  placeholder="https://amazon.de/dp/B08XYZ123"
-                  helperText="Link complet Amazon Germania"
-                />
-              </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="��🇸 Amazon Spania"
-                  {...register('amazonES')}
-                  placeholder="https://amazon.es/dp/B08XYZ123"
-                  helperText="Link complet Amazon Spania"
-                />
-              </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="��🇪 Amazon Suedia"
-                  {...register('amazonSE')}
-                  placeholder="https://amazon.se/dp/B08XYZ123"
-                  helperText="Link complet Amazon Suedia"
-                />
-              </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="��🇱 Amazon Polonia"
-                  {...register('amazonPL')}
-                  placeholder="https://amazon.pl/dp/B08XYZ123"
-                  helperText="Link complet Amazon Polonia"
-                />
-              </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="🇳🇱 Amazon Olanda"
-                  {...register('amazonNL')}
-                  placeholder="https://amazon.nl/dp/B08XYZ123"
-                  helperText="Link complet Amazon Olanda"
-                />
-              </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="🇬🇧 Amazon UK"
-                  {...register('amazonUK')}
-                  placeholder="https://amazon.co.uk/dp/B08XYZ123"
-                  helperText="Link complet Amazon UK"
-                />
-              </Grid>
               
               <Grid item xs={12}>
-                <Alert severity="info" sx={{ mt: 2 }}>
-                  <Typography variant="body2">
-                    <strong>Notă:</strong> Pentru utilizatorii din "Altă țară", se va folosi automat link-ul din Germania.
-                  </Typography>
-                </Alert>
-              </Grid>
-              
-              <Grid item xs={12}>
-                <Button
-                  variant="outlined"
-                  startIcon={<CloudUpload />}
-                  fullWidth
-                  sx={{ py: 2 }}
-                >
-                  Încarcă Imagine Produs
-                </Button>
-                <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
-                  Formatul recomandat: JPG, PNG. Dimensiune maximă: 5MB
-                </Typography>
+                <AmazonLinksManager
+                  amazonLinks={amazonLinks}
+                  onLinksChange={setAmazonLinks}
+                />
               </Grid>
             </Grid>
           </Box>

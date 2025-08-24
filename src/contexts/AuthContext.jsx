@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { auth, db } from '../lib/supabase';
 
 const AuthContext = createContext();
 
@@ -15,67 +16,62 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate checking for existing session
-    const checkAuth = () => {
-      const savedUser = localStorage.getItem("pipesan_user");
-      if (savedUser) {
-        setUser(JSON.parse(savedUser));
+    // Check for existing session
+    const checkAuth = async () => {
+      try {
+        const currentUser = await auth.getCurrentUser();
+        setUser(currentUser?.profile || null);
+      } catch (error) {
+        console.error('Auth check error:', error);
+        setUser(null);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     checkAuth();
-  }, []);
+ }, []);
 
   const login = async (email, password) => {
-    // Simulate login - replace with actual Supabase auth
-    // Admin account validation
-    if (email === "contact@pipesan.eu" && password === "Pipesan2022") {
-      const adminUser = {
-        id: "admin-1",
-        email: "contact@pipesan.eu",
-        name: "Administrator PipeSan",
-        role: "admin",
-        company: "PipeSan",
-        country: "RO"
-      };
-      setUser(adminUser);
-      localStorage.setItem("pipesan_user", JSON.stringify(adminUser));
-      return adminUser;
+     try {
+      const { user: authUser } = await auth.signIn(email, password);
+      
+      if (authUser) {
+        const profile = await db.getUser(authUser.id);
+        setUser(profile);
+        return profile;
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
     }
-    
-    // Regular user simulation
-    const mockUser = {
-      id: Date.now().toString(),
-      email,
-      name: "Test User",
-      role: "customer"
-    };
-    
-    setUser(mockUser);
-    localStorage.setItem("pipesan_user", JSON.stringify(mockUser));
-    return mockUser;
-  };
+ };
 
   const register = async (userData) => {
-    // Simulate registration - replace with actual Supabase auth
-    const newUser = {
-      id: Date.now().toString(),
-      ...userData,
-      role: "customer",
-      country: userData.country || "FR",
-      registrationDate: new Date().toISOString()
-    };
-    
-    setUser(newUser);
-    localStorage.setItem("pipesan_user", JSON.stringify(newUser));
-    return newUser;
-  };
+     try {
+      const { email, password, ...profileData } = userData;
+      
+      const { user: authUser } = await auth.signUp(email, password, {
+        ...profileData,
+        role: 'customer',
+        country: profileData.country || 'FR'
+      });
+      
+      if (authUser) {
+        const profile = await db.getUser(authUser.id);
+        setUser(profile);
+        return profile;
+      }
+    } catch (error) {
+      console.error('Registration error:', error);
+      throw error;
+    }
+ };
 
   const logout = () => {
+     auth.signOut();
     setUser(null);
-    localStorage.removeItem("pipesan_user");
-  };
+ };
 
   const value = {
     user,
@@ -83,8 +79,8 @@ export const AuthProvider = ({ children }) => {
     register,
     logout,
     loading,
-    isAdmin: user?.role === "admin"
-  };
+     isAdmin: user?.role === 'admin'
+ };
 
   return (
     <AuthContext.Provider value={value}>

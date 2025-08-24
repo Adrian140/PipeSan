@@ -155,6 +155,9 @@ const Header = () => {
                   open={Boolean(anchorEl)}
                   onClose={handleMenuClose}
                 >
+                  <MenuItem component={Link} to="/profile" onClick={handleMenuClose}>
+                    Profilul Meu
+                  </MenuItem>
                   <MenuItem onClick={handleMenuClose}>
                     {user.name || user.email}
                   </MenuItem>
