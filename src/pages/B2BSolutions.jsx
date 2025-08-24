@@ -253,9 +253,6 @@ function B2BSolutions() {
               <button className="bg-white text-primary px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-colors">
                 Apply for Partnership
               </button>
-              <button className="bg-accent text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-accent-dark transition-colors">
-                Download B2B Catalog
-              </button>
             </div>
           </div>
         </section>

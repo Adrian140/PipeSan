@@ -222,7 +222,7 @@ function TermsOfService() {
                   <strong>Telefon:</strong> +40 264 123 456
                 </p>
                 <p className="text-text-secondary">
-                  <strong>Adresă:</strong> Strada Industrială 15, Cluj-Napoca 400001, România
+                  <strong>Adresă:</strong> Strada Industriei 25, Craiova 200746, România
                 </p>
               </div>
             </div>

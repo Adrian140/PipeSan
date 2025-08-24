@@ -49,8 +49,10 @@ function Footer() {
               <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-text-secondary mt-1" />
                 <span className="text-text-secondary">
-                   Strada Industrială 15<br />
-                  Cluj-Napoca 400001, România
+                   Strada Industriei 25<br />
+                  Craiova 200746, România
+                   Strada Industriei 25<br />
+                  Craiova 200746, România
                </span>
               </div>
             </div>
@@ -65,9 +67,6 @@ function Footer() {
              </a>
                <a href="/technical-specs" className="block text-text-secondary hover:text-primary transition-colors">
                 Technical Specifications
-             </a>
-               <a href="/b2b" className="block text-text-secondary hover:text-primary transition-colors">
-                B2B Solutions
              </a>
                <a href="/support" className="block text-text-secondary hover:text-primary transition-colors">
                 Technical Support

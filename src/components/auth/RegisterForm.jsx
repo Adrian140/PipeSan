@@ -6,6 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 function RegisterForm() {
   const [formData, setFormData] = useState({
     accountType: 'individual', // 'individual' or 'company'
+    accountType: 'individual', // 'individual' or 'company'
     firstName: '',
     lastName: '',
     companyName: '',
@@ -14,7 +15,14 @@ function RegisterForm() {
     companyAddress: '',
     companyCity: '',
     companyPostalCode: '',
+    companyName: '',
+    cui: '',
+    vatNumber: '',
+    companyAddress: '',
+    companyCity: '',
+    companyPostalCode: '',
     email: '',
+    deliveryCountry: '',
     password: '',
     confirmPassword: '',
     acceptTerms: false,
@@ -56,6 +64,21 @@ function RegisterForm() {
         return;
       }
     }
+
+    // Validation based on account type
+    if (formData.accountType === 'individual') {
+      if (!formData.firstName || !formData.lastName) {
+        setError('Prenumele și numele sunt obligatorii pentru persoanele fizice');
+        setLoading(false);
+        return;
+      }
+    } else if (formData.accountType === 'company') {
+      if (!formData.companyName || !formData.cui || !formData.companyAddress || !formData.companyCity || !formData.companyPostalCode) {
+        setError('Toate câmpurile marcate cu * sunt obligatorii pentru firme');
+        setLoading(false);
+        return;
+      }
+    }
     // Validation
     if (!validatePassword(formData.password)) {
       setError('Parola trebuie să aibă minim 8 caractere, o literă mare și o cifră');
@@ -75,6 +98,11 @@ function RegisterForm() {
       return;
     }
 
+    if (!formData.deliveryCountry) {
+      setError('Țara de livrare este obligatorie');
+      setLoading(false);
+      return;
+    }
     const result = await register(formData);
     
     if (result.success) {
@@ -320,6 +348,32 @@ function RegisterForm() {
                   placeholder="your.email@example.com"
                 />
               </div>
+            </div>
+            
+            {/* Delivery Country Field - Common for both types */}
+            <div>
+              <label htmlFor="deliveryCountry" className="block text-sm font-medium text-text-primary mb-2">
+                Țară de livrare *
+              </label>
+              <select
+                id="deliveryCountry"
+                name="deliveryCountry"
+                required
+                value={formData.deliveryCountry}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              >
+                <option value="">Selectează țara de livrare</option>
+                <option value="IT">Italia</option>
+                <option value="FR">Franța</option>
+                <option value="DE">Germania</option>
+                <option value="ES">Spania</option>
+                <option value="NL">Olanda</option>
+                <option value="BE">Belgia</option>
+                <option value="PL">Polonia</option>
+                <option value="SE">Suedia</option>
+                <option value="OTHER">Altă țară</option>
+              </select>
             </div>
             
             {/* Password Fields - Common for both types */}

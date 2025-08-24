@@ -21,6 +21,7 @@ const mockUsers = [
     password: 'user123',
     firstName: 'John',
     lastName: 'Doe',
+    deliveryCountry: 'DE',
     role: 'user',
     phone: '+33123456789',
     country: 'FR',
@@ -82,7 +83,7 @@ const mockContent = {
   heroSubtitle: 'Valves, fittings, connectors and professional installation components. Fast EU delivery with complete technical specifications.',
   phone: '+40 264 123 456',
   email: 'contact@pipesan.eu',
-  address: 'Strada Industrială 15, Cluj-Napoca 400001, România'
+  address: 'Strada Industriei 25, Craiova 200746, România'
 };
 
 // Mock addresses
@@ -140,6 +141,16 @@ const mockProducts = [
       weight: '0.45 kg',
       dimensions: '85 x 45 x 32 mm'
     },
+    amazonLinks: {
+      IT: 'https://amazon.it/dp/B08EXAMPLE1',
+      FR: 'https://amazon.fr/dp/B08EXAMPLE2',
+      DE: 'https://amazon.de/dp/B08EXAMPLE3',
+      ES: 'https://amazon.es/dp/B08EXAMPLE4',
+      NL: 'https://amazon.nl/dp/B08EXAMPLE5',
+      BE: 'https://amazon.com.be/dp/B08EXAMPLE6',
+      PL: 'https://amazon.pl/dp/B08EXAMPLE7',
+      SE: 'https://amazon.se/dp/B08EXAMPLE8'
+    },
     variants: [
       { id: 1, name: 'DN25 Brass', sku: 'PF-DN25-001', price: 39.99, inStock: true },
       { id: 2, name: 'DN25 Stainless Steel', sku: 'PF-DN25-002', price: 49.99, inStock: true }
@@ -165,6 +176,12 @@ const mockProducts = [
       certification: 'CE, WRAS',
       weight: '0.28 kg',
       dimensions: '65 x 35 x 28 mm'
+    },
+    amazonLinks: {
+      IT: 'https://amazon.it/dp/B08VALVE1',
+      FR: 'https://amazon.fr/dp/B08VALVE2',
+      DE: 'https://amazon.de/dp/B08VALVE3',
+      ES: 'https://amazon.es/dp/B08VALVE4'
     }
   },
   {

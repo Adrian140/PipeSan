@@ -6,6 +6,7 @@ import { apiClient } from '../../config/api';
 function AdminPanel() {
   const [activeTab, setActiveTab] = useState('services');
   const [services, setServices] = useState([]);
+  const [products, setProducts] = useState([]);
   const [pricing, setPricing] = useState([]);
   const [content, setContent] = useState({});
   const [users, setUsers] = useState([]);
@@ -18,6 +19,7 @@ function AdminPanel() {
 
   const tabs = [
     { id: 'services', label: 'Servicii', icon: Package },
+    { id: 'products', label: 'Produse', icon: Package },
     { id: 'pricing', label: 'Prețuri', icon: DollarSign },
     { id: 'content', label: 'Conținut', icon: FileText },
     { id: 'pricingContent', label: 'Prețuri & Texte', icon: FileText },
@@ -38,6 +40,10 @@ function AdminPanel() {
         case 'services':
           data = await apiClient.admin.getServices();
           setServices(data);
+          break;
+        case 'products':
+          data = await apiClient.admin.getProducts();
+          setProducts(data);
           break;
         case 'pricing':
           data = await apiClient.admin.getPricing();
@@ -73,6 +79,12 @@ function AdminPanel() {
         } else {
           await apiClient.admin.createService(item);
         }
+      } else if (type === 'products') {
+        if (item.id) {
+          await apiClient.admin.updateProduct(item.id, item);
+        } else {
+          await apiClient.admin.createProduct(item);
+        }
       } else if (type === 'pricing') {
         if (item.id) {
           await apiClient.admin.updatePricing(item.id, item);
@@ -101,6 +113,8 @@ function AdminPanel() {
     try {
        if (type === 'services') {
         await apiClient.admin.deleteService(id);
+      } else if (type === 'products') {
+        await apiClient.admin.deleteProduct(id);
       } else if (type === 'pricing') {
         await apiClient.admin.deletePricing(id);
       }
@@ -242,6 +256,188 @@ function AdminPanel() {
                   </button>
                   <button
                     onClick={() => handleDelete(service.id, 'services')}
+                    className="flex-1 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center"
+                  >
+                    <Trash2 className="w-4 h-4 mr-2" />
+                    Șterge
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const renderProductsTab = () => (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-text-primary">Gestionare Produse</h2>
+        <button
+          onClick={() => startEdit({ 
+            title: '', 
+            sku: '', 
+            bulletPoints: ['', '', '', '', ''], 
+            description: '', 
+            dimensions: '', 
+            price: '',
+            amazonLinks: {
+              IT: '', FR: '', DE: '', ES: '', NL: '', BE: '', PL: '', SE: ''
+            }
+          }, 'products')}
+          className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors flex items-center"
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          Adaugă Produs
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 gap-6">
+        {products.map((product) => (
+          <div key={product.id} className="bg-white border border-gray-200 rounded-xl p-6">
+            {isEditing === `products-${product.id}` ? (
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    value={editForm.title || ''}
+                    onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
+                    placeholder="Titlu produs"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  />
+                  <input
+                    type="text"
+                    value={editForm.sku || ''}
+                    onChange={(e) => setEditForm({ ...editForm, sku: e.target.value })}
+                    placeholder="SKU"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium mb-2">Bullet Points (5):</label>
+                  {(editForm.bulletPoints || ['', '', '', '', '']).map((bullet, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      value={bullet}
+                      onChange={(e) => {
+                        const newBullets = [...(editForm.bulletPoints || ['', '', '', '', ''])];
+                        newBullets[index] = e.target.value;
+                        setEditForm({ ...editForm, bulletPoints: newBullets });
+                      }}
+                      placeholder={`Bullet point ${index + 1}`}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2"
+                    />
+                  ))}
+                </div>
+                
+                <textarea
+                  value={editForm.description || ''}
+                  onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
+                  placeholder="Descriere detaliată"
+                  rows={4}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                />
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    value={editForm.dimensions || ''}
+                    onChange={(e) => setEditForm({ ...editForm, dimensions: e.target.value })}
+                    placeholder="Dimensiuni (ex: DN25, BSP 1/2)"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  />
+                  <input
+                    type="text"
+                    value={editForm.price || ''}
+                    onChange={(e) => setEditForm({ ...editForm, price: e.target.value })}
+                    placeholder="Preț (EUR)"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium mb-2">Linkuri Amazon per țară:</label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {['IT', 'FR', 'DE', 'ES', 'NL', 'BE', 'PL', 'SE'].map(country => (
+                      <div key={country}>
+                        <label className="block text-xs text-gray-600 mb-1">{country}:</label>
+                        <input
+                          type="url"
+                          value={editForm.amazonLinks?.[country] || ''}
+                          onChange={(e) => setEditForm({ 
+                            ...editForm, 
+                            amazonLinks: { 
+                              ...editForm.amazonLinks, 
+                              [country]: e.target.value 
+                            }
+                          })}
+                          placeholder={`Amazon ${country} link`}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleSave(editForm, 'products')}
+                    className="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center"
+                  >
+                    <Save className="w-4 h-4 mr-2" />
+                    Salvează
+                  </button>
+                  <button
+                    onClick={cancelEdit}
+                    className="flex-1 bg-gray-600 text-white py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                  >
+                    Anulează
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-text-primary mb-2">{product.title}</h3>
+                    <p className="text-sm text-gray-500 mb-2">SKU: {product.sku}</p>
+                    <p className="text-text-secondary mb-4">{product.description}</p>
+                    
+                    {product.bulletPoints && (
+                      <div className="mb-4">
+                        <h4 className="font-medium text-text-primary mb-2">Caracteristici:</h4>
+                        <ul className="text-sm text-text-secondary space-y-1">
+                          {product.bulletPoints.filter(bullet => bullet.trim()).map((bullet, index) => (
+                            <li key={index}>• {bullet}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="font-medium">Dimensiuni:</span> {product.dimensions}
+                      </div>
+                      <div>
+                        <span className="font-medium">Preț:</span> €{product.price}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => startEdit(product, 'products')}
+                    className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
+                  >
+                    <Edit className="w-4 h-4 mr-2" />
+                    Editează
+                  </button>
+                  <button
+                    onClick={() => handleDelete(product.id, 'products')}
                     className="flex-1 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center"
                   >
                     <Trash2 className="w-4 h-4 mr-2" />
@@ -615,6 +811,60 @@ function AdminPanel() {
         </button>
       </div>
 
+      {/* Contact Settings */}
+      <div className="bg-white border border-gray-200 rounded-xl p-6">
+        <h3 className="text-lg font-semibold text-text-primary mb-6">Setări Contact</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-text-primary mb-2">Adresă Completă</label>
+              <textarea
+                rows={3}
+                defaultValue="Strada Industriei 25, Craiova 200746, România"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-text-primary mb-2">Telefon</label>
+              <input
+                type="text"
+                defaultValue="+40 264 123 456"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-text-primary mb-2">Email</label>
+              <input
+                type="email"
+                defaultValue="contact@pipesan.eu"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+              />
+            </div>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-text-primary mb-2">Google Maps Embed URL</label>
+              <textarea
+                rows={4}
+                defaultValue="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.123456789!2d23.8234567890123456!3d44.3212345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40ae97ea1234567890%3A0x1234567890abcdef!2sCraiova%2C%20Romania!5e0!3m2!1sen!2sus!4v1234567890123"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-text-primary mb-2">WhatsApp Număr</label>
+              <input
+                type="text"
+                defaultValue="+40264123456"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+        <button className="mt-4 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
+          Salvează Setările Contact
+        </button>
+      </div>
+
       {/* Private Label & Multi-Platform */}
       <div className="bg-white border border-gray-200 rounded-xl p-6">
         <h3 className="text-lg font-semibold text-text-primary mb-6">Private Label & Multi-Platform Services</h3>
@@ -806,6 +1056,8 @@ function AdminPanel() {
     switch (activeTab) {
       case 'services':
         return renderServicesTab();
+      case 'products':
+        return renderProductsTab();
       case 'pricing':
         return renderPricingTab();
       case 'content':

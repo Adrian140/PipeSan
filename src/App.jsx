@@ -10,7 +10,6 @@ import ShoppingCart from './components/cart/ShoppingCart';
 import Home from './pages/Home';
 import Categories from './pages/Categories';
 import TechnicalSpecs from './pages/TechnicalSpecs';
-import B2BSolutions from './pages/B2BSolutions';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import Checkout from './pages/Checkout';
@@ -44,7 +43,6 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/technical-specs" element={<TechnicalSpecs />} />
-          <Route path="/b2b" element={<B2BSolutions />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/checkout" element={<Checkout />} />

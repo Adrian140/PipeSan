@@ -220,8 +220,8 @@ function Contact() {
                   <div>
                     <p className="font-semibold text-text-primary">PipeSan Headquarters</p>
                     <p className="text-text-secondary">
-                      Strada Industrială 15<br />
-                      Cluj-Napoca 400001, România
+                      Strada Industriei 25<br />
+                      Craiova 200746, România
                     </p>
                   </div>
                 </div>
@@ -285,14 +285,14 @@ function Contact() {
           <h2 className="text-3xl font-bold text-text-primary mb-8 text-center">Our Location</h2>
           <div className="rounded-xl overflow-hidden shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2750.123456789!2d23.5234567890123456!3d46.7612345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47928ea1234567890%3A0x1234567890abcdef!2sCluj-Napoca%2C%20Romania!5e0!3m2!1sen!2sus!4v1234567890123"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.123456789!2d23.8234567890123456!3d44.3212345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40ae97ea1234567890%3A0x1234567890abcdef!2sCraiova%2C%20Romania!5e0!3m2!1sen!2sus!4v1234567890123"
               width="100%"
               height="400"
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="PipeSan Location - Cluj-Napoca"
+              title="PipeSan Location - Craiova"
             ></iframe>
           </div>
           <div className="mt-6 text-center">
@@ -300,7 +300,7 @@ function Contact() {
               <MapPin className="w-5 h-5 text-primary mr-3" />
               <div className="text-left">
                 <p className="font-semibold text-text-primary">PipeSan</p>
-                <p className="text-text-secondary">Cluj-Napoca 400001, România</p>
+                <p className="text-text-secondary">Craiova 200746, România</p>
                 <p className="text-sm text-text-light">Professional plumbing parts supplier for Europe</p>
               </div>
             </div>

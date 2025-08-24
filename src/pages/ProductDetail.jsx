@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Star, Heart, Share2, ShoppingCart, Truck, Shield, RotateCcw, Info } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
 
 function ProductDetail() {
   const { id } = useParams();
   const { addItem } = useCart();
+  const { user } = useAuth();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -44,6 +46,16 @@ function ProductDetail() {
       'Certification': 'CE, ACS, WRAS',
       'Weight': '0.45 kg',
       'Dimensions': '85 x 45 x 32 mm'
+    },
+    amazonLinks: {
+      IT: 'https://amazon.it/dp/B08EXAMPLE1',
+      FR: 'https://amazon.fr/dp/B08EXAMPLE2',
+      DE: 'https://amazon.de/dp/B08EXAMPLE3',
+      ES: 'https://amazon.es/dp/B08EXAMPLE4',
+      NL: 'https://amazon.nl/dp/B08EXAMPLE5',
+      BE: 'https://amazon.com.be/dp/B08EXAMPLE6',
+      PL: 'https://amazon.pl/dp/B08EXAMPLE7',
+      SE: 'https://amazon.se/dp/B08EXAMPLE8'
     },
     features: [
       'Premium CW617N brass construction',
@@ -124,6 +136,25 @@ function ProductDetail() {
             <li className="text-text-primary font-medium">{product.name}</li>
           </ol>
         </nav>
+
+  const handleBuyOnAmazon = () => {
+    const userCountry = user?.deliveryCountry;
+    const amazonLinks = product.amazonLinks || {};
+    
+    let amazonUrl = '';
+    
+    // Check if user country has specific Amazon link
+    if (userCountry && ['IT', 'FR', 'DE', 'ES', 'NL', 'BE', 'PL', 'SE'].includes(userCountry) && amazonLinks[userCountry]) {
+      amazonUrl = amazonLinks[userCountry];
+    } else if (amazonLinks.DE) {
+      // Fallback to Germany
+      amazonUrl = amazonLinks.DE;
+    }
+    
+    if (amazonUrl) {
+      window.open(amazonUrl, '_blank');
+    }
+  };
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Product Images */}
@@ -283,6 +314,14 @@ function ProductDetail() {
                   <ShoppingCart className="w-5 h-5" />
                   Add to Cart
                 </button>
+                {product.amazonLinks && Object.keys(product.amazonLinks).length > 0 && (
+                  <button
+                    onClick={handleBuyOnAmazon}
+                    className="flex-1 bg-orange-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition-colors flex items-center justify-center gap-2"
+                  >
+                    🛒 Cumpără pe Amazon
+                  </button>
+                )}
                 <button className="p-3 border border-gray-300 rounded-lg hover:bg-gray-50">
                   <Heart className="w-5 h-5" />
                 </button>

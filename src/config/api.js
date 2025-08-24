@@ -525,6 +525,40 @@ export const apiClient = {
     }
   },
 
+  // Settings endpoints
+  settings: {
+    getContactInfo: async () => {
+      if (USE_MOCK_API) {
+        await delay(300);
+        return {
+          address: 'Strada Industriei 25, Craiova 200746, România',
+          phone: '+40 264 123 456',
+          email: 'contact@pipesan.eu',
+          mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2890.123456789!2d23.8234567890123456!3d44.3212345678901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40ae97ea1234567890%3A0x1234567890abcdef!2sCraiova%2C%20Romania!5e0!3m2!1sen!2sus!4v1234567890123'
+        };
+      }
+      const response = await fetch(`${API_BASE_URL}/api/settings/contact`, {
+        headers: getHeaders()
+      });
+      await handleApiError(response);
+      return response.json();
+    },
+
+    updateContactInfo: async (contactData) => {
+      if (USE_MOCK_API) {
+        await delay(500);
+        return { success: true };
+      }
+      const response = await fetch(`${API_BASE_URL}/api/settings/contact`, {
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify(contactData)
+      });
+      await handleApiError(response);
+      return response.json();
+    }
+  },
+
   // Orders endpoints
   orders: {
     create: async (orderData) => {

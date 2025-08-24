@@ -1,10 +1,12 @@
 import React from 'react';
 import { Star, ShoppingCart, Heart, Eye } from 'lucide-react';
 import { useCart } from '../../contexts/CartContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 
 function ProductCard({ product }) {
   const { addItem } = useCart();
+  const { user } = useAuth();
   
   const {
     id,
@@ -29,6 +31,29 @@ function ProductCard({ product }) {
     e.stopPropagation();
     addItem(product, 1);
   };
+  
+  const handleBuyOnAmazon = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const userCountry = user?.deliveryCountry;
+    const amazonLinks = product.amazonLinks || {};
+    
+    let amazonUrl = '';
+    
+    // Check if user country has specific Amazon link
+    if (userCountry && ['IT', 'FR', 'DE', 'ES', 'NL', 'BE', 'PL', 'SE'].includes(userCountry) && amazonLinks[userCountry]) {
+      amazonUrl = amazonLinks[userCountry];
+    } else if (amazonLinks.DE) {
+      // Fallback to Germany
+      amazonUrl = amazonLinks.DE;
+    }
+    
+    if (amazonUrl) {
+      window.open(amazonUrl, '_blank');
+    }
+  };
+
   return (
     <div className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 group">
       {/* Product Image */}
@@ -129,6 +154,7 @@ function ProductCard({ product }) {
 
         {/* Add to Cart Button */}
         <button
+          onClick={handleAddToCart}
           disabled={!inStock}
           className={`w-full flex items-center justify-center gap-2 py-2 px-4 rounded-lg font-medium transition-colors ${
             inStock
@@ -139,6 +165,16 @@ function ProductCard({ product }) {
           <ShoppingCart className="w-4 h-4" />
           {inStock ? 'Add to Cart' : 'Out of Stock'}
         </button>
+
+        {/* Buy on Amazon Button */}
+        {product.amazonLinks && Object.keys(product.amazonLinks).length > 0 && (
+          <button
+            onClick={handleBuyOnAmazon}
+            className="w-full mt-2 flex items-center justify-center gap-2 py-2 px-4 border border-orange-400 text-orange-600 rounded-lg font-medium hover:bg-orange-50 transition-colors"
+          >
+            🛒 Cumpără pe Amazon
+          </button>
+        )}
       </div>
     </div>
   );

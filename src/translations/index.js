@@ -7,7 +7,6 @@ export const translations = {
     home: 'Accueil',
     categories: 'Catégories',
     technical: 'Spécifications',
-    b2b: 'Solutions B2B',
     contact: 'Contact',
     support: 'Support Technique',
     login: 'Connexion',
@@ -38,6 +37,7 @@ export const translations = {
     edit: 'Modifier',
     delete: 'Supprimer',
     add: 'Ajouter',
+    chatWhatsApp: 'Chat WhatsApp',
     
     // Product Categories
     valves: 'Robinets',
@@ -75,7 +75,7 @@ export const translations = {
     deleteProduct: 'Supprimer le Produit',
     productName: 'Nom du Produit',
     productDescription: 'Description du Produit',
-    productSpecs: 'Spécifications',
+    productSpecs: 'Specifications',
     productPrice: 'Prix',
     productStock: 'Stock',
     saveChanges: 'Enregistrer les Modifications',
@@ -138,7 +138,6 @@ export const translations = {
     home: 'Home',
     categories: 'Categories',
     technical: 'Technical Specs',
-    b2b: 'B2B Solutions',
     contact: 'Contact',
     support: 'Technical Support',
     login: 'Login',
@@ -169,6 +168,7 @@ export const translations = {
     edit: 'Edit',
     delete: 'Delete',
     add: 'Add',
+    chatWhatsApp: 'Chat WhatsApp',
     
     // Product Categories
     valves: 'Valves',
@@ -400,7 +400,6 @@ export const translations = {
     home: 'Home',
     categories: 'Categorieën',
     technical: 'Technische Specs',
-    b2b: 'B2B Oplossingen',
     contact: 'Contact',
     support: 'Technische Ondersteuning',
     login: 'Inloggen',
@@ -431,6 +430,7 @@ export const translations = {
     edit: 'Bewerken',
     delete: 'Verwijderen',
     add: 'Toevoegen',
+    chatWhatsApp: 'Chat WhatsApp',
     
     // Product Categories
     valves: 'Kranen',
@@ -532,7 +532,6 @@ export const translations = {
     home: 'Home',
     categories: 'Categorías',
     technical: 'Especificaciones',
-    b2b: 'Soluciones B2B',
     contact: 'Contacto',
     support: 'Soporte Técnico',
     login: 'Iniciar Sesión',
@@ -563,6 +562,7 @@ export const translations = {
     edit: 'Editar',
     delete: 'Eliminar',
     add: 'Añadir',
+    chatWhatsApp: 'Chat WhatsApp',
     
     // Product Categories
     valves: 'Válvulas',
@@ -663,7 +663,6 @@ export const translations = {
     home: 'Home',
     categories: 'Categorie',
     technical: 'Specifiche Tecniche',
-    b2b: 'Soluzioni B2B',
     contact: 'Contatto',
     support: 'Supporto Tecnico',
     login: 'Accedi',
@@ -694,6 +693,7 @@ export const translations = {
     edit: 'Modifica',
     delete: 'Elimina',
     add: 'Aggiungi',
+    chatWhatsApp: 'Chat WhatsApp',
     
     // Product Categories
     valves: 'Valvole',
@@ -825,6 +825,7 @@ export const translations = {
     edit: 'Edytuj',
     delete: 'Usuń',
     add: 'Dodaj',
+    chatWhatsApp: 'Chat WhatsApp',
     
     // Product Categories
     valves: 'Zawory',
@@ -956,6 +957,7 @@ export const translations = {
     edit: 'Editează',
     delete: 'Șterge',
     add: 'Adaugă',
+    chatWhatsApp: 'Chat WhatsApp',
     
     // Product Categories
     valves: 'Robinete',

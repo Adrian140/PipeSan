@@ -226,9 +226,6 @@ function TechnicalSpecs() {
               <button className="bg-primary text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-dark transition-colors">
                 Contact Technical Support
               </button>
-              <button className="bg-accent text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-accent-dark transition-colors">
-                Request Custom Quote
-              </button>
             </div>
           </div>
         </section>

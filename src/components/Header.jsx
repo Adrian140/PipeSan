@@ -17,7 +17,6 @@ function Header() {
     { name: t('categories'), href: '/categories' },
     { name: 'Products', href: '/products' },
     { name: t('technical'), href: '/technical-specs' },
-    { name: t('b2b'), href: '/b2b' },
     { name: t('contact'), href: '/contact' },
     { name: t('support'), href: '/support' }
   ];

@@ -224,7 +224,7 @@ function PrivacyPolicy() {
                 <div className="flex items-start">
                   <Mail className="w-4 h-4 text-primary mr-2 mt-1" />
                   <span className="text-text-secondary">
-                    Adresă: Strada Industrială 15, Cluj-Napoca 400001, România
+                    Adresă: Strada Industriei 25, Craiova 200746, România
                   </span>
                 </div>
               </div>
