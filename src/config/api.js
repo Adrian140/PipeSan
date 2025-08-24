@@ -27,6 +27,9 @@ export const apiClient = {
   // Auth endpoints
   auth: {
     login: async (email, password) => {
+      if (USE_MOCK_API) {
+        return await mockApi.users.login(email, password);
+      }
       const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: getHeaders(),
@@ -37,6 +40,10 @@ export const apiClient = {
     },
 
     register: async (userData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { message: 'Account created successfully' };
+      }
       const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: 'POST',
         headers: getHeaders(),
@@ -47,6 +54,13 @@ export const apiClient = {
     },
 
     validate: async () => {
+      if (USE_MOCK_API) {
+        const token = localStorage.getItem('authToken');
+        if (token === 'mock-jwt-token') {
+          return mockApi.users.getById('1');
+        }
+        throw new Error('Invalid token');
+      }
       const response = await fetch(`${API_BASE_URL}/api/auth/validate`, {
         headers: getHeaders()
       });
@@ -55,6 +69,10 @@ export const apiClient = {
     },
 
     forgotPassword: async (email) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { message: 'Password reset link sent to your email' };
+      }
       const response = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
         method: 'POST',
         headers: getHeaders(),
@@ -65,6 +83,10 @@ export const apiClient = {
     },
 
     changePassword: async (currentPassword, newPassword) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { message: 'Password changed successfully' };
+      }
       const response = await fetch(`${API_BASE_URL}/api/auth/change-password`, {
         method: 'POST',
         headers: getHeaders(),
@@ -75,6 +97,13 @@ export const apiClient = {
     },
 
     enable2FA: async () => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { 
+          qrCode: 'data:image/png;base64,mock-qr-code',
+          secret: 'MOCK2FASECRET123'
+        };
+      }
       const response = await fetch(`${API_BASE_URL}/api/auth/enable-2fa`, {
         method: 'POST',
         headers: getHeaders()
@@ -84,6 +113,10 @@ export const apiClient = {
     },
 
     verify2FA: async (token) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { message: '2FA enabled successfully' };
+      }
       const response = await fetch(`${API_BASE_URL}/api/auth/verify-2fa`, {
         method: 'POST',
         headers: getHeaders(),
@@ -94,6 +127,10 @@ export const apiClient = {
     },
 
     disable2FA: async (token) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { message: '2FA disabled successfully' };
+      }
       const response = await fetch(`${API_BASE_URL}/api/auth/disable-2fa`, {
         method: 'POST',
         headers: getHeaders(),
@@ -107,6 +144,10 @@ export const apiClient = {
   // User endpoints
   user: {
     updateProfile: async (profileData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { message: 'Profile updated successfully' };
+      }
       const response = await fetch(`${API_BASE_URL}/api/user/profile`, {
         method: 'PUT',
         headers: getHeaders(),
@@ -120,6 +161,9 @@ export const apiClient = {
   // Addresses endpoints
   addresses: {
     getAll: async () => {
+      if (USE_MOCK_API) {
+        return await mockApi.addresses.getAll();
+      }
       const response = await fetch(`${API_BASE_URL}/api/addresses`, {
         headers: getHeaders()
       });
@@ -128,6 +172,9 @@ export const apiClient = {
     },
 
     create: async (addressData) => {
+      if (USE_MOCK_API) {
+        return await mockApi.addresses.add(addressData);
+      }
       const response = await fetch(`${API_BASE_URL}/api/addresses`, {
         method: 'POST',
         headers: getHeaders(),
@@ -138,6 +185,9 @@ export const apiClient = {
     },
 
     update: async (id, addressData) => {
+      if (USE_MOCK_API) {
+        return await mockApi.addresses.update(id, addressData);
+      }
       const response = await fetch(`${API_BASE_URL}/api/addresses/${id}`, {
         method: 'PUT',
         headers: getHeaders(),
@@ -148,6 +198,9 @@ export const apiClient = {
     },
 
     delete: async (id) => {
+      if (USE_MOCK_API) {
+        return await mockApi.addresses.remove(id);
+      }
       const response = await fetch(`${API_BASE_URL}/api/addresses/${id}`, {
         method: 'DELETE',
         headers: getHeaders()
@@ -160,6 +213,9 @@ export const apiClient = {
   // Billing profiles endpoints
   billingProfiles: {
     getAll: async () => {
+      if (USE_MOCK_API) {
+        return await mockApi.billingProfiles.getAll();
+      }
       const response = await fetch(`${API_BASE_URL}/api/billing-profiles`, {
         headers: getHeaders()
       });
@@ -168,6 +224,9 @@ export const apiClient = {
     },
 
     create: async (profileData) => {
+      if (USE_MOCK_API) {
+        return await mockApi.billingProfiles.add(profileData);
+      }
       const response = await fetch(`${API_BASE_URL}/api/billing-profiles`, {
         method: 'POST',
         headers: getHeaders(),
@@ -178,6 +237,9 @@ export const apiClient = {
     },
 
     update: async (id, profileData) => {
+      if (USE_MOCK_API) {
+        return await mockApi.billingProfiles.update(id, profileData);
+      }
       const response = await fetch(`${API_BASE_URL}/api/billing-profiles/${id}`, {
         method: 'PUT',
         headers: getHeaders(),
@@ -188,6 +250,9 @@ export const apiClient = {
     },
 
     delete: async (id) => {
+      if (USE_MOCK_API) {
+        return await mockApi.billingProfiles.remove(id);
+      }
       const response = await fetch(`${API_BASE_URL}/api/billing-profiles/${id}`, {
         method: 'DELETE',
         headers: getHeaders()
@@ -197,6 +262,10 @@ export const apiClient = {
     },
 
     validateVAT: async (vatNumber, country) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { valid: true, companyName: 'Mock Company' };
+      }
       const response = await fetch(`${API_BASE_URL}/api/validate-vat`, {
         method: 'POST',
         headers: getHeaders(),
@@ -210,6 +279,9 @@ export const apiClient = {
   // Invoices endpoints
   invoices: {
     getAll: async () => {
+      if (USE_MOCK_API) {
+        return await mockApi.invoices.getAll();
+      }
       const response = await fetch(`${API_BASE_URL}/api/invoices`, {
         headers: getHeaders()
       });
@@ -218,6 +290,10 @@ export const apiClient = {
     },
 
     download: async (id) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return new Blob(['Mock PDF content'], { type: 'application/pdf' });
+      }
       const response = await fetch(`${API_BASE_URL}/api/invoices/${id}/download`, {
         headers: getHeaders()
       });
@@ -226,6 +302,10 @@ export const apiClient = {
     },
 
     view: async (id) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return new Blob(['Mock PDF content'], { type: 'application/pdf' });
+      }
       const response = await fetch(`${API_BASE_URL}/api/invoices/${id}/view`, {
         headers: getHeaders()
       });
@@ -237,6 +317,9 @@ export const apiClient = {
   // Admin endpoints
   admin: {
     getServices: async () => {
+      if (USE_MOCK_API) {
+        return await mockApi.services.getAll();
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/services`, {
         headers: getHeaders()
       });
@@ -245,6 +328,10 @@ export const apiClient = {
     },
 
     createService: async (serviceData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { id: Date.now(), ...serviceData };
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/services`, {
         method: 'POST',
         headers: getHeaders(),
@@ -255,6 +342,10 @@ export const apiClient = {
     },
 
     updateService: async (id, serviceData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { id, ...serviceData };
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/services/${id}`, {
         method: 'PUT',
         headers: getHeaders(),
@@ -265,6 +356,10 @@ export const apiClient = {
     },
 
     deleteService: async (id) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { success: true };
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/services/${id}`, {
         method: 'DELETE',
         headers: getHeaders()
@@ -274,6 +369,9 @@ export const apiClient = {
     },
 
     getPricing: async () => {
+      if (USE_MOCK_API) {
+        return await mockApi.pricing.getAll();
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/pricing`, {
         headers: getHeaders()
       });
@@ -282,6 +380,10 @@ export const apiClient = {
     },
 
     createPricing: async (pricingData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { id: Date.now(), ...pricingData };
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/pricing`, {
         method: 'POST',
         headers: getHeaders(),
@@ -292,6 +394,10 @@ export const apiClient = {
     },
 
     updatePricing: async (id, pricingData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { id, ...pricingData };
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/pricing/${id}`, {
         method: 'PUT',
         headers: getHeaders(),
@@ -302,6 +408,10 @@ export const apiClient = {
     },
 
     deletePricing: async (id) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { success: true };
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/pricing/${id}`, {
         method: 'DELETE',
         headers: getHeaders()
@@ -311,6 +421,9 @@ export const apiClient = {
     },
 
     getContent: async () => {
+      if (USE_MOCK_API) {
+        return await mockApi.content.get();
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/content`, {
         headers: getHeaders()
       });
@@ -319,6 +432,10 @@ export const apiClient = {
     },
 
     updateContent: async (contentData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { success: true };
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/content`, {
         method: 'PUT',
         headers: getHeaders(),
@@ -329,6 +446,9 @@ export const apiClient = {
     },
 
     getPricingContent: async () => {
+      if (USE_MOCK_API) {
+        return await mockApi.content.get();
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/pricingContent`, {
         headers: getHeaders()
       });
@@ -337,6 +457,10 @@ export const apiClient = {
     },
 
     updatePricingContent: async (contentData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { success: true };
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/pricingContent`, {
         method: 'PUT',
         headers: getHeaders(),
@@ -347,6 +471,9 @@ export const apiClient = {
     },
 
     getUsers: async () => {
+      if (USE_MOCK_API) {
+        return await mockApi.users.getAll();
+      }
       const response = await fetch(`${API_BASE_URL}/api/admin/users`, {
         headers: getHeaders()
       });
@@ -358,6 +485,10 @@ export const apiClient = {
   // Contact form
   contact: {
     send: async (formData) => {
+      if (USE_MOCK_API) {
+        await delay(1000);
+        return { success: true, message: 'Message sent successfully' };
+      }
       const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
         headers: getHeaders(),
@@ -371,6 +502,9 @@ export const apiClient = {
   // Products endpoints
   products: {
     getAll: async (filters = {}) => {
+      if (USE_MOCK_API) {
+        return await mockApi.products.getAll(filters);
+      }
       const queryParams = new URLSearchParams(filters);
       const response = await fetch(`${API_BASE_URL}/api/products?${queryParams}`, {
         headers: getHeaders()
@@ -392,6 +526,8 @@ export const apiClient = {
   }
 };
 
+// Helper function for mock API
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 // Mock API calls (these should be within functions or conditional blocks)
 // The following lines are outside of any function and cause the parsing error.
 // They are moved into appropriate places or removed if they are redundant.
@@ -402,11 +538,9 @@ export const apiClient = {
 //   apiClient.auth.register = async (userData) => await mockApi.auth.register(userData);
 //   // ... and so on for all other mock calls
 // }
-
 // The original code had these return statements outside of any function, which is a syntax error.
 // Assuming these were intended to be part of the mock API implementation or a fallback,
 // they need to be placed within appropriate functions or removed.
 // Since the task is to fix ONLY the syntax error, and these are standalone 'return' statements,
 // they are removed as they are not part of any valid syntax structure.
-
 export default apiClient;

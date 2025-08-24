@@ -1,4 +1,4 @@
-      // Simulează trimiterea email-ului
+// Simulează trimiterea email-ului
       const emailData = {
         to: 'contact@prep-center.eu',
         from: '',
@@ -181,7 +181,7 @@ const mockProducts = [
   }
 ];
 
-const api = {
+const mockApi = {
   // Users
   users: {
     getAll: async (filters = {}) => {
@@ -382,6 +382,7 @@ const api = {
   }
 };
       
+export default mockApi;
       // Simulează trimiterea email-ului de resetare parolă
       const resetEmail = {
         to: email,
