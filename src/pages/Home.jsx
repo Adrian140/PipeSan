@@ -26,23 +26,23 @@ const Home = () => {
   const features = [
     {
       icon: <Build sx={{ fontSize: 40, color: 'primary.main' }} />,
-      title: "Calitate Premium",
-      description: "Produse de înaltă calitate pentru instalații sanitare durabile"
+      title: t('home.quality_premium'),
+      description: t('home.quality_description')
     },
     {
       icon: <Security sx={{ fontSize: 40, color: 'primary.main' }} />,
-      title: "Garanție Extinsă",
-      description: "Toate produsele beneficiază de garanție extinsă și suport tehnic"
+      title: t('home.extended_warranty'),
+      description: t('home.warranty_description')
     },
     {
       icon: <LocalShipping sx={{ fontSize: 40, color: 'primary.main' }} />,
-      title: "Livrare Rapidă",
-      description: "Livrare în toată țara cu opțiuni de transport flexibile"
+      title: t('home.fast_delivery'),
+      description: t('home.delivery_description')
     },
     {
       icon: <Star sx={{ fontSize: 40, color: 'primary.main' }} />,
-      title: "Experiență Vastă",
-      description: "Peste 15 ani de experiență în domeniul instalațiilor sanitare"
+      title: t('home.vast_experience'),
+      description: t('home.experience_description')
     }
   ];
 
@@ -137,10 +137,10 @@ const Home = () => {
       {/* Features Section */}
       <Container maxWidth="lg" sx={{ py: 8 }}>
         <Typography variant="h2" align="center" gutterBottom>
-          De Ce PipeSan?
+          {t('home.why_pipesan')}
         </Typography>
         <Typography variant="h6" align="center" sx={{ mb: 6, color: 'text.secondary' }}>
-          Avantajele care ne diferențiază pe piață
+          {t('home.advantages_subtitle')}
         </Typography>
         
         <Grid container spacing={4}>
@@ -168,10 +168,10 @@ const Home = () => {
       <Box sx={{ backgroundColor: 'grey.50', py: 8 }}>
         <Container maxWidth="lg">
           <Typography variant="h2" align="center" gutterBottom>
-            Produse Recomandate
+            {t('home.featured_products')}
           </Typography>
           <Typography variant="h6" align="center" sx={{ mb: 6, color: 'text.secondary' }}>
-            Cele mai populare produse din catalogul nostru
+            {t('home.popular_products_subtitle')}
           </Typography>
           
           <Grid container spacing={4}>

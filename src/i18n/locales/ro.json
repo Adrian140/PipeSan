@@ -76,5 +76,40 @@
     "add_product": "Adaugă Produs",
     "edit_product": "Editează Produs",
     "add_category": "Adaugă Categorie"
+  },
+  "home": {
+    "why_pipesan": "De Ce PipeSan?",
+    "advantages_subtitle": "Avantajele care ne diferențiază pe piață",
+    "featured_products": "Produse Recomandate",
+    "popular_products_subtitle": "Cele mai populare produse din catalogul nostru",
+    "quality_premium": "Calitate Premium",
+    "quality_description": "Produse de înaltă calitate pentru instalații sanitare durabile",
+    "extended_warranty": "Garanție Extinsă",
+    "warranty_description": "Toate produsele beneficiază de garanție extinsă și suport tehnic",
+    "fast_delivery": "Livrare Rapidă",
+    "delivery_description": "Livrare în toată țara cu opțiuni de transport flexibile",
+    "vast_experience": "Experiență Vastă",
+    "experience_description": "Peste 15 ani de experiență în domeniul instalațiilor sanitare"
+  },
+  "contact_info": {
+    "email_title": "Email",
+    "phone_title": "Telefon",
+    "address_title": "Adresă",
+    "schedule_title": "Program",
+    "schedule_text": "Luni - Vineri: 08:00 - 18:00",
+    "address_text": "Craiova, România",
+    "contact_information": "Informații de Contact",
+    "contact_subtitle": "Suntem aici să vă ajutăm. Contactați-ne pentru orice întrebare sau solicitare.",
+    "send_message": "Trimite-ne un Mesaj",
+    "subject": "Subiect",
+    "subject_required": "Subiectul este obligatoriu",
+    "phone_optional": "Opțional - pentru a vă putea contacta telefonic",
+    "message_success": "Mesaj trimis cu succes!",
+    "message_success_detail": "Vă mulțumim pentru mesaj. Echipa PipeSan vă va răspunde în cel mai scurt timp la adresa de email furnizată.",
+    "message_error": "Eroare la trimiterea mesajului",
+    "message_error_detail": "A apărut o problemă tehnică. Vă rugăm să încercați din nou sau să ne contactați direct la contact@pipesan.eu",
+    "message_sending": "Se trimite mesajul...",
+    "message_sending_detail": "Vă rugăm să așteptați, mesajul se procesează.",
+    "sending": "Se trimite..."
   }
 }

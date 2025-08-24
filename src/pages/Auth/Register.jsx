@@ -156,6 +156,14 @@ const Register = () => {
             Creează un cont nou pentru a accesa catalogul complet PipeSan
           </Typography>
 
+          {/* Demo Mode Info */}
+          <Alert severity="info" sx={{ mb: 3 }}>
+            <Typography variant="body2">
+              <strong>🔧 Mod Demo Activ</strong><br />
+              Poți crea un cont demo cu orice email valid. Datele nu vor fi salvate permanent.
+            </Typography>
+          </Alert>
+
           {/* Account Type Selection */}
           <Card sx={{ p: 3, mb: 4, backgroundColor: 'grey.50' }}>
             <FormControl component="fieldset">

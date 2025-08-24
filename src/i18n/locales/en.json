@@ -76,5 +76,40 @@
     "add_product": "Add Product",
     "edit_product": "Edit Product",
     "add_category": "Add Category"
+  },
+  "home": {
+    "why_pipesan": "Why PipeSan?",
+    "advantages_subtitle": "The advantages that differentiate us in the market",
+    "featured_products": "Featured Products",
+    "popular_products_subtitle": "The most popular products from our catalog",
+    "quality_premium": "Premium Quality",
+    "quality_description": "High-quality products for durable sanitary installations",
+    "extended_warranty": "Extended Warranty",
+    "warranty_description": "All products have extended warranty and technical support",
+    "fast_delivery": "Fast Delivery",
+    "delivery_description": "Delivery throughout the country with flexible transport options",
+    "vast_experience": "Vast Experience",
+    "experience_description": "Over 15 years of experience in sanitary installations"
+  },
+  "contact_info": {
+    "email_title": "Email",
+    "phone_title": "Phone",
+    "address_title": "Address",
+    "schedule_title": "Schedule",
+    "schedule_text": "Monday - Friday: 08:00 - 18:00",
+    "address_text": "Craiova, Romania",
+    "contact_information": "Contact Information",
+    "contact_subtitle": "We are here to help you. Contact us for any questions or requests.",
+    "send_message": "Send us a Message",
+    "subject": "Subject",
+    "subject_required": "Subject is required",
+    "phone_optional": "Optional - to be able to contact you by phone",
+    "message_success": "Message sent successfully!",
+    "message_success_detail": "Thank you for your message. The PipeSan team will respond to you as soon as possible at the provided email address.",
+    "message_error": "Error sending message",
+    "message_error_detail": "A technical problem occurred. Please try again or contact us directly at contact@pipesan.eu",
+    "message_sending": "Sending message...",
+    "message_sending_detail": "Please wait, the message is being processed.",
+    "sending": "Sending..."
   }
 }

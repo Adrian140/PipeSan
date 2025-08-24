@@ -28,13 +28,13 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <Email sx={{ fontSize: 30, color: 'primary.main' }} />,
-      title: "Email",
+      title: t('contact_info.email_title'),
       content: "contact@pipesan.eu",
       link: "mailto:contact@pipesan.eu"
     },
     {
       icon: <Phone sx={{ fontSize: 30, color: 'primary.main' }} />,
-      title: "Telefon",
+      title: t('contact_info.phone_title'),
       content: null, // Will be handled separately
       phones: [
         { country: "România", number: "+40 722 140 444", link: "tel:+40722140444" },
@@ -43,14 +43,14 @@ const Contact = () => {
     },
     {
       icon: <LocationOn sx={{ fontSize: 30, color: 'primary.main' }} />,
-      title: "Adresă",
-      content: "Craiova, România",
+      title: t('contact_info.address_title'),
+      content: t('contact_info.address_text'),
       link: null
     },
     {
       icon: <AccessTime sx={{ fontSize: 30, color: 'primary.main' }} />,
-      title: "Program",
-      content: "Luni - Vineri: 08:00 - 18:00",
+      title: t('contact_info.schedule_title'),
+      content: t('contact_info.schedule_text'),
       link: null
     }
   ];
@@ -61,9 +61,15 @@ const Contact = () => {
       setSubmitStatus(null);
       
       // Submit to Formspree
-      const response = await fetch('https://formspree.io/f/xandwogl', {
+      const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/xandwogl';
+      
+      console.log('Submitting to Formspree:', formspreeEndpoint);
+      console.log('Form data:', data);
+      
+      const response = await fetch(formspreeEndpoint, {
         method: 'POST',
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -73,16 +79,23 @@ const Contact = () => {
           subject: data.subject,
           message: data.message,
           _replyto: data.email,
-          _subject: `Mesaj nou de la ${data.name} - ${data.subject}`,
+          _subject: `[PipeSan Contact] ${data.subject} - de la ${data.name}`,
+          _format: 'plain'
         }),
       });
 
+      console.log('Formspree response status:', response.status);
+      console.log('Formspree response:', response);
+      
       if (response.ok) {
+        console.log('Form submitted successfully');
         setSubmitStatus('success');
         reset();
         // Reset status after 5 seconds
         setTimeout(() => setSubmitStatus(null), 5000);
       } else {
+        const errorData = await response.text();
+        console.error('Formspree error response:', errorData);
         throw new Error('Eroare la trimiterea formularului');
       }
     } catch (error) {
@@ -100,14 +113,14 @@ const Contact = () => {
         {t('contact.title')}
       </Typography>
       <Typography variant="h6" align="center" sx={{ mb: 6, color: 'text.secondary' }}>
-        Suntem aici să vă ajutăm. Contactați-ne pentru orice întrebare sau solicitare.
+        {t('contact_info.contact_subtitle')}
       </Typography>
 
       <Grid container spacing={6}>
         {/* Contact Information */}
         <Grid item xs={12} md={6}>
           <Typography variant="h5" gutterBottom sx={{ mb: 3 }}>
-            Informații de Contact
+            {t('contact_info.contact_information')}
           </Typography>
           
           <Grid container spacing={3}>
@@ -192,8 +205,8 @@ const Contact = () => {
             {submitStatus === 'success' && (
               <Alert severity="success" sx={{ mb: 3 }}>
                 <Typography variant="body1">
-                  <strong>✅ Mesaj trimis cu succes!</strong><br />
-                  Vă mulțumim pentru mesaj. Echipa PipeSan vă va răspunde în cel mai scurt timp la adresa de email furnizată.
+                  <strong>✅ {t('contact_info.message_success')}</strong><br />
+                  {t('contact_info.message_success_detail')}
                 </Typography>
               </Alert>
             )}
@@ -201,8 +214,8 @@ const Contact = () => {
             {submitStatus === 'error' && (
               <Alert severity="error" sx={{ mb: 3 }}>
                 <Typography variant="body1">
-                  <strong>❌ Eroare la trimiterea mesajului</strong><br />
-                  A apărut o problemă tehnică. Vă rugăm să încercați din nou sau să ne contactați direct la contact@pipesan.eu
+                  <strong>❌ {t('contact_info.message_error')}</strong><br />
+                  {t('contact_info.message_error_detail')}
                 </Typography>
               </Alert>
             )}
@@ -210,11 +223,12 @@ const Contact = () => {
             {isSubmitting && (
               <Alert severity="info" sx={{ mb: 3 }}>
                 <Typography variant="body1">
-                  <strong>📤 Se trimite mesajul...</strong><br />
-                  Vă rugăm să așteptați, mesajul se procesează.
+                  <strong>📤 {t('contact_info.message_sending')}</strong><br />
+                  {t('contact_info.message_sending_detail')}
                 </Typography>
               </Alert>
             )}
+              {t('contact_info.send_message')}
             <Box component="form" onSubmit={handleSubmit(onSubmit)}>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>

@@ -51,6 +51,15 @@ const Login = () => {
             Conectează-te la contul tău PipeSan
           </Typography>
           
+          {/* Demo Mode Info */}
+          <Alert severity="info" sx={{ mb: 3 }}>
+            <Typography variant="body2">
+              <strong>🔧 Mod Demo Activ</strong><br />
+              <strong>Admin:</strong> contact@pipesan.eu / Pipesan2022<br />
+              <strong>Client demo:</strong> Orice email valid / minim 6 caractere
+            </Typography>
+          </Alert>
+          
          {error && (
             <Alert severity="error" sx={{ mb: 3 }}>
               {error}

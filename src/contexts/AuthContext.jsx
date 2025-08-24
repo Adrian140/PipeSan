@@ -20,33 +20,25 @@ export const AuthProvider = ({ children }) => {
       try {
         console.log('Checking authentication...');
         
+        // Auto logout on every site entry
+        console.log('Auto logout: Clearing any existing session...');
+        setUser(null);
+        
         // Check if we're in demo mode
         const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
         if (!supabaseUrl || supabaseUrl === 'https://demo.supabase.co') {
           console.log('Demo mode: Using mock authentication');
-          setUser({
-            id: 'demo-user',
-            email: 'contact@pipesan.eu',
-            name: 'Administrator PipeSan',
-            role: 'admin',
-            account_type: 'company',
-            company_name: 'PipeSan',
-            country: 'RO',
-            phone: '+40 722 140 444'
-          });
+          // Start with no user - require manual login
+          setUser(null);
           setLoading(false);
           return;
         }
         
         const currentUser = await auth.getCurrentUser();
         console.log('Current user result:', currentUser);
-        if (currentUser?.profile) {
-          setUser(currentUser.profile);
-          console.log('User set:', currentUser.profile);
-        } else {
-          setUser(null);
-          console.log('No user found');
-        }
+        // Always start logged out
+        setUser(null);
+        console.log('Auto logout completed - user must login manually');
       } catch (error) {
         console.error('Auth check error:', error);
         setUser(null);
@@ -70,13 +62,6 @@ export const AuthProvider = ({ children }) => {
         if (email === 'contact@pipesan.eu' && password === 'Pipesan2022') {
           const mockUser = {
             id: 'admin-user',
-            email: 'contact@pipesan.eu',
-            name: 'Administrator PipeSan',
-            role: 'admin',
-            account_type: 'company',
-            company_name: 'PipeSan',
-            country: 'RO',
-            phone: '+40 722 140 444'
           };
           setUser(mockUser);
           return mockUser;
@@ -141,6 +126,7 @@ export const AuthProvider = ({ children }) => {
         role: 'customer',
         country: profileData.country || 'FR'
       });
+      setUser(null);
       
       console.log('Registration result:', result);
       const authUser = result?.user;
