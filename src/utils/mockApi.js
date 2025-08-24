@@ -1,22 +1,3 @@
-// Simulează trimiterea email-ului
-      const emailData = {
-        to: 'contact@prep-center.eu',
-        from: '',
-        subject: `New Contact Form Submission from `,
-        body: `
-          Name: 
-          Email: 
-          Company:  || 'N/A'}
-          Message: 
-        `
-      };
-      
-      console.log('Email would be sent:', emailData);
-      // return { 
-      //   success: true, 
-      //   message: 'Mesajul a fost trimis cu succes! Vă vom contacta în curând.',
-      //   emailSent: true 
-      // };
 // Mock API pentru simularea backend-ului
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -219,8 +200,8 @@ const mockApi = {
         subject: 'Bun venit la Prep Center France!',
         template: 'welcome',
         data: {
-          firstName: mockUsers.find(u => u.email === email).firstName,
-          accountType: mockUsers.find(u => u.email === email).accountType
+          firstName: mockUsers.find(u => u.email === email)?.firstName || 'User',
+          accountType: 'standard'
         }
       };
       console.log('Welcome email would be sent:', welcomeEmail);
@@ -278,7 +259,6 @@ const mockApi = {
   addresses: {
     getAll: async (userId) => {
       await delay(400);
-      // In a real app, you'd fetch addresses for a specific user
       return mockAddresses;
     },
     add: async (address) => {
@@ -307,7 +287,6 @@ const mockApi = {
   billingProfiles: {
     getAll: async (userId) => {
       await delay(400);
-      // In a real app, you'd fetch billing profiles for a specific user
       return mockBillingProfiles;
     },
     add: async (profile) => {
@@ -381,16 +360,5 @@ const mockApi = {
     }
   }
 };
-      
+
 export default mockApi;
-      // Simulează trimiterea email-ului de resetare parolă
-      const resetEmail = {
-        to: email,
-        subject: 'Resetare parolă - Prep Center France',
-        template: 'password-reset',
-        data: {
-          resetLink: `https://prep-center.eu/reset-password?token=mock-reset-token`,
-          expiresIn: '24 hours'
-        }
-      };
-      console.log('Password reset email would be sent:', resetEmail);
