@@ -1,14 +1,17 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Get environment variables
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Get environment variables - support both naming conventions
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Create Supabase client
-export const supabase = supabaseUrl && supabaseAnonKey 
+// Create Supabase client only if valid credentials are provided
+export const supabase = (supabaseUrl && supabaseAnonKey && 
+  supabaseUrl !== 'your_supabase_url_here' && 
+  supabaseAnonKey !== 'your_supabase_anon_key_here' &&
+  supabaseUrl.startsWith('https://') && 
+  supabaseUrl.includes('.supabase.co'))
   ? createClient(supabaseUrl, supabaseAnonKey)
   : null;
-
 // Auth functions
 export const auth = {
   async signUp(email, password, userData) {
@@ -23,24 +26,34 @@ export const auth = {
     });
     
     if (error) throw error;
+    
+    // Create user profile
+    if (data.user) {
+      const { error: profileError } = await supabase
+        .from('users')
+        .insert([{
+          id: data.user.id,
+          email: data.user.email,
+          ...userData
+        }]);
+      
+      if (profileError) console.error('Profile creation error:', profileError);
+    }
+    
     return data;
   },
 
   async signIn(email, password) {
     if (!supabase) {
-      // Demo mode authentication
-      if (email === 'contact@pipesan.eu' && password === 'Pipesan2022') {
-        return {
-          user: {
-            id: 'admin-user',
-            email: 'contact@pipesan.eu'
-          }
-        };
-      }
+      // Demo mode fallback
+      console.log('Demo mode: Mock authentication');
       return {
         user: {
           id: 'demo-user',
-          email: email
+          email: email,
+          user_metadata: {
+            name: email === 'contact@pipesan.eu' ? 'Administrator PipeSan' : 'Demo User'
+          }
         }
       };
     }
@@ -66,56 +79,82 @@ export const auth = {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return null;
     
-    const profile = await db.getUser(user.id);
+    // Get user profile
+    const { data: profile } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', user.id)
+      .single();
+    
     return { user, profile };
   }
 };
 
 // Database functions
 export const db = {
-  // Users
-  async getUser(userId) {
+  // Products
+  async getProducts(filters = {}) {
     if (!supabase) {
-      // Return mock admin user for demo
-      if (userId === 'admin-user') {
-        return {
-          id: 'admin-user',
-          email: 'contact@pipesan.eu',
-          name: 'Administrator PipeSan',
-          role: 'admin',
-          account_type: 'company',
-          company_name: 'PipeSan',
-          country: 'RO',
-          phone: '+40 722 140 444'
-        };
-      }
-      return {
-        id: userId,
-        email: 'demo@example.com',
-        name: 'Demo User',
-        role: 'customer',
-        account_type: 'individual',
-        country: 'FR'
-      };
+      // Return mock data for demo
+      return [
+        {
+          id: '1',
+          name: 'Racord Flexibil Premium 1/2"',
+          description: 'Racord flexibil de înaltă calitate pentru instalații sanitare',
+          bullet_points: ['Material: Inox', 'Lungime: 30cm', 'Diametru: 1/2"'],
+          price: 45.99,
+          estimated_shipping_price: 5.99,
+          category_id: 'racorduri',
+          image_url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop',
+          images: [
+            'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop',
+            'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300&h=200&fit=crop'
+          ],
+          amazon_links: {
+            FR: 'https://amazon.fr/dp/B08XYZ123',
+            DE: 'https://amazon.de/dp/B08XYZ123'
+          },
+          specifications: 'Material: Inox, Lungime: 30cm',
+          stock: 25,
+          active: true,
+          sku: 'RF-001'
+        }
+      ];
+    }
+    
+    let query = supabase
+      .from('products')
+      .select(`
+        *,
+        categories (
+          id,
+          name
+        )
+      `);
+    
+    if (filters.active !== undefined) {
+      query = query.eq('active', filters.active);
+    }
+    
+    if (filters.category_id) {
+      query = query.eq('category_id', filters.category_id);
+    }
+    
+    const { data, error } = await query.order('created_at', { ascending: false });
+    
+    if (error) throw error;
+    return data || [];
+  },
+
+  async createProduct(productData) {
+    if (!supabase) {
+      console.log('Demo mode: Product would be created:', productData);
+      return { id: Date.now().toString(), ...productData };
     }
     
     const { data, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', userId)
-      .single();
-    
-    if (error) throw error;
-    return data;
-  },
-
-  async updateUser(userId, userData) {
-    if (!supabase) return userData;
-    
-    const { data, error } = await supabase
-      .from('users')
-      .update(userData)
-      .eq('id', userId)
+      .from('products')
+      .insert([productData])
       .select()
       .single();
     
@@ -123,62 +162,104 @@ export const db = {
     return data;
   },
 
-  // Products
-  async getProducts(filters = {}) {
-    // Mock products data
-    return [
-      {
-        id: 1,
-        name: "Racord Flexibil Premium 1/2\"",
-        description: "Racord flexibil de înaltă calitate pentru instalații sanitare",
-        bullet_points: ["Material: Inox", "Lungime: 30cm", "Diametru: 1/2\""],
-        price: 45.99,
-        estimated_shipping_price: 5.99,
-        category_id: 'racorduri',
-        image_url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop",
-        amazon_links: {
-          FR: "https://amazon.fr/dp/B08XYZ123",
-          DE: "https://amazon.de/dp/B08XYZ123",
-          ES: "https://amazon.es/dp/B08XYZ123"
-        },
-        specifications: "Material: Inox, Lungime: 30cm",
-        stock: 25,
-        active: true,
-        sku: "RF-001",
-        categories: { name: "Racorduri" }
-      },
-      {
-        id: 2,
-        name: "Robinet Monocomandă Bucătărie",
-        description: "Robinet modern cu design elegant pentru bucătărie",
-        bullet_points: ["Material: Alamă cromată", "Înălțime: 35cm", "Garanție: 5 ani"],
-        price: 189.99,
-        estimated_shipping_price: 12.99,
-        category_id: 'robinete',
-        image_url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300&h=200&fit=crop",
-        amazon_links: {
-          FR: "https://amazon.fr/dp/B08ABC456",
-          DE: "https://amazon.de/dp/B08ABC456",
-          ES: "https://amazon.es/dp/B08ABC456"
-        },
-        specifications: "Material: Alamă cromată, Înălțime: 35cm",
-        stock: 12,
-        active: true,
-        sku: "RM-002",
-        categories: { name: "Robinete" }
-      }
-    ];
+  async updateProduct(id, productData) {
+    if (!supabase) {
+      console.log('Demo mode: Product would be updated:', id, productData);
+      return { id, ...productData };
+    }
+    
+    const { data, error } = await supabase
+      .from('products')
+      .update(productData)
+      .eq('id', id)
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return data;
   },
 
+  async deleteProduct(id) {
+    if (!supabase) {
+      console.log('Demo mode: Product would be deleted:', id);
+      return;
+    }
+    
+    const { error } = await supabase
+      .from('products')
+      .delete()
+      .eq('id', id);
+    
+    if (error) throw error;
+  },
+
+  // Categories
   async getCategories() {
-    return [
-      { id: 'racorduri', name: 'Racorduri', description: 'Racorduri și fitinguri', slug: 'racorduri' },
-      { id: 'robinete', name: 'Robinete', description: 'Robinete și baterii', slug: 'robinete' },
-      { id: 'accesorii', name: 'Accesorii', description: 'Accesorii diverse', slug: 'accesorii' }
-    ];
+    if (!supabase) {
+      return [
+        { id: 'racorduri', name: 'Racorduri', description: 'Racorduri și fitinguri', slug: 'racorduri' },
+        { id: 'robinete', name: 'Robinete', description: 'Robinete și baterii', slug: 'robinete' },
+        { id: 'accesorii', name: 'Accesorii', description: 'Accesorii diverse', slug: 'accesorii' }
+      ];
+    }
+    
+    const { data, error } = await supabase
+      .from('categories')
+      .select('*')
+      .order('name');
+    
+    if (error) throw error;
+    return data || [];
   },
 
-  // Cart functions
+  async createCategory(categoryData) {
+    if (!supabase) {
+      console.log('Demo mode: Category would be created:', categoryData);
+      return { id: Date.now().toString(), ...categoryData };
+    }
+    
+    const { data, error } = await supabase
+      .from('categories')
+      .insert([categoryData])
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return data;
+  },
+
+  // Users
+  async getUser(id) {
+    if (!supabase) return null;
+    
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', id)
+      .single();
+    
+    if (error) throw error;
+    return data;
+  },
+
+  async updateUser(id, userData) {
+    if (!supabase) {
+      console.log('Demo mode: User would be updated:', id, userData);
+      return userData;
+    }
+    
+    const { data, error } = await supabase
+      .from('users')
+      .update(userData)
+      .eq('id', id)
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return data;
+  },
+
+  // Cart
   async getCartItems(userId) {
     if (!supabase) return [];
     
@@ -195,28 +276,20 @@ export const db = {
   },
 
   async addToCart(userId, productId, quantity) {
-    if (!supabase) return;
+    if (!supabase) {
+      console.log('Demo mode: Item would be added to cart');
+      return;
+    }
     
     const { data, error } = await supabase
       .from('cart_items')
-      .upsert({
+      .upsert([{
         user_id: userId,
         product_id: productId,
-        quantity
+        quantity: quantity
+      }], {
+        onConflict: 'user_id,product_id'
       });
-    
-    if (error) throw error;
-    return data;
-  },
-
-  async updateCartItem(userId, productId, quantity) {
-    if (!supabase) return;
-    
-    const { data, error } = await supabase
-      .from('cart_items')
-      .update({ quantity })
-      .eq('user_id', userId)
-      .eq('product_id', productId);
     
     if (error) throw error;
     return data;
@@ -225,35 +298,48 @@ export const db = {
   async removeFromCart(userId, productId) {
     if (!supabase) return;
     
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('cart_items')
       .delete()
       .eq('user_id', userId)
       .eq('product_id', productId);
     
     if (error) throw error;
-    return data;
+  },
+
+  async updateCartItem(userId, productId, quantity) {
+    if (!supabase) return;
+    
+    const { error } = await supabase
+      .from('cart_items')
+      .update({ quantity })
+      .eq('user_id', userId)
+      .eq('product_id', productId);
+    
+    if (error) throw error;
   },
 
   async clearCart(userId) {
     if (!supabase) return;
     
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('cart_items')
       .delete()
       .eq('user_id', userId);
     
     if (error) throw error;
-    return data;
   },
 
   // Orders
   async createOrder(orderData) {
-    if (!supabase) return { id: Date.now(), order_number: orderData.order_number };
+    if (!supabase) {
+      console.log('Demo mode: Order would be created:', orderData);
+      return { id: Date.now().toString(), ...orderData };
+    }
     
     const { data, error } = await supabase
       .from('orders')
-      .insert(orderData)
+      .insert([orderData])
       .select()
       .single();
     
@@ -261,12 +347,12 @@ export const db = {
     return data;
   },
 
-  async createOrderItem(itemData) {
-    if (!supabase) return itemData;
+  async createOrderItem(orderItemData) {
+    if (!supabase) return;
     
     const { data, error } = await supabase
       .from('order_items')
-      .insert(itemData)
+      .insert([orderItemData])
       .select()
       .single();
     
@@ -274,25 +360,120 @@ export const db = {
     return data;
   },
 
-  // File upload
+  // File upload functions
   async uploadFile(bucket, fileName, file) {
-    if (!supabase) return `https://via.placeholder.com/300x200?text=${fileName}`;
+    if (!supabase) {
+      console.log('Demo mode: File would be uploaded:', fileName);
+      // In demo mode, we'll handle this in the component with FileReader
+      return { path: fileName };
+    }
     
     const { data, error } = await supabase.storage
       .from(bucket)
-      .upload(fileName, file);
+      .upload(fileName, file, {
+        cacheControl: '3600',
+        upsert: true
+      });
     
     if (error) throw error;
     return data;
   },
 
   getFileUrl(bucket, fileName) {
-    if (!supabase) return `https://via.placeholder.com/300x200?text=${fileName}`;
+    if (!supabase) {
+      // In demo mode, return the fileName as-is (will be handled by FileReader)
+      return fileName;
+    }
     
     const { data } = supabase.storage
       .from(bucket)
       .getPublicUrl(fileName);
     
     return data.publicUrl;
+  },
+
+  async deleteFile(bucket, fileName) {
+    if (!supabase) return;
+    
+    const { error } = await supabase.storage
+      .from(bucket)
+      .remove([fileName]);
+    
+    if (error) throw error;
+  },
+
+  // Product images
+  async addProductImage(productId, imageUrl, altText = '', sortOrder = 0, isPrimary = false) {
+    if (!supabase) {
+      console.log('Demo mode: Product image would be added');
+      return;
+    }
+    
+    const { data, error } = await supabase
+      .from('product_images')
+      .insert([{
+        product_id: productId,
+        image_url: imageUrl,
+        alt_text: altText,
+        sort_order: sortOrder,
+        is_primary: isPrimary
+      }])
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return data;
+  },
+
+  async getProductImages(productId) {
+    if (!supabase) return [];
+    
+    const { data, error } = await supabase
+      .from('product_images')
+      .select('*')
+      .eq('product_id', productId)
+      .order('sort_order');
+    
+    if (error) throw error;
+    return data || [];
+  },
+
+  async deleteProductImage(imageId) {
+    if (!supabase) return;
+    
+    const { error } = await supabase
+      .from('product_images')
+      .delete()
+      .eq('id', imageId);
+    
+    if (error) throw error;
   }
 };
+
+// Connection test
+export const testConnection = async () => {
+  if (!supabase) {
+    console.log('Supabase not configured - running in demo mode');
+    return false;
+  }
+  
+  try {
+    const { data, error } = await supabase
+      .from('categories')
+      .select('count(*)')
+      .limit(1);
+    
+    if (error) {
+      console.error('Supabase connection error:', error);
+      return false;
+    }
+    
+    console.log('Supabase connection successful');
+    return true;
+  } catch (error) {
+    console.error('Supabase connection test failed:', error);
+    return false;
+  }
+};
+
+export default { supabase, auth, db, testConnection };

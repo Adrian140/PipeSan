@@ -35,15 +35,16 @@ class ErrorBoundary extends React.Component {
 
 // Test if React is working
 console.log('React version:', React.version);
-console.log('Environment variables:', {
-  SUPABASE_URL: import.meta.env.VITE_SUPABASE_URL ? 'SET' : 'NOT SET',
-  SUPABASE_KEY: import.meta.env.VITE_SUPABASE_ANON_KEY ? 'SET' : 'NOT SET'
-});
-console.log('Environment variables:', {
-  SUPABASE_URL: import.meta.env.VITE_SUPABASE_URL ? 'SET' : 'NOT SET',
-  SUPABASE_KEY: import.meta.env.VITE_SUPABASE_ANON_KEY ? 'SET' : 'NOT SET'
-});
 
+// Check environment configuration
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+console.log('Environment check:', {
+  SUPABASE_URL: supabaseUrl ? (supabaseUrl.startsWith('https://') ? 'VALID' : 'INVALID FORMAT') : 'NOT SET',
+  SUPABASE_KEY: supabaseKey ? (supabaseKey.length > 50 ? 'VALID' : 'INVALID LENGTH') : 'NOT SET',
+  MODE: (!supabaseUrl || !supabaseKey) ? 'DEMO MODE' : 'PRODUCTION MODE'
+});
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary>
