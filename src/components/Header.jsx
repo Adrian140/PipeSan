@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Package } from 'lucide-react';
+import { Menu, X, Wrench } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import CartIcon from './layout/CartIcon';
+import CurrencySelector from './CurrencySelector';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from '../translations';
 
@@ -14,11 +15,12 @@ function Header() {
 
   const navigation = [
     { name: t('home'), href: '/' },
-    { name: t('services'), href: '/services-pricing' },
+    { name: t('categories'), href: '/categories' },
     { name: 'Products', href: '/products' },
-    { name: t('about'), href: '/about' },
+    { name: t('technical'), href: '/technical-specs' },
+    { name: t('b2b'), href: '/b2b' },
     { name: t('contact'), href: '/contact' },
-    { name: t('blog'), href: '/blog' }
+    { name: t('support'), href: '/support' }
   ];
   const isActive = (href) => location.pathname === href;
 
@@ -28,12 +30,12 @@ function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Logo Section - Improved spacing and typography */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center">
-              <Package className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-copper rounded-lg flex items-center justify-center">
+              <Wrench className="w-6 h-6 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-text-primary leading-tight">Prep Center</span>
-              <span className="text-sm font-medium text-primary leading-tight">France</span>
+              <span className="text-xl font-bold text-text-primary leading-tight">PipeSan</span>
+              <span className="text-sm font-medium text-primary leading-tight">Professional Parts</span>
             </div>
           </div>
 
@@ -57,6 +59,7 @@ function Header() {
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-3">
             <LanguageSwitcher />
+            <CurrencySelector />
             <CartIcon />
             {user ? (
               <div className="flex items-center space-x-3">
@@ -100,16 +103,8 @@ function Header() {
             
             {/* Action Buttons */}
             <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-gray-200">
-              <a
-                href="https://wa.me/33675116218"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-accent text-white px-4 py-2 rounded-lg font-medium hover:bg-accent-dark transition-all duration-200 shadow-sm hover:shadow-md text-sm"
-              >
-                 {t('chatWhatsApp')}
-             </a>
               <button className="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-dark transition-all duration-200 shadow-sm hover:shadow-md text-sm">
-                 {t('getQuote')}
+                 {t('requestCatalog')}
              </button>
             </div>
           </div>
@@ -117,6 +112,7 @@ function Header() {
           {/* Tablet Navigation (md screens) */}
           <div className="hidden md:flex lg:hidden items-center space-x-3">
             <LanguageSwitcher />
+            <CurrencySelector />
             <CartIcon />
             {user ? (
               <>
@@ -143,16 +139,8 @@ function Header() {
                  {t('login')}
              </Link>
             )}
-            <a
-              href="https://wa.me/33675116218"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-accent text-white px-3 py-2 rounded-lg font-medium hover:bg-accent-dark transition-colors text-sm"
-            >
-               {t('chatWhatsApp')}
-           </a>
             <button className="bg-primary text-white px-3 py-2 rounded-lg font-medium hover:bg-primary-dark transition-colors text-sm">
-               {t('getQuote')}
+               {t('requestCatalog')}
            </button>
           </div>
 
@@ -194,6 +182,7 @@ function Header() {
               <div className="pt-4 border-t border-gray-100">
                 <div className="px-4 pb-3">
                   <LanguageSwitcher />
+                  <CurrencySelector />
                 </div>
               </div>
               
@@ -257,7 +246,7 @@ function Header() {
                      {t('chatWhatsApp')}
                  </a>
                   <button className="block w-full bg-primary text-white px-4 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors">
-                     {t('getQuote')}
+                     {t('requestCatalog')}
                  </button>
                 </div>
               </div>

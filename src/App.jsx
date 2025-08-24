@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { CurrencyProvider } from './contexts/CurrencyContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
 import Header from './components/Header';
@@ -8,14 +9,15 @@ import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
 import ShoppingCart from './components/cart/ShoppingCart';
 import Home from './pages/Home';
-import ServicesPricing from './pages/ServicesPricing';
+import Categories from './pages/Categories';
+import TechnicalSpecs from './pages/TechnicalSpecs';
+import B2BSolutions from './pages/B2BSolutions';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import Checkout from './pages/Checkout';
 import OrderSuccess from './pages/OrderSuccess';
-import About from './pages/About';
 import Contact from './pages/Contact';
-import Blog from './pages/Blog';
+import Support from './pages/Support';
 import LoginForm from './components/auth/LoginForm';
 import RegisterForm from './components/auth/RegisterForm';
 import ForgotPasswordForm from './components/auth/ForgotPasswordForm';
@@ -41,14 +43,15 @@ function AppContent() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/services-pricing" element={<ServicesPricing />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/technical-specs" element={<TechnicalSpecs />} />
+          <Route path="/b2b" element={<B2BSolutions />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-success" element={<OrderSuccess />} />
-          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/support" element={<Support />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/forgot-password" element={<ForgotPasswordForm />} />
@@ -68,6 +71,7 @@ function App() {
   return (
     <AuthProvider>
        <LanguageProvider>
+        <CurrencyProvider>
         <CartProvider>
           <Router>
             <div className="min-h-screen bg-white">
@@ -75,6 +79,7 @@ function App() {
             </div>
           </Router>
         </CartProvider>
+        </CurrencyProvider>
       </LanguageProvider>
     </AuthProvider>
  );

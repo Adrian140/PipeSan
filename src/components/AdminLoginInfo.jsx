@@ -15,7 +15,7 @@ function AdminLoginInfo() {
             <User className="w-5 h-5 text-blue-600 mr-2" />
             <span className="font-medium text-blue-900">Email Admin:</span>
           </div>
-            <code className="text-blue-800 bg-blue-100 px-2 py-1 rounded">admin@prep-center.eu</code>
+            <code className="text-blue-800 bg-blue-100 px-2 py-1 rounded">admin@pipesan.eu</code>
         </div>
         
         <div className="bg-white rounded-lg p-4">

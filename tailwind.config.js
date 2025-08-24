@@ -8,19 +8,29 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: '#1F6FEB',
-          dark: '#0969DA',
-          light: '#4285F4'
+          DEFAULT: '#2563EB',
+          dark: '#1D4ED8',
+          light: '#3B82F6'
         },
         accent: {
-          DEFAULT: '#FF7A00',
-          dark: '#E85D00',
-          light: '#FF9533'
+          DEFAULT: '#DC2626',
+          dark: '#B91C1C',
+          light: '#EF4444'
         },
         text: {
           primary: '#0F172A',
           secondary: '#64748B',
           light: '#94A3B8'
+        },
+        copper: {
+          DEFAULT: '#B87333',
+          dark: '#8B4513',
+          light: '#CD853F'
+        },
+        steel: {
+          DEFAULT: '#71717A',
+          dark: '#52525B',
+          light: '#A1A1AA'
         }
       },
       borderRadius: {

@@ -5,10 +5,11 @@ export const translations = {
     flag: '🇫',
     // Navigation
     home: 'Accueil',
-    services: 'Services et Tarifs',
-    about: 'À Propos',
+    categories: 'Catégories',
+    technical: 'Spécifications',
+    b2b: 'Solutions B2B',
     contact: 'Contact',
-    blog: 'Blog',
+    support: 'Support Technique',
     login: 'Connexion',
     register: 'Inscription',
     dashboard: 'Tableau de Bord',
@@ -16,9 +17,10 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    getQuote: 'Obtenir un Devis',
-    chatWhatsApp: 'Chat WhatsApp',
-    bookZoom: 'Réserver Zoom',
+    requestCatalog: 'Demander Catalogue',
+    addToCart: 'Ajouter au Panier',
+    viewCart: 'Voir Panier',
+    checkout: 'Commander',
     readMore: 'Lire Plus',
     learnMore: 'En Savoir Plus',
     name: 'Nom',
@@ -31,27 +33,52 @@ export const translations = {
     city: 'Ville',
     postalCode: 'Code Postal',
     country: 'Pays',
+    currency: 'Devise',
     save: 'Enregistrer',
     cancel: 'Annuler',
     edit: 'Modifier',
     delete: 'Supprimer',
     add: 'Ajouter',
     
+    // Product Categories
+    valves: 'Robinets',
+    fittings: 'Raccords',
+    elbows: 'Coudes',
+    tees: 'Tés',
+    nipples: 'Mamelons',
+    reducers: 'Réductions',
+    hoses: 'Tuyaux',
+    gaskets: 'Joints',
+    tools: 'Outils',
+    accessories: 'Accessoires',
+    
+    // Technical Specs
+    nominalDiameter: 'Diamètre Nominal',
+    material: 'Matériau',
+    pressureRating: 'Pression Nominale',
+    temperatureRange: 'Plage de Température',
+    threadType: 'Type de Filetage',
+    certification: 'Certification',
+    weight: 'Poids',
+    dimensions: 'Dimensions',
+    
     // Admin Panel
     adminPanel: 'Panneau d\'Administration',
-    manageServices: 'Gérer les Services',
+    manageProducts: 'Gérer les Produits',
     managePricing: 'Gérer les Prix',
     manageContent: 'Gérer le Contenu',
     manageUsers: 'Gérer les Utilisateurs',
+    manageOrders: 'Gérer les Commandes',
+    manageInventory: 'Gérer le Stock',
     settings: 'Paramètres',
-    addService: 'Ajouter un Service',
-    editService: 'Modifier le Service',
-    deleteService: 'Supprimer le Service',
-    serviceTitle: 'Titre du Service',
-    serviceDescription: 'Description du Service',
-    serviceFeatures: 'Caractéristiques',
-    servicePrice: 'Prix',
-    serviceUnit: 'Unité',
+    addProduct: 'Ajouter un Produit',
+    editProduct: 'Modifier le Produit',
+    deleteProduct: 'Supprimer le Produit',
+    productName: 'Nom du Produit',
+    productDescription: 'Description du Produit',
+    productSpecs: 'Spécifications',
+    productPrice: 'Prix',
+    productStock: 'Stock',
     saveChanges: 'Enregistrer les Modifications',
     uploadLogo: 'Télécharger le Logo',
     companyName: 'Nom de l\'Entreprise',
@@ -60,20 +87,18 @@ export const translations = {
     maintenanceMode: 'Mode Maintenance',
     
     // Hero Section
-    heroTitle: 'Prep Center France – Traitement 24h vers Amazon FBA',
-    heroSubtitle: 'Réception, QC, étiquetage FNSKU, emballage et expédition rapide vers les centres Amazon EU.',
+    heroTitle: 'PipeSan - Pièces d\'Installation Professionnelles',
+    heroSubtitle: 'Robinets, raccords, vannes et composants de qualité professionnelle. Livraison rapide en Europe avec spécifications techniques complètes.',
     
     // Services
-    reception: 'Réception',
-    qualityControl: 'Contrôle Qualité',
-    labeling: 'Étiquetage FNSKU/EAN',
-    polybagging: 'Emballage Plastique',
-    storage: 'Stockage',
-    shipping: 'Expédition',
+    qualityGuarantee: 'Garantie Qualité',
+    technicalSupport: 'Support Technique',
+    fastDelivery: 'Livraison Rapide',
+    certifiedProducts: 'Produits Certifiés',
     
     // Contact
-    contactTitle: 'Nous Contacter',
-    contactSubtitle: 'Prêt à optimiser vos opérations FBA ? Contactez notre équipe dès aujourd\'hui.',
+    contactTitle: 'Contactez-nous',
+    contactSubtitle: 'Besoin d\'aide pour vos projets d\'installation ? Notre équipe technique est là pour vous conseiller.',
     
     // Footer
     quickLinks: 'Liens Rapides',
@@ -81,16 +106,16 @@ export const translations = {
     businessHours: 'Heures d\'Ouverture',
     
     // About
-    aboutTitle: 'Centre de Préparation Français Fiable pour les Vendeurs Européens',
-    aboutSubtitle: 'Fondé par Adrian Bucur, 4+ ans d\'expérience Amazon. Nous gérons la préparation FBA de bout en bout.',
+    aboutTitle: 'Fournisseur Européen de Pièces d\'Installation Professionnelles',
+    aboutSubtitle: 'Spécialiste en robinetterie et raccords depuis 2020. Qualité professionnelle, certifications CE et livraison rapide.',
     
     // Pricing
-    pricingTitle: 'Services et Tarifs',
-    pricingSubtitle: 'Services complets de préparation FBA avec tarification compétitive.',
+    pricingTitle: 'Produits et Prix',
+    pricingSubtitle: 'Gamme complète de pièces d\'installation avec prix compétitifs pour professionnels.',
     
     // Blog
-    blogTitle: 'Blog Préparation FBA',
-    blogSubtitle: 'Conseils d\'experts et guides pour les vendeurs Amazon FBA en Europe.',
+    blogTitle: 'Guide Technique',
+    blogSubtitle: 'Guides d\'installation, spécifications techniques et conseils d\'experts pour professionnels.',
     
     // Auth
     loginTitle: 'Connexion',
@@ -104,16 +129,19 @@ export const translations = {
     addresses: 'Adresses',
     billingProfiles: 'Profils de Facturation',
     invoices: 'Mes Factures',
+    orders: 'Mes Commandes',
+    returns: 'Retours/RMA',
     security: 'Sécurité'
   },
   
   en: {
     // Navigation
     home: 'Home',
-    services: 'Services & Pricing',
-    about: 'About',
+    categories: 'Categories',
+    technical: 'Technical Specs',
+    b2b: 'B2B Solutions',
     contact: 'Contact',
-    blog: 'Blog',
+    support: 'Technical Support',
     login: 'Login',
     register: 'Register',
     dashboard: 'Dashboard',
@@ -121,9 +149,10 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    getQuote: 'Get a Quote',
-    chatWhatsApp: 'Chat on WhatsApp',
-    bookZoom: 'Book Zoom',
+    requestCatalog: 'Request Catalog',
+    addToCart: 'Add to Cart',
+    viewCart: 'View Cart',
+    checkout: 'Checkout',
     readMore: 'Read More',
     learnMore: 'Learn More',
     name: 'Name',
@@ -136,27 +165,52 @@ export const translations = {
     city: 'City',
     postalCode: 'Postal Code',
     country: 'Country',
+    currency: 'Currency',
     save: 'Save',
     cancel: 'Cancel',
     edit: 'Edit',
     delete: 'Delete',
     add: 'Add',
     
+    // Product Categories
+    valves: 'Valves',
+    fittings: 'Fittings',
+    elbows: 'Elbows',
+    tees: 'Tees',
+    nipples: 'Nipples',
+    reducers: 'Reducers',
+    hoses: 'Hoses',
+    gaskets: 'Gaskets',
+    tools: 'Tools',
+    accessories: 'Accessories',
+    
+    // Technical Specs
+    nominalDiameter: 'Nominal Diameter',
+    material: 'Material',
+    pressureRating: 'Pressure Rating',
+    temperatureRange: 'Temperature Range',
+    threadType: 'Thread Type',
+    certification: 'Certification',
+    weight: 'Weight',
+    dimensions: 'Dimensions',
+    
     // Admin Panel
     adminPanel: 'Admin Panel',
-    manageServices: 'Manage Services',
+    manageProducts: 'Manage Products',
     managePricing: 'Manage Pricing',
     manageContent: 'Manage Content',
     manageUsers: 'Manage Users',
+    manageOrders: 'Manage Orders',
+    manageInventory: 'Manage Inventory',
     settings: 'Settings',
-    addService: 'Add Service',
-    editService: 'Edit Service',
-    deleteService: 'Delete Service',
-    serviceTitle: 'Service Title',
-    serviceDescription: 'Service Description',
-    serviceFeatures: 'Features',
-    servicePrice: 'Price',
-    serviceUnit: 'Unit',
+    addProduct: 'Add Product',
+    editProduct: 'Edit Product',
+    deleteProduct: 'Delete Product',
+    productName: 'Product Name',
+    productDescription: 'Product Description',
+    productSpecs: 'Specifications',
+    productPrice: 'Price',
+    productStock: 'Stock',
     saveChanges: 'Save Changes',
     uploadLogo: 'Upload Logo',
     companyName: 'Company Name',
@@ -165,20 +219,18 @@ export const translations = {
     maintenanceMode: 'Maintenance Mode',
     
     // Hero Section
-    heroTitle: 'Prep Center France – 24h Turnaround to Amazon FBA',
-    heroSubtitle: 'Reception, QC, FNSKU labeling, polybagging, storage & fast shipping to EU Amazon FCs.',
+    heroTitle: 'PipeSan - Professional Plumbing Parts',
+    heroSubtitle: 'Valves, fittings, connectors and professional installation components. Fast EU delivery with complete technical specifications.',
     
     // Services
-    reception: 'Reception',
-    qualityControl: 'Quality Control',
-    labeling: 'FNSKU/EAN Labeling',
-    polybagging: 'Polybagging',
-    storage: 'Storage',
-    shipping: 'Shipping',
+    qualityGuarantee: 'Quality Guarantee',
+    technicalSupport: 'Technical Support',
+    fastDelivery: 'Fast Delivery',
+    certifiedProducts: 'Certified Products',
     
     // Contact
     contactTitle: 'Get In Touch',
-    contactSubtitle: 'Ready to streamline your FBA operations? Contact our team today for a personalized consultation.',
+    contactSubtitle: 'Need help with your installation projects? Our technical team is here to advise you.',
     
     // Footer
     quickLinks: 'Quick Links',
@@ -186,16 +238,16 @@ export const translations = {
     businessHours: 'Business Hours',
     
     // About
-    aboutTitle: 'Reliable French Prep Center for European Sellers',
-    aboutSubtitle: 'Founded by Adrian Bucur, 4+ years Amazon experience. We handle end-to-end FBA prep.',
+    aboutTitle: 'European Professional Installation Parts Supplier',
+    aboutSubtitle: 'Specialist in valves and fittings since 2020. Professional quality, CE certifications and fast delivery.',
     
     // Pricing
-    pricingTitle: 'Services & Pricing',
-    pricingSubtitle: 'Complete FBA prep services with competitive pricing.',
+    pricingTitle: 'Products & Pricing',
+    pricingSubtitle: 'Complete range of installation parts with competitive pricing for professionals.',
     
     // Blog
-    blogTitle: 'FBA Prep Blog',
-    blogSubtitle: 'Expert insights, tips, and guides for Amazon FBA sellers in Europe.',
+    blogTitle: 'Technical Guide',
+    blogSubtitle: 'Installation guides, technical specifications and expert advice for professionals.',
     
     // Auth
     loginTitle: 'Login',
@@ -209,16 +261,19 @@ export const translations = {
     addresses: 'Addresses',
     billingProfiles: 'Billing Profiles',
     invoices: 'My Invoices',
+    orders: 'My Orders',
+    returns: 'Returns/RMA',
     security: 'Security'
   },
   
   de: {
     // Navigation
     home: 'Startseite',
-    services: 'Services & Preise',
-    about: 'Über Uns',
+    categories: 'Kategorien',
+    technical: 'Technische Daten',
+    b2b: 'B2B Lösungen',
     contact: 'Kontakt',
-    blog: 'Blog',
+    support: 'Technischer Support',
     login: 'Anmelden',
     register: 'Registrieren',
     dashboard: 'Dashboard',
@@ -226,9 +281,10 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    getQuote: 'Angebot Erhalten',
-    chatWhatsApp: 'WhatsApp Chat',
-    bookZoom: 'Zoom Buchen',
+    requestCatalog: 'Katalog Anfordern',
+    addToCart: 'In den Warenkorb',
+    viewCart: 'Warenkorb Anzeigen',
+    checkout: 'Zur Kasse',
     readMore: 'Mehr Lesen',
     learnMore: 'Mehr Erfahren',
     name: 'Name',
@@ -241,27 +297,52 @@ export const translations = {
     city: 'Stadt',
     postalCode: 'Postleitzahl',
     country: 'Land',
+    currency: 'Währung',
     save: 'Speichern',
     cancel: 'Abbrechen',
     edit: 'Bearbeiten',
     delete: 'Löschen',
     add: 'Hinzufügen',
     
+    // Product Categories
+    valves: 'Ventile',
+    fittings: 'Fittings',
+    elbows: 'Bögen',
+    tees: 'T-Stücke',
+    nipples: 'Nippel',
+    reducers: 'Reduzierstücke',
+    hoses: 'Schläuche',
+    gaskets: 'Dichtungen',
+    tools: 'Werkzeuge',
+    accessories: 'Zubehör',
+    
+    // Technical Specs
+    nominalDiameter: 'Nenndurchmesser',
+    material: 'Material',
+    pressureRating: 'Druckstufe',
+    temperatureRange: 'Temperaturbereich',
+    threadType: 'Gewindeart',
+    certification: 'Zertifizierung',
+    weight: 'Gewicht',
+    dimensions: 'Abmessungen',
+    
     // Admin Panel
     adminPanel: 'Admin-Panel',
-    manageServices: 'Services Verwalten',
+    manageProducts: 'Produkte Verwalten',
     managePricing: 'Preise Verwalten',
     manageContent: 'Inhalte Verwalten',
     manageUsers: 'Benutzer Verwalten',
+    manageOrders: 'Bestellungen Verwalten',
+    manageInventory: 'Lager Verwalten',
     settings: 'Einstellungen',
-    addService: 'Service Hinzufügen',
-    editService: 'Service Bearbeiten',
-    deleteService: 'Service Löschen',
-    serviceTitle: 'Service-Titel',
-    serviceDescription: 'Service-Beschreibung',
-    serviceFeatures: 'Funktionen',
-    servicePrice: 'Preis',
-    serviceUnit: 'Einheit',
+    addProduct: 'Produkt Hinzufügen',
+    editProduct: 'Produkt Bearbeiten',
+    deleteProduct: 'Produkt Löschen',
+    productName: 'Produktname',
+    productDescription: 'Produktbeschreibung',
+    productSpecs: 'Spezifikationen',
+    productPrice: 'Preis',
+    productStock: 'Lagerbestand',
     saveChanges: 'Änderungen Speichern',
     uploadLogo: 'Logo Hochladen',
     companyName: 'Firmenname',
@@ -270,20 +351,18 @@ export const translations = {
     maintenanceMode: 'Wartungsmodus',
     
     // Hero Section
-    heroTitle: 'Prep Center France – 24h Bearbeitung für Amazon FBA',
-    heroSubtitle: 'Empfang, QK, FNSKU-Etikettierung, Verpackung und schneller Versand zu EU Amazon FCs.',
+    heroTitle: 'PipeSan - Professionelle Installationsteile',
+    heroSubtitle: 'Ventile, Fittings, Anschlüsse und professionelle Installationskomponenten. Schnelle EU-Lieferung mit vollständigen technischen Spezifikationen.',
     
     // Services
-    reception: 'Empfang',
-    qualityControl: 'Qualitätskontrolle',
-    labeling: 'FNSKU/EAN Etikettierung',
-    polybagging: 'Polyverpackung',
-    storage: 'Lagerung',
-    shipping: 'Versand',
+    qualityGuarantee: 'Qualitätsgarantie',
+    technicalSupport: 'Technischer Support',
+    fastDelivery: 'Schnelle Lieferung',
+    certifiedProducts: 'Zertifizierte Produkte',
     
     // Contact
     contactTitle: 'Kontakt Aufnehmen',
-    contactSubtitle: 'Bereit, Ihre FBA-Abläufe zu optimieren? Kontaktieren Sie unser Team noch heute.',
+    contactSubtitle: 'Benötigen Sie Hilfe bei Ihren Installationsprojekten? Unser technisches Team berät Sie gerne.',
     
     // Footer
     quickLinks: 'Schnelllinks',
@@ -291,16 +370,16 @@ export const translations = {
     businessHours: 'Geschäftszeiten',
     
     // About
-    aboutTitle: 'Zuverlässiges französisches Prep Center für europäische Verkäufer',
-    aboutSubtitle: 'Gegründet von Adrian Bucur, 4+ Jahre Amazon-Erfahrung. Wir übernehmen die komplette FBA-Vorbereitung.',
+    aboutTitle: 'Europäischer Anbieter für professionelle Installationsteile',
+    aboutSubtitle: 'Spezialist für Armaturen und Fittings seit 2020. Professionelle Qualität, CE-Zertifizierungen und schnelle Lieferung.',
     
     // Pricing
-    pricingTitle: 'Services & Preise',
-    pricingSubtitle: 'Komplette FBA-Prep-Services mit wettbewerbsfähigen Preisen.',
+    pricingTitle: 'Produkte & Preise',
+    pricingSubtitle: 'Komplettes Sortiment an Installationsteilen mit wettbewerbsfähigen Preisen für Profis.',
     
     // Blog
-    blogTitle: 'FBA Prep Blog',
-    blogSubtitle: 'Experteneinblicke, Tipps und Leitfäden für Amazon FBA-Verkäufer in Europa.',
+    blogTitle: 'Technischer Leitfaden',
+    blogSubtitle: 'Installationsanleitungen, technische Spezifikationen und Expertenrat für Profis.',
     
     // Auth
     loginTitle: 'Anmelden',
@@ -314,16 +393,19 @@ export const translations = {
     addresses: 'Adressen',
     billingProfiles: 'Rechnungsprofile',
     invoices: 'Meine Rechnungen',
+    orders: 'Meine Bestellungen',
+    returns: 'Rücksendungen/RMA',
     security: 'Sicherheit'
   },
   
   nl: {
     // Navigation
     home: 'Home',
-    services: 'Services & Prijzen',
-    about: 'OverOns',
+    categories: 'Categorieën',
+    technical: 'Technische Specs',
+    b2b: 'B2B Oplossingen',
     contact: 'Contact',
-    blog: 'Blog',
+    support: 'Technische Ondersteuning',
     login: 'Inloggen',
     register: 'Registreren',
     dashboard: 'Dashboard',
@@ -331,9 +413,10 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    getQuote: 'Offerte Aanvragen',
-    chatWhatsApp: 'Chat WhatsApp',
-    bookZoom: 'Zoom Boeken',
+    requestCatalog: 'Catalogus Aanvragen',
+    addToCart: 'Toevoegen aan Winkelwagen',
+    viewCart: 'Winkelwagen Bekijken',
+    checkout: 'Afrekenen',
     readMore: 'Lees Meer',
     learnMore: 'Meer Weten',
     name: 'Naam',
@@ -346,27 +429,52 @@ export const translations = {
     city: 'Stad',
     postalCode: 'Postcode',
     country: 'Land',
+    currency: 'Valuta',
     save: 'Opslaan',
     cancel: 'Annuleren',
     edit: 'Bewerken',
     delete: 'Verwijderen',
     add: 'Toevoegen',
     
+    // Product Categories
+    valves: 'Kranen',
+    fittings: 'Koppelingen',
+    elbows: 'Bochten',
+    tees: 'T-stukken',
+    nipples: 'Nippels',
+    reducers: 'Reducties',
+    hoses: 'Slangen',
+    gaskets: 'Pakkingen',
+    tools: 'Gereedschap',
+    accessories: 'Accessoires',
+    
+    // Technical Specs
+    nominalDiameter: 'Nominale Diameter',
+    material: 'Materiaal',
+    pressureRating: 'Drukklasse',
+    temperatureRange: 'Temperatuurbereik',
+    threadType: 'Schroefdraadtype',
+    certification: 'Certificering',
+    weight: 'Gewicht',
+    dimensions: 'Afmetingen',
+    
     // Admin Panel
     adminPanel: 'Beheerpaneel',
-    manageServices: 'Services Beheren',
+    manageProducts: 'Producten Beheren',
     managePricing: 'Prijzen Beheren',
     manageContent: 'Inhoud Beheren',
     manageUsers: 'Gebruikers Beheren',
+    manageOrders: 'Bestellingen Beheren',
+    manageInventory: 'Voorraad Beheren',
     settings: 'Instellingen',
-    addService: 'Service Toevoegen',
-    editService: 'Service Bewerken',
-    deleteService: 'Service Verwijderen',
-    serviceTitle: 'Service Titel',
-    serviceDescription: 'Service Beschrijving',
-    serviceFeatures: 'Functies',
-    servicePrice: 'Prijs',
-    serviceUnit: 'Eenheid',
+    addProduct: 'Product Toevoegen',
+    editProduct: 'Product Bewerken',
+    deleteProduct: 'Product Verwijderen',
+    productName: 'Productnaam',
+    productDescription: 'Productbeschrijving',
+    productSpecs: 'Specificaties',
+    productPrice: 'Prijs',
+    productStock: 'Voorraad',
     saveChanges: 'Wijzigingen Opslaan',
     uploadLogo: 'Logo Uploaden',
     companyName: 'Bedrijfsnaam',
@@ -375,20 +483,18 @@ export const translations = {
     maintenanceMode: 'Onderhoudsmodus',
     
     // Hero Section
-    heroTitle: 'Prep Center France – 24u Doorlooptijd naar Amazon FBA',
-    heroSubtitle: 'Ontvangst, QC, FNSKU labeling, verpakking en snelle verzending naar EU Amazon FCs.',
+    heroTitle: 'PipeSan - Professionele Installatieonderdelen',
+    heroSubtitle: 'Kranen, koppelingen, aansluitingen en professionele installatiecomponenten. Snelle EU-levering met volledige technische specificaties.',
     
     // Services
-    reception: 'Ontvangst',
-    qualityControl: 'Kwaliteitscontrole',
-    labeling: 'FNSKU/EAN Labeling',
-    polybagging: 'Polybag Verpakking',
-    storage: 'Opslag',
-    shipping: 'Verzending',
+    qualityGuarantee: 'Kwaliteitsgarantie',
+    technicalSupport: 'Technische Ondersteuning',
+    fastDelivery: 'Snelle Levering',
+    certifiedProducts: 'Gecertificeerde Producten',
     
     // Contact
     contactTitle: 'Contact Opnemen',
-    contactSubtitle: 'Klaar om uw FBA-operaties te stroomlijnen? Neem vandaag contact op met ons team.',
+    contactSubtitle: 'Hulp nodig bij uw installatieprojecten? Ons technische team adviseert u graag.',
     
     // Footer
     quickLinks: 'Snelle Links',
@@ -396,16 +502,16 @@ export const translations = {
     businessHours: 'Openingstijden',
     
     // About
-    aboutTitle: 'Betrouwbaar Frans Prep Center voor Europese Verkopers',
-    aboutSubtitle: 'Opgericht door Adrian Bucur, 4+ jaar Amazon ervaring. Wij verzorgen end-to-end FBA prep.',
+    aboutTitle: 'Europese Leverancier van Professionele Installatieonderdelen',
+    aboutSubtitle: 'Specialist in kranen en koppelingen sinds 2020. Professionele kwaliteit, CE-certificeringen en snelle levering.',
     
     // Pricing
-    pricingTitle: 'Services & Prijzen',
-    pricingSubtitle: 'Complete FBA prep services met concurrerende prijzen.',
+    pricingTitle: 'Producten & Prijzen',
+    pricingSubtitle: 'Compleet assortiment installatieonderdelen met concurrerende prijzen voor professionals.',
     
     // Blog
-    blogTitle: 'FBA Prep Blog',
-    blogSubtitle: 'Expert inzichten, tips en gidsen voor Amazon FBA verkopers in Europa.',
+    blogTitle: 'Technische Gids',
+    blogSubtitle: 'Installatiegidsen, technische specificaties en deskundig advies voor professionals.',
     
     // Auth
     loginTitle: 'Inloggen',
@@ -419,6 +525,8 @@ export const translations = {
     addresses: 'Adressen',
     billingProfiles: 'Facturatieprofielen',
     invoices: 'Mijn Facturen',
+    orders: 'Mijn Bestellingen',
+    returns: 'Retouren/RMA',
     security: 'Beveiliging'
   },
   
@@ -426,10 +534,11 @@ export const translations = {
     flag: '🇮',
     // Navigation
     home: 'Home',
-    services: 'Servicios y Precios',
-    about: 'Acerca de',
+    categories: 'Categorías',
+    technical: 'Especificaciones',
+    b2b: 'Soluciones B2B',
     contact: 'Contacto',
-    blog: 'Blog',
+    support: 'Soporte Técnico',
     login: 'Iniciar Sesión',
     register: 'Registrarse',
     dashboard: 'Panel',
@@ -437,9 +546,10 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    getQuote: 'Obtener Cotización',
-    chatWhatsApp: 'Chat WhatsApp',
-    bookZoom: 'Reservar Zoom',
+    requestCatalog: 'Solicitar Catálogo',
+    addToCart: 'Añadir al Carrito',
+    viewCart: 'Ver Carrito',
+    checkout: 'Finalizar Compra',
     readMore: 'Leer Más',
     learnMore: 'Saber Más',
     name: 'Nombre',
@@ -452,27 +562,52 @@ export const translations = {
     city: 'Ciudad',
     postalCode: 'Código Postal',
     country: 'País',
+    currency: 'Moneda',
     save: 'Guardar',
     cancel: 'Cancelar',
     edit: 'Editar',
     delete: 'Eliminar',
     add: 'Añadir',
     
+    // Product Categories
+    valves: 'Válvulas',
+    fittings: 'Racores',
+    elbows: 'Codos',
+    tees: 'Tes',
+    nipples: 'Niples',
+    reducers: 'Reducciones',
+    hoses: 'Mangueras',
+    gaskets: 'Juntas',
+    tools: 'Herramientas',
+    accessories: 'Accesorios',
+    
+    // Technical Specs
+    nominalDiameter: 'Diámetro Nominal',
+    material: 'Material',
+    pressureRating: 'Presión Nominal',
+    temperatureRange: 'Rango de Temperatura',
+    threadType: 'Tipo de Rosca',
+    certification: 'Certificación',
+    weight: 'Peso',
+    dimensions: 'Dimensiones',
+    
     // Admin Panel
     adminPanel: 'Panel de Administración',
-    manageServices: 'Gestionar Servicios',
+    manageProducts: 'Gestionar Productos',
     managePricing: 'Gestionar Precios',
     manageContent: 'Gestionar Contenido',
     manageUsers: 'Gestionar Usuarios',
+    manageOrders: 'Gestionar Pedidos',
+    manageInventory: 'Gestionar Inventario',
     settings: 'Configuración',
-    addService: 'Añadir Servicio',
-    editService: 'Editar Servicio',
-    deleteService: 'Eliminar Servicio',
-    serviceTitle: 'Título del Servicio',
-    serviceDescription: 'Descripción del Servicio',
-    serviceFeatures: 'Características',
-    servicePrice: 'Precio',
-    serviceUnit: 'Unidad',
+    addProduct: 'Añadir Producto',
+    editProduct: 'Editar Producto',
+    deleteProduct: 'Eliminar Producto',
+    productName: 'Nombre del Producto',
+    productDescription: 'Descripción del Producto',
+    productSpecs: 'Especificaciones',
+    productPrice: 'Precio',
+    productStock: 'Stock',
     saveChanges: 'Guardar Cambios',
     uploadLogo: 'Subir Logo',
     companyName: 'Nombre de la Empresa',
@@ -481,20 +616,18 @@ export const translations = {
     maintenanceMode: 'Modo Mantenimiento',
     
     // Hero Section
-    heroTitle: 'Prep Center France – Procesamiento 24h para Amazon FBA',
-    heroSubtitle: 'Recepción, CC, etiquetado FNSKU, embolsado y envío rápido a centros Amazon EU.',
+    heroTitle: 'PipeSan - Piezas de Instalación Profesionales',
+    heroSubtitle: 'Válvulas, racores, conectores y componentes de instalación profesionales. Entrega rápida en la UE con especificaciones técnicas completas.',
     
     // Services
-    reception: 'Recepción',
-    qualityControl: 'Control de Calidad',
-    labeling: 'Etiquetado FNSKU/EAN',
-    polybagging: 'Embolsado',
-    storage: 'Almacenamiento',
-    shipping: 'Envío',
+    qualityGuarantee: 'Garantía de Calidad',
+    technicalSupport: 'Soporte Técnico',
+    fastDelivery: 'Entrega Rápida',
+    certifiedProducts: 'Productos Certificados',
     
     // Contact
     contactTitle: 'Ponerse en Contacto',
-    contactSubtitle: '¿Listo para optimizar sus operaciones FBA? Contacte a nuestro equipo hoy.',
+    contactSubtitle: '¿Necesita ayuda con sus proyectos de instalación? Nuestro equipo técnico está aquí para asesorarle.',
     
     // Footer
     quickLinks: 'Enlaces Rápidos',
@@ -502,16 +635,16 @@ export const translations = {
     businessHours: 'Horario Comercial',
     
     // About
-    aboutTitle: 'Centro de Preparación Francés Confiable para Vendedores Europeos',
-    aboutSubtitle: 'Fundado por Adrian Bucur, 4+ años de experiencia en Amazon. Manejamos preparación FBA integral.',
+    aboutTitle: 'Proveedor Europeo de Piezas de Instalación Profesionales',
+    aboutSubtitle: 'Especialista en grifería y racores desde 2020. Calidad profesional, certificaciones CE y entrega rápida.',
     
     // Pricing
-    pricingTitle: 'Servicios y Precios',
-    pricingSubtitle: 'Servicios completos de preparación FBA con precios competitivos.',
+    pricingTitle: 'Productos y Precios',
+    pricingSubtitle: 'Gama completa de piezas de instalación con precios competitivos para profesionales.',
     
     // Blog
-    blogTitle: 'Blog Preparación FBA',
-    blogSubtitle: 'Perspectivas expertas, consejos y guías para vendedores Amazon FBA en Europa.',
+    blogTitle: 'Guía Técnica',
+    blogSubtitle: 'Guías de instalación, especificaciones técnicas y consejos de expertos para profesionales.',
     
     // Auth
     loginTitle: 'Iniciar Sesión',
@@ -525,16 +658,19 @@ export const translations = {
     addresses: 'Direcciones',
     billingProfiles: 'Perfiles de Facturación',
     invoices: 'Mis Facturas',
+    orders: 'Mis Pedidos',
+    returns: 'Devoluciones/RMA',
     security: 'Seguridad'
   },
   
   it: {
     // Navigation
     home: 'Home',
-    services: 'Servizi e Prezzi',
-    about: 'Chi Siamo',
+    categories: 'Categorie',
+    technical: 'Specifiche Tecniche',
+    b2b: 'Soluzioni B2B',
     contact: 'Contatto',
-    blog: 'Blog',
+    support: 'Supporto Tecnico',
     login: 'Accedi',
     register: 'Registrati',
     dashboard: 'Dashboard',
@@ -542,9 +678,10 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    getQuote: 'Richiedi Preventivo',
-    chatWhatsApp: 'Chat WhatsApp',
-    bookZoom: 'Prenota Zoom',
+    requestCatalog: 'Richiedi Catalogo',
+    addToCart: 'Aggiungi al Carrello',
+    viewCart: 'Visualizza Carrello',
+    checkout: 'Procedi all\'Ordine',
     readMore: 'Leggi di Più',
     learnMore: 'Scopri di Più',
     name: 'Nome',
@@ -557,27 +694,52 @@ export const translations = {
     city: 'Città',
     postalCode: 'Codice Postale',
     country: 'Paese',
+    currency: 'Valuta',
     save: 'Salva',
     cancel: 'Annulla',
     edit: 'Modifica',
     delete: 'Elimina',
     add: 'Aggiungi',
     
+    // Product Categories
+    valves: 'Valvole',
+    fittings: 'Raccordi',
+    elbows: 'Gomiti',
+    tees: 'Tè',
+    nipples: 'Nippli',
+    reducers: 'Riduzioni',
+    hoses: 'Tubi',
+    gaskets: 'Guarnizioni',
+    tools: 'Strumenti',
+    accessories: 'Accessori',
+    
+    // Technical Specs
+    nominalDiameter: 'Diametro Nominale',
+    material: 'Materiale',
+    pressureRating: 'Pressione Nominale',
+    temperatureRange: 'Range di Temperatura',
+    threadType: 'Tipo di Filettatura',
+    certification: 'Certificazione',
+    weight: 'Peso',
+    dimensions: 'Dimensioni',
+    
     // Admin Panel
     adminPanel: 'Pannello di Amministrazione',
-    manageServices: 'Gestisci Servizi',
+    manageProducts: 'Gestisci Prodotti',
     managePricing: 'Gestisci Prezzi',
     manageContent: 'Gestisci Contenuti',
     manageUsers: 'Gestisci Utenti',
+    manageOrders: 'Gestisci Ordini',
+    manageInventory: 'Gestisci Inventario',
     settings: 'Impostazioni',
-    addService: 'Aggiungi Servizio',
-    editService: 'Modifica Servizio',
-    deleteService: 'Elimina Servizio',
-    serviceTitle: 'Titolo Servizio',
-    serviceDescription: 'Descrizione Servizio',
-    serviceFeatures: 'Caratteristiche',
-    servicePrice: 'Prezzo',
-    serviceUnit: 'Unità',
+    addProduct: 'Aggiungi Prodotto',
+    editProduct: 'Modifica Prodotto',
+    deleteProduct: 'Elimina Prodotto',
+    productName: 'Nome Prodotto',
+    productDescription: 'Descrizione Prodotto',
+    productSpecs: 'Specifiche',
+    productPrice: 'Prezzo',
+    productStock: 'Scorte',
     saveChanges: 'Salva Modifiche',
     uploadLogo: 'Carica Logo',
     companyName: 'Nome Azienda',
@@ -586,20 +748,18 @@ export const translations = {
     maintenanceMode: 'Modalità Manutenzione',
     
     // Hero Section
-    heroTitle: 'Prep Center France – Elaborazione 24h per Amazon FBA',
-    heroSubtitle: 'Ricezione, QC, etichettatura FNSKU, imballaggio e spedizione veloce ai centri Amazon EU.',
+    heroTitle: 'PipeSan - Componenti di Installazione Professionali',
+    heroSubtitle: 'Valvole, raccordi, connettori e componenti di installazione professionali. Consegna rapida UE con specifiche tecniche complete.',
     
     // Services
-    reception: 'Ricezione',
-    qualityControl: 'Controllo Qualità',
-    labeling: 'Etichettatura FNSKU/EAN',
-    polybagging: 'Imballaggio Plastico',
-    storage: 'Stoccaggio',
-    shipping: 'Spedizione',
+    qualityGuarantee: 'Garanzia di Qualità',
+    technicalSupport: 'Supporto Tecnico',
+    fastDelivery: 'Consegna Rapida',
+    certifiedProducts: 'Prodotti Certificati',
     
     // Contact
     contactTitle: 'Mettiti in Contatto',
-    contactSubtitle: 'Pronto a ottimizzare le tue operazioni FBA? Contatta il nostro team oggi.',
+    contactSubtitle: 'Hai bisogno di aiuto per i tuoi progetti di installazione? Il nostro team tecnico è qui per consigliarti.',
     
     // Footer
     quickLinks: 'Link Rapidi',
@@ -607,16 +767,16 @@ export const translations = {
     businessHours: 'Orari di Lavoro',
     
     // About
-    aboutTitle: 'Centro di Preparazione Francese Affidabile per Venditori Europei',
-    aboutSubtitle: 'Fondato da Adrian Bucur, 4+ anni di esperienza Amazon. Gestiamo preparazione FBA completa.',
+    aboutTitle: 'Fornitore Europeo di Componenti di Installazione Professionali',
+    aboutSubtitle: 'Specialista in rubinetteria e raccordi dal 2020. Qualità professionale, certificazioni CE e consegna rapida.',
     
     // Pricing
-    pricingTitle: 'Servizi e Prezzi',
-    pricingSubtitle: 'Servizi completi di preparazione FBA con prezzi competitivi.',
+    pricingTitle: 'Prodotti e Prezzi',
+    pricingSubtitle: 'Gamma completa di componenti di installazione con prezzi competitivi per professionisti.',
     
     // Blog
-    blogTitle: 'Blog Preparazione FBA',
-    blogSubtitle: 'Approfondimenti esperti, consigli e guide per venditori Amazon FBA in Europa.',
+    blogTitle: 'Guida Tecnica',
+    blogSubtitle: 'Guide di installazione, specifiche tecniche e consigli di esperti per professionisti.',
     
     // Auth
     loginTitle: 'Accedi',
@@ -630,16 +790,19 @@ export const translations = {
     addresses: 'Indirizzi',
     billingProfiles: 'Profili di Fatturazione',
     invoices: 'Le Mie Fatture',
+    orders: 'I Miei Ordini',
+    returns: 'Resi/RMA',
     security: 'Sicurezza'
   },
   
   pl: {
     // Navigation
     home: 'Strona Główna',
-    services: 'Usługi i Ceny',
-    about: 'O Nas',
+    categories: 'Kategorie',
+    technical: 'Specyfikacje',
+    b2b: 'Rozwiązania B2B',
     contact: 'Kontakt',
-    blog: 'Blog',
+    support: 'Wsparcie Techniczne',
     login: 'Zaloguj',
     register: 'Zarejestruj',
     dashboard: 'Panel',
@@ -647,9 +810,10 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    getQuote: 'Otrzymaj Wycenę',
-    chatWhatsApp: 'Chat WhatsApp',
-    bookZoom: 'Zarezerwuj Zoom',
+    requestCatalog: 'Zamów Katalog',
+    addToCart: 'Dodaj do Koszyka',
+    viewCart: 'Zobacz Koszyk',
+    checkout: 'Złóż Zamówienie',
     readMore: 'Czytaj Więcej',
     learnMore: 'Dowiedz Się Więcej',
     name: 'Imię',
@@ -662,27 +826,52 @@ export const translations = {
     city: 'Miasto',
     postalCode: 'Kod Pocztowy',
     country: 'Kraj',
+    currency: 'Waluta',
     save: 'Zapisz',
     cancel: 'Anuluj',
     edit: 'Edytuj',
     delete: 'Usuń',
     add: 'Dodaj',
     
+    // Product Categories
+    valves: 'Zawory',
+    fittings: 'Złączki',
+    elbows: 'Kolanka',
+    tees: 'Trójniki',
+    nipples: 'Niple',
+    reducers: 'Redukcje',
+    hoses: 'Węże',
+    gaskets: 'Uszczelki',
+    tools: 'Narzędzia',
+    accessories: 'Akcesoria',
+    
+    // Technical Specs
+    nominalDiameter: 'Średnica Nominalna',
+    material: 'Materiał',
+    pressureRating: 'Ciśnienie Nominalne',
+    temperatureRange: 'Zakres Temperatur',
+    threadType: 'Typ Gwintu',
+    certification: 'Certyfikacja',
+    weight: 'Waga',
+    dimensions: 'Wymiary',
+    
     // Admin Panel
     adminPanel: 'Panel Administratora',
-    manageServices: 'Zarządzaj Usługami',
+    manageProducts: 'Zarządzaj Produktami',
     managePricing: 'Zarządzaj Cenami',
     manageContent: 'Zarządzaj Treścią',
     manageUsers: 'Zarządzaj Użytkownikami',
+    manageOrders: 'Zarządzaj Zamówieniami',
+    manageInventory: 'Zarządzaj Magazynem',
     settings: 'Ustawienia',
-    addService: 'Dodaj Usługę',
-    editService: 'Edytuj Usługę',
-    deleteService: 'Usuń Usługę',
-    serviceTitle: 'Tytuł Usługi',
-    serviceDescription: 'Opis Usługi',
-    serviceFeatures: 'Funkcje',
-    servicePrice: 'Cena',
-    serviceUnit: 'Jednostka',
+    addProduct: 'Dodaj Produkt',
+    editProduct: 'Edytuj Produkt',
+    deleteProduct: 'Usuń Produkt',
+    productName: 'Nazwa Produktu',
+    productDescription: 'Opis Produktu',
+    productSpecs: 'Specyfikacje',
+    productPrice: 'Cena',
+    productStock: 'Stan Magazynowy',
     saveChanges: 'Zapisz Zmiany',
     uploadLogo: 'Prześlij Logo',
     companyName: 'Nazwa Firmy',
@@ -691,20 +880,18 @@ export const translations = {
     maintenanceMode: 'Tryb Konserwacji',
     
     // Hero Section
-    heroTitle: 'Prep Center France – 24h Realizacja do Amazon FBA',
-    heroSubtitle: 'Odbiór, kontrola jakości, etykietowanie FNSKU, pakowanie i szybka wysyłka do centrów Amazon EU.',
+    heroTitle: 'PipeSan - Profesjonalne Części Instalacyjne',
+    heroSubtitle: 'Zawory, złączki, łączniki i profesjonalne komponenty instalacyjne. Szybka dostawa UE z kompletnymi specyfikacjami technicznymi.',
     
     // Services
-    reception: 'Odbiór',
-    qualityControl: 'Kontrola Jakości',
-    labeling: 'Etykietowanie FNSKU/EAN',
-    polybagging: 'Pakowanie w Folie',
-    storage: 'Magazynowanie',
-    shipping: 'Wysyłka',
+    qualityGuarantee: 'Gwarancja Jakości',
+    technicalSupport: 'Wsparcie Techniczne',
+    fastDelivery: 'Szybka Dostawa',
+    certifiedProducts: 'Certyfikowane Produkty',
     
     // Contact
     contactTitle: 'Skontaktuj Się',
-    contactSubtitle: 'Gotowy na usprawnienie operacji FBA? Skontaktuj się z naszym zespołem już dziś.',
+    contactSubtitle: 'Potrzebujesz pomocy z projektami instalacyjnymi? Nasz zespół techniczny jest tutaj, aby Ci doradzić.',
     
     // Footer
     quickLinks: 'Szybkie Linki',
@@ -712,16 +899,16 @@ export const translations = {
     businessHours: 'Godziny Pracy',
     
     // About
-    aboutTitle: 'Niezawodne Francuskie Centrum Prep dla Europejskich Sprzedawców',
-    aboutSubtitle: 'Założone przez Adrian Bucur, 4+ lat doświadczenia Amazon. Obsługujemy kompleksową preparację FBA.',
+    aboutTitle: 'Europejski Dostawca Profesjonalnych Części Instalacyjnych',
+    aboutSubtitle: 'Specjalista w dziedzinie armatury i złączek od 2020 roku. Profesjonalna jakość, certyfikaty CE i szybka dostawa.',
     
     // Pricing
-    pricingTitle: 'Usługi i Ceny',
-    pricingSubtitle: 'Kompleksowe usługi preparacji FBA w konkurencyjnych cenach.',
+    pricingTitle: 'Produkty i Ceny',
+    pricingSubtitle: 'Kompletny asortyment części instalacyjnych w konkurencyjnych cenach dla profesjonalistów.',
     
     // Blog
-    blogTitle: 'Blog Preparacji FBA',
-    blogSubtitle: 'Eksperckie spostrzeżenia, wskazówki i przewodniki dla sprzedawców Amazon FBA w Europie.',
+    blogTitle: 'Przewodnik Techniczny',
+    blogSubtitle: 'Przewodniki instalacyjne, specyfikacje techniczne i porady ekspertów dla profesjonalistów.',
     
     // Auth
     loginTitle: 'Zaloguj Się',
@@ -735,16 +922,19 @@ export const translations = {
     addresses: 'Adresy',
     billingProfiles: 'Profile Rozliczeniowe',
     invoices: 'Moje Faktury',
+    orders: 'Moje Zamówienia',
+    returns: 'Zwroty/RMA',
     security: 'Bezpieczeństwo'
   },
   
   ro: {
     // Navigation
     home: 'Acasă',
-    services: 'Servicii și Prețuri',
-    about: 'Despre Noi',
+    categories: 'Categorii',
+    technical: 'Specificații Tehnice',
+    b2b: 'Soluții B2B',
     contact: 'Contact',
-    blog: 'Blog',
+    support: 'Suport Tehnic',
     login: 'Autentificare',
     register: 'Înregistrare',
     dashboard: 'Contul Meu',
@@ -752,9 +942,10 @@ export const translations = {
     admin: 'Admin',
     
     // Common
-    getQuote: 'Obține Ofertă',
-    chatWhatsApp: 'Chat WhatsApp',
-    bookZoom: 'Rezervă Zoom',
+    requestCatalog: 'Solicită Catalog',
+    addToCart: 'Adaugă în Coș',
+    viewCart: 'Vezi Coșul',
+    checkout: 'Finalizează Comanda',
     readMore: 'Citește Mai Mult',
     learnMore: 'Află Mai Mult',
     name: 'Nume',
@@ -767,49 +958,72 @@ export const translations = {
     city: 'Oraș',
     postalCode: 'Cod Poștal',
     country: 'Țară',
+    currency: 'Monedă',
     save: 'Salvează',
     cancel: 'Anulează',
     edit: 'Editează',
     delete: 'Șterge',
     add: 'Adaugă',
     
+    // Product Categories
+    valves: 'Robinete',
+    fittings: 'Racorduri',
+    elbows: 'Coturi',
+    tees: 'Teuri',
+    nipples: 'Niple',
+    reducers: 'Reducții',
+    hoses: 'Furtunuri',
+    gaskets: 'Garnituri',
+    tools: 'Unelte',
+    accessories: 'Accesorii',
+    
+    // Technical Specs
+    nominalDiameter: 'Diametru Nominal',
+    material: 'Material',
+    pressureRating: 'Presiune Nominală',
+    temperatureRange: 'Interval Temperatură',
+    threadType: 'Tip Filet',
+    certification: 'Certificare',
+    weight: 'Greutate',
+    dimensions: 'Dimensiuni',
+    
     // Admin Panel
     adminPanel: 'Panou de Administrare',
-    manageServices: 'Gestionează Serviciile',
+    manageProducts: 'Gestionează Produsele',
     managePricing: 'Gestionează Prețurile',
     manageContent: 'Gestionează Conținutul',
     manageUsers: 'Gestionează Utilizatorii',
+    manageOrders: 'Gestionează Comenzile',
+    manageInventory: 'Gestionează Stocul',
     settings: 'Setări',
-    addService: 'Adaugă Serviciu',
-    editService: 'Editează Serviciul',
-    deleteService: 'Șterge Serviciul',
-    serviceTitle: 'Titlul Serviciului',
-    serviceDescription: 'Descrierea Serviciului',
-    serviceFeatures: 'Caracteristici',
-    servicePrice: 'Preț',
-    serviceUnit: 'Unitate',
+    addProduct: 'Adaugă Produs',
+    editProduct: 'Editează Produsul',
+    deleteProduct: 'Șterge Produsul',
+    productName: 'Numele Produsului',
+    productDescription: 'Descrierea Produsului',
+    productSpecs: 'Specificații',
+    productPrice: 'Preț',
+    productStock: 'Stoc',
     saveChanges: 'Salvează Modificările',
     uploadLogo: 'Încarcă Logo',
     companyName: 'Numele Companiei',
     defaultLanguage: 'Limba Implicită',
-    currency: 'Moneda',
+    currency: 'Monedă',
     maintenanceMode: 'Modul de Întreținere',
     
     // Hero Section
-    heroTitle: 'Prep Center France – Procesare 24h către Amazon FBA',
-    heroSubtitle: 'Recepție, control calitate, etichetare FNSKU, ambalare și expediere rapidă către centrele Amazon EU.',
+    heroTitle: 'PipeSan - Piese de Instalații Profesionale',
+    heroSubtitle: 'Robinete, racorduri, conectori și componente de instalații profesionale. Livrare rapidă UE cu specificații tehnice complete.',
     
     // Services
-    reception: 'Recepție',
-    qualityControl: 'Control Calitate',
-    labeling: 'Etichetare FNSKU/EAN',
-    polybagging: 'Ambalare în Folie',
-    storage: 'Depozitare',
-    shipping: 'Expediere',
+    qualityGuarantee: 'Garanție Calitate',
+    technicalSupport: 'Suport Tehnic',
+    fastDelivery: 'Livrare Rapidă',
+    certifiedProducts: 'Produse Certificate',
     
     // Contact
     contactTitle: 'Ia Legătura',
-    contactSubtitle: 'Gata să îți optimizezi operațiunile FBA? Contactează echipa noastră astăzi.',
+    contactSubtitle: 'Ai nevoie de ajutor cu proiectele de instalații? Echipa noastră tehnică este aici să te consilieze.',
     
     // Footer
     quickLinks: 'Link-uri Rapide',
@@ -817,16 +1031,16 @@ export const translations = {
     businessHours: 'Program de Lucru',
     
     // About
-    aboutTitle: 'Centru de Preparare Francez de Încredere pentru Vânzătorii Europeni',
-    aboutSubtitle: 'Fondat de Adrian Bucur, 4+ ani experiență Amazon. Gestionăm prepararea FBA de la început la sfârșit.',
+    aboutTitle: 'Furnizor European de Piese de Instalații Profesionale',
+    aboutSubtitle: 'Specialist în robinete și racorduri din 2020. Calitate profesională, certificări CE și livrare rapidă.',
     
     // Pricing
-    pricingTitle: 'Servicii și Prețuri',
-    pricingSubtitle: 'Servicii complete de preparare FBA cu prețuri competitive.',
+    pricingTitle: 'Produse și Prețuri',
+    pricingSubtitle: 'Gamă completă de piese de instalații cu prețuri competitive pentru profesioniști.',
     
     // Blog
-    blogTitle: 'Blog Preparare FBA',
-    blogSubtitle: 'Perspective experte, sfaturi și ghiduri pentru vânzătorii Amazon FBA din Europa.',
+    blogTitle: 'Ghid Tehnic',
+    blogSubtitle: 'Ghiduri de instalare, specificații tehnice și sfaturi de experți pentru profesioniști.',
     
     // Auth
     loginTitle: 'Autentificare',
@@ -840,6 +1054,8 @@ export const translations = {
     addresses: 'Adrese',
     billingProfiles: 'Profile de Facturare',
     invoices: 'Facturile Mele',
+    orders: 'Comenzile Mele',
+    returns: 'Returnări/RMA',
     security: 'Securitate'
   }
 };

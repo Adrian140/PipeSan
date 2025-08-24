@@ -5,12 +5,12 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 const mockUsers = [
   {
     id: 1,
-    email: 'admin@prep-center.eu',
+    email: 'admin@pipesan.eu',
     password: 'admin123',
     firstName: 'Admin',
     lastName: 'User',
     role: 'admin',
-    phone: '+33675116218',
+    phone: '+33123456789',
     country: 'FR',
     language: 'fr',
     twoFactorEnabled: false
@@ -33,21 +33,21 @@ const mockUsers = [
 const mockServices = [
   {
     id: 1,
-    title: 'FNSKU Labeling',
-    description: 'Professional FNSKU labeling with polybagging included',
-    features: ['FNSKU application', 'Polybagging', 'Quality control'],
-    price: '€0.50',
-    unit: 'per unit',
-    category: 'fba'
+    title: 'Ball Valves',
+    description: 'Professional brass ball valves with full bore design',
+    features: ['CW617N brass construction', 'Full bore design', 'Lever handle'],
+    price: '€25.99',
+    unit: 'per piece',
+    category: 'valves'
   },
   {
     id: 2,
-    title: 'Quality Control',
-    description: 'Visual inspection and quality verification',
-    features: ['Visual inspection', 'Damage check', 'Compliance verification'],
-    price: '€0.30',
-    unit: 'per unit',
-    category: 'fba'
+    title: 'Pipe Fittings',
+    description: 'High-quality brass pipe fittings for professional installations',
+    features: ['BSP/NPT threads', 'Pressure tested', 'CE certified'],
+    price: '€12.50',
+    unit: 'per piece',
+    category: 'fittings'
   }
 ];
 
@@ -55,34 +55,34 @@ const mockServices = [
 const mockPricing = [
   {
     id: 1,
-    service: 'FNSKU Labeling',
-    price: '€0.50',
-    unit: 'per unit',
-    category: 'fba'
+    service: 'Ball Valves DN15',
+    price: '€25.99',
+    unit: 'per piece',
+    category: 'valves'
   },
   {
     id: 2,
-    service: 'Polybagging',
-    price: '€0.25',
-    unit: 'per unit',
-    category: 'fba'
+    service: 'Brass Fittings 1/2"',
+    price: '€12.50',
+    unit: 'per piece',
+    category: 'fittings'
   },
   {
     id: 3,
-    service: 'Storage',
-    price: '€15',
-    unit: 'per pallet/month',
-    category: 'storage'
+    service: 'Pipe Elbows 90°',
+    price: '€8.75',
+    unit: 'per piece',
+    category: 'elbows'
   }
 ];
 
 // Mock content
 const mockContent = {
-  heroTitle: 'Prep Center France – 24h Turnaround to Amazon FBA',
-  heroSubtitle: 'Reception, QC, FNSKU labeling, polybagging & fast shipping to EU Amazon FCs.',
-  phone: '+33 6 75 11 62 18',
-  email: 'contact@prep-center.eu',
-  address: '35350 La Gouesnière, France'
+  heroTitle: 'PipeSan - Professional Plumbing Parts',
+  heroSubtitle: 'Valves, fittings, connectors and professional installation components. Fast EU delivery with complete technical specifications.',
+  phone: '+33 1 23 45 67 89',
+  email: 'info@pipesan.eu',
+  address: 'Zone Industrielle Nord, 69120 Vaulx-en-Velin, France'
 };
 
 // Mock addresses
@@ -95,23 +95,23 @@ let mockBillingProfiles = [];
 const mockInvoices = [
   {
     id: 1,
-    number: 'INV-2024-001',
+    number: 'PS-INV-2024-001',
     date: '2024-01-15',
     dueDate: '2024-02-15',
     amount: 125.50,
     vatAmount: 25.10,
     status: 'paid',
-    description: 'FNSKU Labeling Services - January 2024'
+    description: 'Brass Ball Valves & Fittings - January 2024'
   },
   {
     id: 2,
-    number: 'INV-2024-002',
+    number: 'PS-INV-2024-002',
     date: '2024-02-15',
     dueDate: '2024-03-15',
     amount: 210.75,
     vatAmount: 42.15,
     status: 'pending',
-    description: 'FNSKU Labeling & Storage Services - February 2024'
+    description: 'Professional Installation Kit - February 2024'
   }
 ];
 
@@ -130,6 +130,16 @@ const mockProducts = [
     inStock: true,
     badge: 'Best Seller',
     category: 'Pipe Fittings',
+    specifications: {
+      nominalDiameter: 'DN25 (1")',
+      material: 'CW617N Brass',
+      pressureRating: 'PN16 (16 bar)',
+      temperatureRange: '-20°C to +120°C',
+      threadType: 'BSP (British Standard Pipe)',
+      certification: 'CE, ACS, WRAS',
+      weight: '0.45 kg',
+      dimensions: '85 x 45 x 32 mm'
+    },
     variants: [
       { id: 1, name: 'DN25 Brass', sku: 'PF-DN25-001', price: 39.99, inStock: true },
       { id: 2, name: 'DN25 Stainless Steel', sku: 'PF-DN25-002', price: 49.99, inStock: true }
@@ -137,7 +147,7 @@ const mockProducts = [
   },
   {
     id: 2,
-    name: 'High Pressure Valve 1/2"',
+    name: 'Brass Ball Valve 1/2" BSP',
     sku: 'HPV-12-002',
     price: 89.99,
     currency: 'EUR',
@@ -145,11 +155,21 @@ const mockProducts = [
     rating: 4.8,
     reviewCount: 45,
     inStock: true,
-    category: 'Valves'
+    category: 'Valves',
+    specifications: {
+      nominalDiameter: 'DN15 (1/2")',
+      material: 'CW617N Brass',
+      pressureRating: 'PN25 (25 bar)',
+      temperatureRange: '-10°C to +150°C',
+      threadType: 'BSP Female',
+      certification: 'CE, WRAS',
+      weight: '0.28 kg',
+      dimensions: '65 x 35 x 28 mm'
+    }
   },
   {
     id: 3,
-    name: 'Copper Pipe Connector Set',
+    name: 'Stainless Steel Elbow 90° DN20',
     sku: 'CPC-SET-003',
     price: 129.99,
     salePrice: 99.99,
@@ -158,7 +178,83 @@ const mockProducts = [
     rating: 4.2,
     reviewCount: 18,
     inStock: false,
-    category: 'Connectors'
+    category: 'Elbows',
+    specifications: {
+      nominalDiameter: 'DN20 (3/4")',
+      material: '316L Stainless Steel',
+      pressureRating: 'PN40 (40 bar)',
+      temperatureRange: '-40°C to +200°C',
+      threadType: 'BSP Male/Female',
+      certification: 'CE, FDA',
+      weight: '0.35 kg',
+      dimensions: '45 x 45 x 32 mm'
+    }
+  },
+  {
+    id: 4,
+    name: 'Brass Tee Fitting DN32',
+    sku: 'BTF-32-004',
+    price: 67.50,
+    currency: 'EUR',
+    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400',
+    rating: 4.6,
+    reviewCount: 31,
+    inStock: true,
+    category: 'Tees',
+    specifications: {
+      nominalDiameter: 'DN32 (1 1/4")',
+      material: 'CW617N Brass',
+      pressureRating: 'PN16 (16 bar)',
+      temperatureRange: '-20°C to +120°C',
+      threadType: 'BSP Female',
+      certification: 'CE, ACS',
+      weight: '0.68 kg',
+      dimensions: '95 x 65 x 45 mm'
+    }
+  },
+  {
+    id: 5,
+    name: 'Flexible Hose 1/2" x 500mm',
+    sku: 'FH-12-500',
+    price: 34.99,
+    currency: 'EUR',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400',
+    rating: 4.3,
+    reviewCount: 28,
+    inStock: true,
+    category: 'Hoses',
+    specifications: {
+      nominalDiameter: 'DN15 (1/2")',
+      material: 'EPDM + Stainless Steel Braid',
+      pressureRating: 'PN10 (10 bar)',
+      temperatureRange: '-30°C to +110°C',
+      threadType: 'BSP Male/Female',
+      certification: 'CE, ACS, KTW',
+      weight: '0.25 kg',
+      dimensions: '500mm length'
+    }
+  },
+  {
+    id: 6,
+    name: 'Pipe Gasket Set NBR',
+    sku: 'PGS-NBR-006',
+    price: 15.99,
+    currency: 'EUR',
+    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400',
+    rating: 4.4,
+    reviewCount: 52,
+    inStock: true,
+    category: 'Gaskets',
+    specifications: {
+      nominalDiameter: 'DN15-DN50 Set',
+      material: 'NBR (Nitrile Rubber)',
+      pressureRating: 'PN16 (16 bar)',
+      temperatureRange: '-30°C to +100°C',
+      threadType: 'Universal',
+      certification: 'CE, FDA',
+      weight: '0.12 kg',
+      dimensions: 'Various sizes included'
+    }
   }
 ];
 
@@ -197,7 +293,7 @@ const mockApi = {
       // Simulează trimiterea email-ului de bun venit
       const welcomeEmail = {
         to: email,
-        subject: 'Bun venit la Prep Center France!',
+        subject: 'Bun venit la PipeSan!',
         template: 'welcome',
         data: {
           firstName: mockUsers.find(u => u.email === email)?.firstName || 'User',

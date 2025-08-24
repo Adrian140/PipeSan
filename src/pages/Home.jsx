@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, DollarSign, MapPin, Award, ArrowRight, CheckCircle, Star, Truck } from 'lucide-react';
+import { Wrench, Shield, Truck, Award, ArrowRight, CheckCircle, Star, Settings } from 'lucide-react';
 import { useTranslation } from '../translations';
 
 function Home() {
@@ -8,66 +8,64 @@ function Home() {
 
   const whyChooseUs = [
     {
-      icon: Clock,
+      icon: Wrench,
       title: t('heroTitle'),
       description: t('heroSubtitle')
     },
     {
-      icon: DollarSign,
-      title: "Transparent FBA prep pricing",
-      description: "No hidden fees, competitive rates for all Amazon FBA prep services in France"
+      icon: Shield,
+      title: "Professional Quality Guarantee",
+      description: "CE certified products with technical specifications and quality assurance for professional installations"
     },
     {
-      icon: MapPin,
-      title: "Strategic prep center location in France",
-      description: "Optimal position for EU-wide Amazon fulfillment center distribution and fast shipping"
+      icon: Truck,
+      title: "Fast European Delivery",
+      description: "Strategic warehouse locations across Europe for rapid delivery of plumbing parts and components"
     },
     {
       icon: Award,
-      title: "Amazon FBA-ready packaging",
-      description: "Expert knowledge of European Amazon FBA requirements and compliance standards"
+      title: "Technical Support & Expertise",
+      description: "Professional technical support team with expertise in plumbing installations and component specifications"
     }
   ];
 
-  const timeline = [
-    { step: t('reception'), description: "Your products arrive at our facility" },
-    { step: t('qualityControl'), description: "Quality control and inspection process" },
-    { step: t('labeling'), description: "FNSKU/EAN labeling application" },
-    { step: t('polybagging'), description: "Polybagging and protective packaging" },
-    { step: t('shipping'), description: "Fast dispatch to Amazon FCs" },
-    { step: "Confirm", description: "Delivery confirmation and reporting" }
+  const orderProcess = [
+    { step: "Browse", description: "Browse our extensive catalog of professional parts" },
+    { step: "Select", description: "Choose products with detailed technical specifications" },
+    { step: "Configure", description: "Select variants, quantities and delivery options" },
+    { step: "Order", description: "Secure checkout with multiple payment methods" },
+    { step: "Ship", description: "Fast processing and dispatch to your location" },
+    { step: "Install", description: "Professional installation with our quality parts" }
   ];
-
   const testimonials = [
     {
-      name: "Marcus Weber",
-      company: "Weber Electronics",
-      text: "Prep Center France transformed our FBA operations. 24h turnaround is incredible!",
-      rating: 5
+       name: "Jean-Pierre Dubois",
+      company: "Dubois Plomberie",
+      text: "PipeSan provides excellent quality brass fittings with fast delivery. Perfect for our professional installations!",
+     rating: 5
     },
     {
-      name: "Sophie Martin",
-      company: "Martin Home & Garden",
-      text: "Professional service, transparent pricing. Our go-to prep center in Europe.",
-      rating: 5
+       name: "Marco Rossi",
+      company: "Rossi Impianti",
+      text: "Outstanding technical support and product quality. The specifications are always accurate and complete.",
+     rating: 5
     },
     {
-      name: "Alessandro Rossi",
-      company: "Rossi Fashion",
-      text: "Excellent quality control and fast processing. Highly recommended for EU sellers.",
-      rating: 5
+       name: "Klaus Mueller",
+      company: "Mueller Sanitär GmbH",
+      text: "Reliable supplier with CE certified products. Great for both B2B and professional installations.",
+     rating: 5
     }
   ];
 
-  const carriers = [
-    { name: "Colissimo", logo: "📮" },
-    { name: "UPS", logo: "🚚" },
-    { name: "GLS", logo: "📦" },
-    { name: "Chronopost", logo: "⚡" },
-    { name: "Mondial Relay", logo: "🌍" },
-    { name: "Colis Privé", logo: "📫" }
+   const certifications = [
+    { name: "CE Marking", logo: "🏆" },
+    { name: "ISO 9001", logo: "📋" },
+    { name: "WRAS Approved", logo: "💧" },
+    { name: "ACS Certified", logo: "✅" },
+    { name: "KTW Approved", logo: "🔬" },
+    { name: "FDA Compliant", logo: "🛡️" }
   ];
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -82,17 +80,12 @@ function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button className="w-full sm:w-auto bg-primary text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-dark transition-all duration-200 shadow-lg hover:shadow-xl">
-                {t('getQuote')}
+                 {t('requestCatalog')}
+             </button>
+               <button className="w-full sm:w-auto bg-accent text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-accent-dark transition-all duration-200 shadow-lg hover:shadow-xl">
+                Browse Products
               </button>
-              <a
-                href="https://wa.me/33675116218"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-accent text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-accent-dark transition-all duration-200 shadow-lg hover:shadow-xl text-center"
-              >
-                {t('chatWhatsApp')}
-              </a>
-            </div>
+           </div>
           </div>
         </div>
       </section>
@@ -102,11 +95,11 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              Why Choose Prep Center France for Amazon FBA Prep
-            </h2>
+               Why Choose PipeSan for Professional Plumbing Parts
+           </h2>
             <p className="text-lg sm:text-xl text-text-secondary">
-              Professional Amazon FBA prep services in France designed for European sellers
-            </p>
+               Professional plumbing components and installation parts designed for European professionals
+           </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {whyChooseUs.map((item, index) => (
@@ -129,15 +122,15 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              How It Works
-            </h2>
+               How to Order
+           </h2>
             <p className="text-lg sm:text-xl text-text-secondary">
-              Simple 6-step process from arrival to Amazon FC
-            </p>
+               Simple 6-step process from selection to installation
+           </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6">
-            {timeline.map((item, index) => (
-              <div key={index} className="text-center">
+           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6">
+            {orderProcess.map((item, index) => (
+             <div key={index} className="text-center">
                 <div className="bg-primary text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-sm sm:text-base">
                   {index + 1}
                 </div>
@@ -147,8 +140,8 @@ function Home() {
                 <p className="text-xs sm:text-sm text-text-secondary">
                   {item.description}
                 </p>
-                {index < timeline.length - 1 && (
-                  <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 text-text-light mx-auto mt-4 hidden lg:block" />
+                 {index < orderProcess.length - 1 && (
+                 <ArrowRight className="w-4 h-4 sm:w-6 sm:h-6 text-text-light mx-auto mt-4 hidden lg:block" />
                 )}
               </div>
             ))}
@@ -161,11 +154,11 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              What Our Clients Say
-            </h2>
+               What Our Professional Clients Say
+           </h2>
             <p className="text-lg sm:text-xl text-text-secondary">
-              Trusted by global Amazon sellers
-            </p>
+               Trusted by professional installers across Europe
+           </p>
           </div>
           <div className="max-w-4xl mx-auto">
             <div className="bg-gray-50 p-6 sm:p-8 rounded-xl text-center">
@@ -206,75 +199,75 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-text-primary mb-4">
-              Trusted Shipping Partners
-            </h2>
+               Quality Certifications & Standards
+           </h2>
             <p className="text-sm sm:text-base text-text-secondary">
-              We work with leading carriers for reliable delivery
-            </p>
+               All products meet European standards and certifications
+           </p>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 lg:gap-8 items-center justify-items-center">
-            {carriers.map((carrier, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl sm:text-4xl mb-2">{carrier.logo}</div>
-                <p className="text-xs sm:text-sm font-medium text-text-secondary">{carrier.name}</p>
-              </div>
+             {certifications.map((cert, index) => (
+             <div key={index} className="text-center">
+                 <div className="text-2xl sm:text-4xl mb-2">{cert.logo}</div>
+                <p className="text-xs sm:text-sm font-medium text-text-secondary">{cert.name}</p>
+             </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Private Label Services */}
-      <section className="py-16 lg:py-20 bg-white">
+       {/* Product Categories */}
+     <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              Private Label & Multi-Platform Services
-            </h2>
+               Professional Product Categories
+           </h2>
             <p className="text-lg sm:text-xl text-text-secondary">
-              Complete fulfillment solutions for your brand across all platforms
-            </p>
+               Complete range of plumbing parts and installation components
+           </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             <div className="bg-gray-50 p-6 sm:p-8 rounded-xl">
-              <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-6">Private Label Partnership</h3>
-              <div className="space-y-4">
+               <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-6">Brass & Steel Components</h3>
+             <div className="space-y-4">
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                  <span className="text-sm sm:text-base text-text-secondary">Custom packaging and branding</span>
-                </div>
+                   <span className="text-sm sm:text-base text-text-secondary">CW617N brass ball valves and fittings</span>
+               </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                  <span className="text-sm sm:text-base text-text-secondary">Product sourcing consultation</span>
-                </div>
+                   <span className="text-sm sm:text-base text-text-secondary">316L stainless steel components</span>
+               </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                  <span className="text-sm sm:text-base text-text-secondary">Quality control and compliance</span>
-                </div>
+                   <span className="text-sm sm:text-base text-text-secondary">BSP and NPT threaded connections</span>
+               </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                  <span className="text-sm sm:text-base text-text-secondary">End-to-end fulfillment solutions</span>
-                </div>
+                   <span className="text-sm sm:text-base text-text-secondary">Pressure ratings up to PN40</span>
+               </div>
               </div>
             </div>
             <div className="bg-gray-50 p-6 sm:p-8 rounded-xl">
-              <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-6">Multi-Platform FBM</h3>
-              <div className="space-y-4">
+               <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-6">Professional Tools & Accessories</h3>
+             <div className="space-y-4">
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                  <span className="text-sm sm:text-base text-text-secondary">Amazon FBM fulfillment</span>
-                </div>
+                   <span className="text-sm sm:text-base text-text-secondary">Professional installation tools</span>
+               </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                  <span className="text-sm sm:text-base text-text-secondary">eBay order processing</span>
-                </div>
+                   <span className="text-sm sm:text-base text-text-secondary">Gaskets and sealing solutions</span>
+               </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                  <span className="text-sm sm:text-base text-text-secondary">Shopify integration</span>
-                </div>
+                   <span className="text-sm sm:text-base text-text-secondary">Flexible hoses and connections</span>
+               </div>
                 <div className="flex items-center">
                   <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
-                  <span className="text-sm sm:text-base text-text-secondary">Custom website fulfillment</span>
-                </div>
+                   <span className="text-sm sm:text-base text-text-secondary">Technical documentation included</span>
+               </div>
               </div>
             </div>
           </div>
@@ -284,24 +277,19 @@ function Home() {
       <section className="py-16 lg:py-20 bg-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
-            Ready to Streamline Your Amazon FBA Operations in Europe?
-          </h2>
+             Ready to Source Professional Plumbing Parts in Europe?
+         </h2>
           <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Get started with professional Amazon FBA prep services in France. 24h turnaround times, quality control, FNSKU labeling and fast shipping to European Amazon fulfillment centers.
-          </p>
+             Browse our extensive catalog of professional plumbing parts. CE certified components, technical specifications and fast delivery across Europe for professional installers.
+         </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button className="w-full sm:w-auto bg-white text-primary px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl">
-              {t('getQuote')}
+               {t('requestCatalog')}
+           </button>
+             <button className="w-full sm:w-auto bg-accent text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-accent-dark transition-all duration-200 shadow-lg hover:shadow-xl">
+              Browse Products
             </button>
-            <a
-              href="https://wa.me/33675116218"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-accent text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-accent-dark transition-all duration-200 shadow-lg hover:shadow-xl text-center"
-            >
-              {t('chatWhatsApp')}
-            </a>
-          </div>
+         </div>
         </div>
       </section>
     </div>

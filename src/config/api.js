@@ -1,5 +1,5 @@
 // Configurație API pentru producție
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.prep-center.eu';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api.pipesan.eu';
 import mockApi from '../utils/mockApi';
 
 // Detectează dacă suntem în mod development sau dacă API_URL nu este setat
@@ -316,51 +316,51 @@ export const apiClient = {
 
   // Admin endpoints
   admin: {
-    getServices: async () => {
+    getProducts: async () => {
       if (USE_MOCK_API) {
         return await mockApi.services.getAll();
       }
-      const response = await fetch(`${API_BASE_URL}/api/admin/services`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/products`, {
         headers: getHeaders()
       });
       await handleApiError(response);
       return response.json();
     },
 
-    createService: async (serviceData) => {
+    createProduct: async (productData) => {
       if (USE_MOCK_API) {
         await delay(1000);
-        return { id: Date.now(), ...serviceData };
+        return { id: Date.now(), ...productData };
       }
-      const response = await fetch(`${API_BASE_URL}/api/admin/services`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/products`, {
         method: 'POST',
         headers: getHeaders(),
-        body: JSON.stringify(serviceData)
+        body: JSON.stringify(productData)
       });
       await handleApiError(response);
       return response.json();
     },
 
-    updateService: async (id, serviceData) => {
+    updateProduct: async (id, productData) => {
       if (USE_MOCK_API) {
         await delay(1000);
-        return { id, ...serviceData };
+        return { id, ...productData };
       }
-      const response = await fetch(`${API_BASE_URL}/api/admin/services/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/products/${id}`, {
         method: 'PUT',
         headers: getHeaders(),
-        body: JSON.stringify(serviceData)
+        body: JSON.stringify(productData)
       });
       await handleApiError(response);
       return response.json();
     },
 
-    deleteService: async (id) => {
+    deleteProduct: async (id) => {
       if (USE_MOCK_API) {
         await delay(1000);
         return { success: true };
       }
-      const response = await fetch(`${API_BASE_URL}/api/admin/services/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/products/${id}`, {
         method: 'DELETE',
         headers: getHeaders()
       });
@@ -518,6 +518,78 @@ export const apiClient = {
         return await mockApi.products.getById(id);
       }
       const response = await fetch(`${API_BASE_URL}/api/products/${id}`, {
+        headers: getHeaders()
+      });
+      await handleApiError(response);
+      return response.json();
+    }
+  },
+
+  // Orders endpoints
+  orders: {
+    create: async (orderData) => {
+      if (USE_MOCK_API) {
+        await delay(1500);
+        return { 
+          id: Date.now(),
+          orderNumber: `PS-${Date.now()}`,
+          status: 'confirmed',
+          ...orderData 
+        };
+      }
+      const response = await fetch(`${API_BASE_URL}/api/orders`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(orderData)
+      });
+      await handleApiError(response);
+      return response.json();
+    },
+
+    getAll: async () => {
+      if (USE_MOCK_API) {
+        await delay(800);
+        return [];
+      }
+      const response = await fetch(`${API_BASE_URL}/api/orders`, {
+        headers: getHeaders()
+      });
+      await handleApiError(response);
+      return response.json();
+    },
+
+    getById: async (id) => {
+      if (USE_MOCK_API) {
+        await delay(500);
+        return { id, orderNumber: `PS-${id}`, status: 'confirmed' };
+      }
+      const response = await fetch(`${API_BASE_URL}/api/orders/${id}`, {
+        headers: getHeaders()
+      });
+      await handleApiError(response);
+      return response.json();
+    }
+  },
+
+  // Categories endpoints
+  categories: {
+    getAll: async () => {
+      if (USE_MOCK_API) {
+        await delay(400);
+        return [
+          { id: 1, name: 'Valves', slug: 'valves', productCount: 45 },
+          { id: 2, name: 'Fittings', slug: 'fittings', productCount: 128 },
+          { id: 3, name: 'Elbows', slug: 'elbows', productCount: 67 },
+          { id: 4, name: 'Tees', slug: 'tees', productCount: 89 },
+          { id: 5, name: 'Nipples', slug: 'nipples', productCount: 156 },
+          { id: 6, name: 'Reducers', slug: 'reducers', productCount: 78 },
+          { id: 7, name: 'Hoses', slug: 'hoses', productCount: 34 },
+          { id: 8, name: 'Gaskets', slug: 'gaskets', productCount: 92 },
+          { id: 9, name: 'Tools', slug: 'tools', productCount: 23 },
+          { id: 10, name: 'Accessories', slug: 'accessories', productCount: 56 }
+        ];
+      }
+      const response = await fetch(`${API_BASE_URL}/api/categories`, {
         headers: getHeaders()
       });
       await handleApiError(response);

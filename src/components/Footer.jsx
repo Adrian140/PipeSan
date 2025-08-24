@@ -1,6 +1,5 @@
 import React from 'react';
-import { Package, Phone, Mail, MapPin } from 'lucide-react';
-
+import { Wrench, Phone, Mail, MapPin, Award, Truck, Shield } from 'lucide-react';
 function Footer() {
   return (
     <footer className="bg-gray-50 border-t">
@@ -9,32 +8,30 @@ function Footer() {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center">
-                <Package className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold text-text-primary">Prep Center France</span>
-            </div>
+               <div className="w-10 h-10 bg-gradient-to-br from-primary to-copper rounded-lg flex items-center justify-center">
+                <Wrench className="w-6 h-6 text-white" />
+             </div>
+               <span className="text-xl font-bold text-text-primary">PipeSan</span>
+           </div>
             <p className="text-text-secondary mb-4">
-              Professional Amazon FBA prep center in France with 24h turnaround. Reception, quality control, FNSKU labeling, polybagging and fast shipping to European Amazon fulfillment centers. Serving EU sellers since 2020.
-            </p>
+               Professional plumbing parts and pipe fittings supplier for Europe. High-quality brass and stainless steel components with technical specifications, certificates and fast delivery. Serving professionals and installers since 2020.
+           </p>
             <div className="flex space-x-4">
-              <a
-                href="https://wa.me/33675116218"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-accent text-white px-4 py-2 rounded-lg font-medium hover:bg-accent-dark transition-colors"
-              >
-                WhatsApp
-              </a>
-              <a
-                href="https://calendly.com/global-fulfill-hub"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-dark transition-colors"
-              >
-                Book Zoom
-              </a>
-            </div>
+               <div className="flex items-center space-x-4">
+                <div className="flex items-center">
+                  <Award className="w-5 h-5 text-copper mr-2" />
+                  <span className="text-sm text-text-secondary">CE Certified</span>
+                </div>
+                <div className="flex items-center">
+                  <Shield className="w-5 h-5 text-primary mr-2" />
+                  <span className="text-sm text-text-secondary">ISO 9001</span>
+                </div>
+                <div className="flex items-center">
+                  <Truck className="w-5 h-5 text-accent mr-2" />
+                  <span className="text-sm text-text-secondary">Fast EU Delivery</span>
+                </div>
+              </div>
+           </div>
           </div>
 
           {/* Contact Info */}
@@ -43,17 +40,18 @@ function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4 text-text-secondary" />
-                <span className="text-text-secondary">contact@prep-center.eu</span>
-              </div>
+                 <span className="text-text-secondary">info@pipesan.eu</span>
+             </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-text-secondary" />
-                <span className="text-text-secondary">+33 6 75 11 62 18</span>
-              </div>
+                 <span className="text-text-secondary">+33 1 23 45 67 89</span>
+             </div>
               <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-text-secondary mt-1" />
                 <span className="text-text-secondary">
-                  35350 La Gouesnière, France
-                </span>
+                   Zone Industrielle Nord<br />
+                  69120 Vaulx-en-Velin, France
+               </span>
               </div>
             </div>
           </div>
@@ -62,24 +60,24 @@ function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-text-primary mb-4">Quick Links</h3>
             <div className="space-y-2">
-              <a href="/services-pricing" className="block text-text-secondary hover:text-primary transition-colors">
-                Services & Pricing
-              </a>
-              <a href="#" className="block text-text-secondary hover:text-primary transition-colors">
-                Pricing PDF
-              </a>
-              <a href="#" className="block text-text-secondary hover:text-primary transition-colors">
+               <a href="/categories" className="block text-text-secondary hover:text-primary transition-colors">
+                Product Categories
+             </a>
+               <a href="/technical-specs" className="block text-text-secondary hover:text-primary transition-colors">
+                Technical Specifications
+             </a>
+               <a href="/b2b" className="block text-text-secondary hover:text-primary transition-colors">
+                B2B Solutions
+             </a>
+               <a href="/support" className="block text-text-secondary hover:text-primary transition-colors">
+                Technical Support
+             </a>
+               <a href="/terms" className="block text-text-secondary hover:text-primary transition-colors">
                 Terms of Service
-              </a>
-              <a href="#" className="block text-text-secondary hover:text-primary transition-colors">
+             </a>
+               <a href="/privacy-policy" className="block text-text-secondary hover:text-primary transition-colors">
                 Privacy Policy
-              </a>
-              <a href="https://linkedin.com/company/global-fulfill-hub" target="_blank" rel="noopener noreferrer" className="block text-text-secondary hover:text-primary transition-colors">
-                LinkedIn
-              </a>
-              <a href="https://www.tiktok.com/@globalfulfillhub" target="_blank" rel="noopener noreferrer" className="block text-text-secondary hover:text-primary transition-colors">
-                TikTok
-              </a>
+             </a>
             </div>
           </div>
         </div>
