@@ -163,3 +163,5 @@ export const CountryProvider = ({ children }) => {
     </CountryContext.Provider>
   );
 };
+
+export default CountryProvider;
