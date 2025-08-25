@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Settings, DollarSign, Package, FileText, Users, Plus, Edit, Trash2, Save, X, Upload, Eye } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { apiClient } from '../../config/api';
+import LogoUpload from './LogoUpload';
 
 function AdminPanel() {
   const [activeTab, setActiveTab] = useState('services');
@@ -459,6 +460,7 @@ function AdminPanel() {
       </div>
     </div>
   );
+
   const renderProductsTab = () => (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -920,24 +922,14 @@ function AdminPanel() {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white border border-gray-200 rounded-xl p-6">
-          <h3 className="text-lg font-semibold text-text-primary mb-4">Logo și Branding</h3>
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Logo Principal</label>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                <p className="text-sm text-gray-500">Încarcă logo-ul principal</p>
-                <input type="file" className="hidden" accept="image/*" />
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-2">Nume Companie</label>
-              <input
-                type="text"
-                defaultValue="Global Fulfill Hub"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
+          <LogoUpload />
+          <div>
+            <label className="block text-sm font-medium text-text-primary mb-2">Nume Companie</label>
+            <input
+              type="text"
+              defaultValue="PipeSan"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            />
           </div>
         </div>
 
@@ -1033,7 +1025,7 @@ function AdminPanel() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center px-4 py-3 text-left rounded-lg transition-colors ${
+                    className={`w-full flex items-center px-4 py-3 rounded-lg transition-colors ${
                       activeTab === tab.id
                         ? 'bg-primary text-white'
                         : 'text-text-secondary hover:bg-gray-50'

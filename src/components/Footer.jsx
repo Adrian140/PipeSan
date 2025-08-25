@@ -1,5 +1,6 @@
 import React from 'react';
 import { Wrench, Phone, Mail, MapPin, Award, Truck, Shield } from 'lucide-react';
+import LogoComponent from './LogoComponent';
 function Footer() {
   return (
     <footer className="bg-gray-50 border-t">
@@ -8,9 +9,7 @@ function Footer() {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-               <div className="w-10 h-10 bg-gradient-to-br from-primary to-copper rounded-lg flex items-center justify-center">
-                <Wrench className="w-6 h-6 text-white" />
-             </div>
+               <LogoComponent className="w-10 h-10" />
                <span className="text-xl font-bold text-text-primary">PipeSan</span>
            </div>
             <p className="text-text-secondary mb-4">

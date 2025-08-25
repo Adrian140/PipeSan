@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Wrench } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import CartIcon from './layout/CartIcon';
+import LogoComponent from './LogoComponent';
 import { useAuth } from '../contexts/AuthContext';
 import { useTranslation } from '../translations';
 
@@ -28,9 +29,7 @@ function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Logo Section - Improved spacing and typography */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-copper rounded-lg flex items-center justify-center">
-              <Wrench className="w-6 h-6 text-white" />
-            </div>
+            <LogoComponent className="w-10 h-10" />
             <div className="flex flex-col">
               <span className="text-xl font-bold text-text-primary leading-tight">PipeSan</span>
               <span className="text-sm font-medium text-primary leading-tight">Professional Parts</span>
